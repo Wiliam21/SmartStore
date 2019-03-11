@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context=".AltaProductos">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_row="0"
+        android:layout_column="0">
+
+        <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="20dp">
+
+        <TextView
+            android:id="@+id/txtPuntoVenta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Punto Venta"
+            android:textColor="#FFF"
+            android:textSize="22sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtPuntoVenta"
+            android:layout_marginTop="6dp"
+            android:text="Alta Productos"
+            android:textColor="#52BAFF"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/lg" />
+
+    </RelativeLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="12dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <EditText
+                    android:id="@+id/txtnCProducto"
+                    android:layout_width="267dp"
+                    android:layout_height="wrap_content"
+                    android:background="#E9E9E9"
+                    android:drawableLeft="@drawable/codigo"
+                    android:hint="Codigo del producto"
+                    android:inputType="number"
+                    android:padding="10dp"/>
+
+                <ImageButton
+                    android:id="@+id/imageButton5"
+                    android:layout_width="33dp"
+                    android:layout_height="34dp"
+                    app:srcCompat="@drawable/qr2"
+                    android:layout_marginLeft="275dp"
+                    android:layout_marginTop="-40dp"/>
+
+                <EditText
+                    android:id="@+id/txtNombre"
+                    android:layout_width="267dp"
+                    android:layout_height="wrap_content"
+                    android:background="#FFE9E9E9"
+                    android:drawableLeft="@drawable/name"
+                    android:hint="Ingrese Nombre producto"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:layout_marginTop="20dp"/>
+
+                <EditText
+                    android:id="@+id/txtnCantidad"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:background="#FFE9E9E9"
+                    android:hint="Cantidad"
+                    android:inputType="number"
+                    android:padding="10dp"
+                    android:layout_marginTop="20dp"/>
+
+                <EditText
+                    android:id="@+id/txtnCompra"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:background="#FFE9E9E9"
+                    android:hint="Costo Compra"
+                    android:inputType="number"
+                    android:padding="10dp"
+                    android:layout_marginTop="20dp"/>
+
+                <EditText
+                    android:id="@+id/txtnVenta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#FFE9E9E9"
+                    android:ems="10"
+                    android:hint="Costo Venta"
+                    android:inputType="number"
+                    android:padding="10dp"
+                    android:layout_marginTop="20dp"/>
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="DAR DE ALTA" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+</GridLayout>
