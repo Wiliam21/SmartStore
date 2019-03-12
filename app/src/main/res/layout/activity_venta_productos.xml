@@ -74,9 +74,10 @@
                     android:id="@+id/imageButton5"
                     android:layout_width="33dp"
                     android:layout_height="34dp"
-                    app:srcCompat="@drawable/qr2"
                     android:layout_marginLeft="275dp"
-                    android:layout_marginTop="-40dp"/>
+                    android:layout_marginTop="-40dp"
+                    android:onClick="Escanear"
+                    app:srcCompat="@drawable/qr2" />
 
             </LinearLayout>
 
