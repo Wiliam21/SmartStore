@@ -77,7 +77,7 @@
                     android:layout_width="267dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:background="#FFE9E9E9"
+                    android:background="#ff"
                     android:drawableLeft="@drawable/name"
                     android:hint="Ingrese Nombre producto"
                     android:inputType="text"
