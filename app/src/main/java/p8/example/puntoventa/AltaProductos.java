@@ -5,9 +5,11 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -17,6 +19,7 @@ public class AltaProductos extends AppCompatActivity {
     private EditText txtnId_Producto,txteNombre,txtnCantidad,txtnCompra,txtnVenta;
     private Button btnAlta;
     private ImageButton imgbScan;
+    Spinner comboProveedores;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,10 @@ public class AltaProductos extends AppCompatActivity {
         txtnCompra=(EditText)findViewById(R.id.txtnCompra);
         btnAlta=(Button)findViewById(R.id.btnAlta);
         imgbScan=(ImageButton)findViewById(R.id.imgbScan);
+        comboProveedores = findViewById(R.id.spinner_proveedores);
+
+        ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this, R.array.combo_proveedores,android.R.layout.simple_spinner_item);
+        comboProveedores.setAdapter(adapter);
 
     }
 
