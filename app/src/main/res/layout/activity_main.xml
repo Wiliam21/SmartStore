@@ -24,7 +24,7 @@
                 android:id="@+id/txtPuntoVenta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Punto Venta"
+                android:text="SmartStore"
                 android:textColor="#FFF"
                 android:textSize="22sp" />
 
