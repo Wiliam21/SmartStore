@@ -29,20 +29,22 @@
             android:textColor="#FFF"
             android:textSize="22sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtPuntoVenta"
-            android:layout_marginTop="6dp"
-            android:text="Alta Productos"
-            android:textColor="#52BAFF"
-            android:textSize="14sp" />
+            <TextView
+                android:id="@+id/txtAlta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtPuntoVenta"
+                android:layout_marginTop="6dp"
+                android:text="Alta Productos"
+                android:textColor="#52BAFF"
+                android:textSize="14sp" />
 
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/lg" />
+            <ImageView
+                android:id="@+id/imgLogo"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/lg" />
 
     </RelativeLayout>
 
@@ -62,33 +64,34 @@
                 android:padding="10dp">
 
                 <EditText
-                    android:id="@+id/txtnCProducto"
+                    android:id="@+id/txtnId_Producto"
                     android:layout_width="267dp"
                     android:layout_height="wrap_content"
                     android:background="#E9E9E9"
                     android:drawableLeft="@drawable/codigo"
                     android:hint="Codigo del producto"
                     android:inputType="number"
-                    android:padding="10dp"/>
+                    android:padding="10dp" />
 
                 <ImageButton
-                    android:id="@+id/imageButton5"
+                    android:id="@+id/imgbScan"
                     android:layout_width="33dp"
                     android:layout_height="34dp"
-                    app:srcCompat="@drawable/qr2"
                     android:layout_marginLeft="275dp"
-                    android:layout_marginTop="-40dp"/>
+                    android:layout_marginTop="-40dp"
+                    android:onClick="Escanear"
+                    app:srcCompat="@drawable/qr2" />
 
                 <EditText
-                    android:id="@+id/txtNombre"
+                    android:id="@+id/txteNombre"
                     android:layout_width="267dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:background="#FFE9E9E9"
                     android:drawableLeft="@drawable/name"
                     android:hint="Ingrese Nombre producto"
                     android:inputType="text"
-                    android:padding="10dp"
-                    android:layout_marginTop="20dp"/>
+                    android:padding="10dp" />
 
                 <EditText
                     android:id="@+id/txtnCantidad"
@@ -122,9 +125,10 @@
                     android:layout_marginTop="20dp"/>
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/btnAlta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:onClick="AltaProducto"
                     android:text="DAR DE ALTA" />
 
             </LinearLayout>

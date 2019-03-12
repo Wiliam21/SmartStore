@@ -61,12 +61,12 @@
                 android:padding="10dp">
 
                 <EditText
-                    android:id="@+id/txtNombre"
+                    android:id="@+id/txtId_Producto"
                     android:layout_width="267dp"
                     android:layout_height="wrap_content"
                     android:background="#FFE9E9E9"
                     android:drawableLeft="@drawable/name"
-                    android:hint="Ingrese Nombre producto"
+                    android:hint="Ingrese Codigo Producto"
                     android:inputType="text"
                     android:padding="10dp" />
 

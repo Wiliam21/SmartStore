@@ -14,7 +14,7 @@ public class Conexion extends SQLiteOpenHelper {
             "telefono text" +
             ");";
     final String CREAR_TABLA_PRODUCTOS="create table Productos(" +
-            "ID_Producto int primary key," +
+            "ID_Producto varchar(25) primary key," +
             "Nombre_Producto text," +
             "Costo_Venta double," +
             "Costo_Compra double," +
