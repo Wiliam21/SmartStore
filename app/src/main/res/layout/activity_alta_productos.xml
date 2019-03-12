@@ -87,7 +87,7 @@
                     android:id="@+id/txtnCantidad"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:background="#FFE9E9E9"
+                    android:background="#fff"
                     android:hint="Cantidad"
                     android:inputType="number"
                     android:padding="10dp"
@@ -97,7 +97,7 @@
                     android:id="@+id/txtnCompra"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:background="#FFE9E9E9"
+                    android:background="#fff"
                     android:hint="Costo Compra"
                     android:inputType="number"
                     android:padding="10dp"
@@ -107,12 +107,19 @@
                     android:id="@+id/txtnVenta"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#FFE9E9E9"
+                    android:background="#fff"
                     android:ems="10"
                     android:hint="Costo Venta"
                     android:inputType="number"
                     android:padding="10dp"
                     android:layout_marginTop="20dp"/>
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="15dp"
+                    />
 
                 <Button
                     android:id="@+id/btnAlta"
