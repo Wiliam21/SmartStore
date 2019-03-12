@@ -59,6 +59,7 @@
                     android:layout_height="wrap_content"
                     android:background="#fff"
                     android:drawableLeft="@drawable/codigo"
+                    android:gravity="right"
                     android:hint="Codigo del producto"
                     android:inputType="number"
                     android:padding="10dp" />
@@ -103,16 +104,21 @@
                     android:padding="10dp"
                     android:layout_marginTop="20dp"/>
 
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
                 <EditText
                     android:id="@+id/txtnVenta"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:background="#FFE9E9E9"
                     android:ems="10"
                     android:hint="Costo Venta"
                     android:inputType="number"
-                    android:padding="10dp"
-                    android:layout_marginTop="20dp"/>
+                    android:padding="10dp" />
 
                 <Button
                     android:id="@+id/btnAlta"

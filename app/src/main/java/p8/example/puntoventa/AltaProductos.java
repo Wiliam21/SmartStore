@@ -31,7 +31,6 @@ public class AltaProductos extends AppCompatActivity {
         btnAlta=(Button)findViewById(R.id.btnAlta);
         imgbScan=(ImageButton)findViewById(R.id.imgbScan);
 
-
     }
 
     public void AltaProducto(View view){
@@ -40,6 +39,7 @@ public class AltaProductos extends AppCompatActivity {
         double CostoCompra=Double.parseDouble(txtnCompra.getText().toString());
         double CostoVenta=Double.parseDouble(txtnVenta.getText().toString());
         int Cantidad= Integer.parseInt(txtnCantidad.getText().toString());
+
     }
 
     public void Escanear(View view){
