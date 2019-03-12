@@ -25,24 +25,15 @@
                 android:id="@+id/txtPuntoVenta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Punto Venta"
+                android:text="PRECIO PRODUCTOS"
                 android:textColor="#FFF"
                 android:textSize="22sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/txtPuntoVenta"
-                android:layout_marginTop="6dp"
-                android:text="Precio Productos"
-                android:textColor="#52BAFF"
-                android:textSize="14sp" />
 
             <ImageView
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/lg" />
+                android:src="@drawable/dinero" />
 
         </RelativeLayout>
 
