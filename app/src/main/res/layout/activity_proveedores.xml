@@ -58,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:background="#fff"
                     android:hint="Nombre del proveedor"
-                    android:inputType="text"
+                    android:inputType="textCapCharacters"
                     android:padding="10dp" />
 
                 <EditText
@@ -84,9 +84,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:background="#5DADE2"
+                    android:background="@drawable/botones"
                     android:textColor="#fff"
                     android:text="DAR DE ALTA" />
+
+                <Button
+                    android:id="@+id/btnVerProveedor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/botones"
+                    android:textColor="#fff"
+                    android:text="VER PROVEEDORES" />
 
             </LinearLayout>
         </android.support.v7.widget.CardView>

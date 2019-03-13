@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -81,7 +81,7 @@
                     android:background="#fff"
                     android:drawableLeft="@drawable/name"
                     android:hint="Ingrese Nombre Producto"
-                    android:inputType="text"
+                    android:inputType="textCapCharacters"
                     android:padding="10dp" />
 
                 <EditText
@@ -120,6 +120,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginTop="15dp"
+                    android:padding="5dp"
                     />
 
                 <Button
@@ -145,4 +146,4 @@
         </android.support.v7.widget.CardView>
 
     </LinearLayout>
-</GridLayout>
+</ScrollView>
