@@ -139,8 +139,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/botones"
-                    android:textColor="#fff"
-                    android:text="OTRO PRODUCTO" />
+                    android:onClick="AltaOtro"
+                    android:text="OTRO PRODUCTO"
+                    android:textColor="#fff" />
 
             </LinearLayout>
         </android.support.v7.widget.CardView>

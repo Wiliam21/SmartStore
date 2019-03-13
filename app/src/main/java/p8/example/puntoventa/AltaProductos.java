@@ -1,10 +1,15 @@
 package p8.example.puntoventa;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,11 +20,19 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.util.ArrayList;
+
+import p8.example.puntoventa.db_store.Conexion;
+import p8.example.puntoventa.db_store.Proveedor;
+
 public class AltaProductos extends AppCompatActivity {
     private EditText txtnId_Producto,txteNombre,txtnCantidad,txtnCompra,txtnVenta;
-    private Button btnAlta;
+    private Button btnAlta,btnOtro;
     private ImageButton imgbScan;
     Spinner comboProveedores;
+    Conexion conn;
+    ArrayList<Proveedor> listProveerdor;
+    ArrayList<String> ListaProveedor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +45,46 @@ public class AltaProductos extends AppCompatActivity {
         txtnVenta=(EditText)findViewById(R.id.txtnVenta);
         txtnCompra=(EditText)findViewById(R.id.txtnCompra);
         btnAlta=(Button)findViewById(R.id.btnAlta);
+        btnOtro=(Button)findViewById(R.id.btnAltaOtro);
         imgbScan=(ImageButton)findViewById(R.id.imgbScan);
         comboProveedores = findViewById(R.id.spinner_proveedores);
 
         ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this, R.array.combo_proveedores,android.R.layout.simple_spinner_item);
         comboProveedores.setAdapter(adapter);
 
+        comboProveedores.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        conn=new Conexion(getApplicationContext(),"db_SmartStore",null,1);
+        consultarProveedores();
+    }
+
+    private void consultarProveedores() {
+        SQLiteDatabase db=conn.getReadableDatabase();
+
+        Proveedor proveedor=null;
+        Cursor cursor=db.rawQuery("SELECT*FROM Proveedor",null);
+        while(cursor.moveToNext()){
+            proveedor.setID_Proveedor(cursor.getInt(0));
+            proveedor.setNombre_Proveedor(cursor.getString(1));
+            proveedor.setTelefono(cursor.getString(2));
+
+            listProveerdor.add(proveedor);
+            ListaProveedor.add("Seleccione un proveedor");
+            for (int i=0;i<listProveerdor.size();i++){
+                ListaProveedor.add(listProveerdor.get(i).getNombre_Proveedor());
+            }
+        }
+        db.close();
     }
 
     public void AltaProducto(View view){
@@ -46,7 +93,38 @@ public class AltaProductos extends AppCompatActivity {
         double CostoCompra=Double.parseDouble(txtnCompra.getText().toString());
         double CostoVenta=Double.parseDouble(txtnVenta.getText().toString());
         int Cantidad= Integer.parseInt(txtnCantidad.getText().toString());
+        int idSpinner=(int) comboProveedores.getSelectedItemPosition();
+        int ID_Proveedor=listProveerdor.get(idSpinner-1).getID_Proveedor();
+        SQLiteDatabase db=conn.getWritableDatabase();
+        ContentValues Producto=new ContentValues();
 
+        Producto.put("ID_Producto",Id_Producto);
+        Producto.put("Nombre_Producto",Nombre);
+        Producto.put("Costo_Venta",CostoVenta);
+        Producto.put("Costo_Compra",CostoCompra);
+        Producto.put("Existencia",Cantidad);
+        Producto.put("Veces_Vendido",0);
+        Producto.put("ID_Proveedor",ID_Proveedor);
+
+        if (idSpinner==0){
+            Toast.makeText(this,"No selecciono un proveedor",Toast.LENGTH_LONG).show();
+        }
+        else {
+            try {
+                db.insert("Productos","ID_PRODUCTO",Producto);
+            }catch (Exception e){
+                Toast.makeText(this,e.getMessage(),Toast.LENGTH_LONG);
+            }
+        }
+
+    }
+
+    public void AltaOtro(View view){
+        txteNombre.setText("");
+        txtnCantidad.setText("");
+        txtnCompra.setText("");
+        txtnVenta.setText("");
+        txtnId_Producto.setText("");
     }
 
     public void Escanear(View view){
