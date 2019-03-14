@@ -12,7 +12,7 @@ public class Utilidades {
             +CAMPO_NOMBRE_PROVEEDOR+" TEXT,"
             +CAMPO_TELEFONO_PROVEEDOR+" TEXT)";
 
-    public static final String TABLA_PRODUCTO="Proveedor";
+    public static final String TABLA_PRODUCTO="Producto";
     public static final String CAMPO_ID_PRODUCTO="ID_Producto";
     public static final String CAMPO_NOMBRE_PRODUCTO="Nombre_Producto";
     public static final String CAMPO_COSTO_VENTA="Costo_Venta";
