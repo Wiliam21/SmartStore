@@ -30,7 +30,7 @@ public class AltaProductos extends AppCompatActivity {
     private Button btnAlta,btnOtro;
     private ImageButton imgbScan;
     Spinner comboProveedores;
-    Conexion conn;
+    Conexion conn=new Conexion(this,"db_SmartStore",null,1);
     ArrayList<Proveedor> listProveerdor;
     ArrayList<String> ListaProveedor;
 
@@ -49,7 +49,7 @@ public class AltaProductos extends AppCompatActivity {
         imgbScan=(ImageButton)findViewById(R.id.imgbScan);
         comboProveedores = findViewById(R.id.spinner_proveedores);
 
-        ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this, R.array.combo_proveedores,android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter=new ArrayAdapter(this,android.R.layout.simple_spinner_item,ListaProveedor);
         comboProveedores.setAdapter(adapter);
 
         comboProveedores.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -64,8 +64,7 @@ public class AltaProductos extends AppCompatActivity {
             }
         });
 
-        conn=new Conexion(getApplicationContext(),"db_SmartStore",null,1);
-        consultarProveedores();
+        //consultarProveedores();
     }
 
     private void consultarProveedores() {

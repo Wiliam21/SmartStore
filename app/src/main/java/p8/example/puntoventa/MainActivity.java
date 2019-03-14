@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
 
+import p8.example.puntoventa.db_store.Conexion;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private CardView altaCard, preciosCard, ventaCard, reporteCard, proveedoresCard, inventarioCard, ajustesCard;
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         proveedoresCard.setOnClickListener(this);
         inventarioCard.setOnClickListener(this);
         ajustesCard.setOnClickListener(this);
+
+        Conexion conexion=new Conexion(this,"db_SmartStore",null,1);
 
     }
 
