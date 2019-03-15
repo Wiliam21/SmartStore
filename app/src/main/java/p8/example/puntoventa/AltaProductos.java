@@ -129,14 +129,19 @@ public class AltaProductos extends AppCompatActivity {
             Toast.makeText(this,"Producto agregado",Toast.LENGTH_LONG);
         }
         db.close();
+        Limpiar();
     }
 
-    public void AltaOtro(View view){
+    private void Limpiar() {
         txteNombre.setText("");
         txtnCantidad.setText("");
         txtnCompra.setText("");
         txtnVenta.setText("");
         txtnId_Producto.setText("");
+    }
+
+    public void AltaOtro(View view){
+        Limpiar();
     }
 
     public void Escanear(View view){
