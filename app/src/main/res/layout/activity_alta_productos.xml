@@ -71,7 +71,7 @@
                     android:layout_marginLeft="270dp"
                     android:layout_marginTop="-40dp"
                     android:onClick="Escanear"
-                    app:srcCompat="@drawable/qr2" />
+                    app:srcCompat="@mipmap/codeqr_round" />
 
                 <EditText
                     android:id="@+id/txteNombre"

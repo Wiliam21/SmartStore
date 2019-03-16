@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="p8.example.puntoventa">
-    
-    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
+
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/icono"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        <activity android:name=".Ajustes"></activity>
+        <activity android:name=".Ajustes" />
         <activity android:name=".Inventario" />
         <activity android:name=".Proveedores" />
         <activity android:name=".ReporteProductos" />
