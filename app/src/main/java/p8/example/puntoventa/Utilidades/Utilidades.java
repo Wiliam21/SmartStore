@@ -1,6 +1,8 @@
 package p8.example.puntoventa.Utilidades;
 
 public class Utilidades {
+    public static final String DATABASE="db_SmartStore";
+
     public static final String TABLA_PROVEEDOR="Proveedor";
     public static final String CAMPO_ID_PROVEEDOR="ID_Proveedor";
     public static final String CAMPO_NOMBRE_PROVEEDOR="Nombre_Proveedor";

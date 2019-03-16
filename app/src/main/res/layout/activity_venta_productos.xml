@@ -91,25 +91,26 @@
                 android:padding="10dp">
 
                 <TextView
+                    android:id="@+id/txtNombreProducto"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
 
-                    android:textStyle="bold"
-                    android:textSize="18dp"
+                    android:layout_height="wrap_content"
                     android:hint="Nombre del producto"
-                    android:padding="10dp" />
+                    android:padding="10dp"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
 
                 <EditText
-                    android:id="@+id/txtCantidad"
+                    android:id="@+id/txtnCantidad"
                     android:layout_width="135dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:background="#fff"
                     android:drawableLeft="@drawable/name"
                     android:hint="Cantidad"
                     android:inputType="number"
-                    android:padding="10dp"
-                    android:layout_marginTop="10dp"/>
+                    android:padding="10dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -121,10 +122,11 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/txtCosto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="-49dp"
                     android:layout_marginLeft="185dp"
+                    android:layout_marginTop="-49dp"
                     android:hint="Ejemplo: $15"
                     android:padding="15dp" />
 

@@ -93,7 +93,7 @@ public class AltaProductos extends AppCompatActivity {
     }
 
     private void ObtenerLista() {
-        ListaProveedor=new ArrayList<String>();
+        ListaProveedor=new ArrayList<>();
         ListaProveedor.add("Seleccione un proveedor");
 
         for (int i=0;i<arrayProveerdor.size();i++){
