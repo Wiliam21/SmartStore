@@ -35,9 +35,6 @@ public class AltaProductos extends AppCompatActivity {
         imgbScan=(ImageButton)findViewById(R.id.imgbScan);
         comboProveedores = findViewById(R.id.spinner_proveedores);
 
-        ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this, R.array.combo_proveedores,android.R.layout.simple_spinner_item);
-        comboProveedores.setAdapter(adapter);
-
     }
 
     public void AltaProducto(View view){
