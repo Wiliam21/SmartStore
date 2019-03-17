@@ -69,7 +69,7 @@
                     android:background="#fff"
                     android:drawableLeft="@drawable/name"
                     android:hint="Numero del proveedor"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:padding="10dp" />
 
                 <Spinner
