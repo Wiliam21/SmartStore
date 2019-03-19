@@ -15,6 +15,13 @@ import java.util.ArrayList;
 import p8.example.puntoventa.Utilidades.Utilidades;
 import p8.example.puntoventa.db_store.Conexion;
 import p8.example.puntoventa.db_store.Productos;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 public class Inventario extends AppCompatActivity {
     Conexion conexion=new Conexion(this, Utilidades.DATABASE,null,1);
@@ -38,5 +45,14 @@ public class Inventario extends AppCompatActivity {
             ListaProductos.add(producto);
         }
         db.close();
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Inventario.this,AltaProductos.class);
+                startActivity(i);
+            }
+        });
     }
+
 }

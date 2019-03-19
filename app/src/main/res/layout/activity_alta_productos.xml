@@ -71,11 +71,11 @@
                     android:layout_marginLeft="270dp"
                     android:layout_marginTop="-40dp"
                     android:onClick="Escanear"
-                    app:srcCompat="@mipmap/codeqr_round" />
+                    app:srcCompat="@drawable/qr2" />
 
                 <EditText
                     android:id="@+id/txteNombre"
-                    android:layout_width="333dp"
+                    android:layout_width="267dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:background="#fff"
@@ -86,34 +86,34 @@
 
                 <EditText
                     android:id="@+id/txtnCantidad"
-                    android:layout_width="332dp"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:background="#fff"
                     android:hint="Cantidad"
                     android:inputType="number"
-                    android:padding="10dp" />
+                    android:padding="10dp"
+                    android:layout_marginTop="20dp"/>
 
                 <EditText
                     android:id="@+id/txtnCompra"
-                    android:layout_width="328dp"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:background="#fff"
                     android:hint="Costo Compra"
                     android:inputType="number"
-                    android:padding="10dp" />
+                    android:padding="10dp"
+                    android:layout_marginTop="20dp"/>
 
                 <EditText
                     android:id="@+id/txtnVenta"
-                    android:layout_width="325dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:background="#fff"
                     android:ems="10"
                     android:hint="Costo Venta"
                     android:inputType="number"
-                    android:padding="10dp" />
+                    android:padding="10dp"
+                    android:layout_marginTop="20dp"/>
 
                 <Spinner
                     android:id="@+id/spinner_proveedores"
@@ -139,9 +139,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/botones"
-                    android:onClick="AltaOtro"
-                    android:text="OTRO PRODUCTO"
-                    android:textColor="#fff" />
+                    android:textColor="#fff"
+                    android:text="OTRO PRODUCTO" />
 
             </LinearLayout>
         </android.support.v7.widget.CardView>
