@@ -67,8 +67,6 @@ public class AltaProductos extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     private void consultarProveedores() {
@@ -91,6 +89,7 @@ public class AltaProductos extends AppCompatActivity {
         ObtenerLista();
         db.close();
     }
+
 
     private void ObtenerLista() {
         ListaProveedor=new ArrayList<>();
