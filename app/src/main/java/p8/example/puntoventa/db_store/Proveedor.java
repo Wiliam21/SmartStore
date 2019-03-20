@@ -11,6 +11,10 @@ public class Proveedor {
         this.Telefono = telefono;
     }
 
+    public Proveedor(){
+
+    }
+
     public Integer getID_Proveedor() {
         return ID_Proveedor;
     }

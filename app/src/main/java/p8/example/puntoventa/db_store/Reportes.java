@@ -16,6 +16,10 @@ public class Reportes {
         this.Fecha = fecha;
     }
 
+    public Reportes(){
+
+    }
+
     public Integer getID_Reporte() {
         return ID_Reporte;
     }

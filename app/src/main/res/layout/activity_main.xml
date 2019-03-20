@@ -45,6 +45,41 @@
 
         </RelativeLayout>
 
+        <android.support.v7.widget.CardView
+            android:id="@+id/venta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="12dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="85dp"
+                    android:src="@drawable/datafono" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Venta"
+                    android:textColor="#6f6f6f"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,43 +88,10 @@
             android:columnOrderPreserved="false"
             android:rowCount="3">
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/alta"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_margin="12dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="6dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="1dp">
-
-                    <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="85dp"
-                        android:src="@drawable/bloc" />
-
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:text="Alta"
-                        android:textColor="#6f6f6f"
-                        android:textSize="18sp" />
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
-                android:id="@+id/precios"
+                android:id="@+id/ajustes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_rowWeight="1"
@@ -108,49 +110,14 @@
                     <ImageView
                         android:layout_width="80dp"
                         android:layout_height="85dp"
-                        android:src="@drawable/dinero" />
+                        android:src="@drawable/ajustes2" />
 
                     <TextView
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:text="Precios"
-                        android:textColor="#6f6f6f"
-                        android:textSize="18sp" />
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/venta"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_margin="12dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="6dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="15dp">
-
-                    <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="85dp"
-                        android:src="@drawable/datafono" />
-
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:text="Venta"
+                        android:text="Ajustes"
                         android:textColor="#6f6f6f"
                         android:textSize="18sp" />
 
@@ -264,41 +231,6 @@
             </android.support.v7.widget.CardView>
 
         </GridLayout>
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/ajustes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_margin="12dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="6dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="15dp">
-
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="85dp"
-                    android:src="@drawable/ajustes2" />
-
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="Ajustes"
-                    android:textColor="#6f6f6f"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
 
     </LinearLayout>
 
