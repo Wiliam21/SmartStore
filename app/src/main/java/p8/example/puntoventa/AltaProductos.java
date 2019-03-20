@@ -47,7 +47,6 @@ public class AltaProductos extends AppCompatActivity {
         txtnVenta=(EditText)findViewById(R.id.txtnVenta);
         txtnCompra=(EditText)findViewById(R.id.txtnCompra);
         btnAlta=(Button)findViewById(R.id.btnAlta);
-        btnOtro=(Button)findViewById(R.id.btnAltaOtro);
         imgbScan=(ImageButton)findViewById(R.id.imgbScan);
         comboProveedores =(Spinner)findViewById(R.id.spinner_proveedores);
 
@@ -120,15 +119,16 @@ public class AltaProductos extends AppCompatActivity {
         Producto.put(Utilidades.CAMPO_VECES_VENDIDO,0);
         Producto.put(Utilidades.CAMPO_ID_PROVEEDOR_PRODUCTO,ID_Proveedor);
 
-        if (idSpinner==0){
-            Toast.makeText(this,"No selecciono un proveedor",Toast.LENGTH_LONG).show();
-        }
-        else {
+        if (idSpinner!=0){
             db.insert(Utilidades.TABLA_PRODUCTO,"ID_PRODUCTO",Producto);
             Toast.makeText(this,"Producto agregado",Toast.LENGTH_LONG);
+            startActivity(new Intent(getBaseContext(),Inventario.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+            finish();
+        }
+        else {
+            Toast.makeText(this,"No selecciono un proveedor",Toast.LENGTH_LONG).show();
         }
         db.close();
-        Limpiar();
     }
 
     private void Limpiar() {
@@ -137,6 +137,7 @@ public class AltaProductos extends AppCompatActivity {
         txtnCompra.setText("");
         txtnVenta.setText("");
         txtnId_Producto.setText("");
+        comboProveedores.setSelected(false);
     }
 
     public void AltaOtro(View view){

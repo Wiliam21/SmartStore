@@ -11,16 +11,9 @@
         android:roundIcon="@mipmap/icono"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-<<<<<<< Updated upstream
         <activity android:name=".Ajustes" />
-        <activity android:name=".Inventario" />
-=======
-        <activity
-            android:name=".Inventario"
-            android:label="@string/title_activity_inventario"
-            android:theme="@style/NoActionBar"></activity>
-        <activity android:name=".Ajustes" />
->>>>>>> Stashed changes
+        <activity android:name=".Inventario" android:label="Inventario"
+            android:theme="@style/NoActionBar"/>
         <activity android:name=".Proveedores" />
         <activity android:name=".ReporteProductos" />
         <activity android:name=".VentaProductos" />

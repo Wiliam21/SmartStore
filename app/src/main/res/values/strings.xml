@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">PuntoVenta</string>
-<<<<<<< Updated upstream
     <string name="title_activity_prueba">PruebaActivity</string>
-=======
     <string name="title_activity_inventario">Inventario</string>
->>>>>>> Stashed changes
 </resources>

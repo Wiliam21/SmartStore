@@ -14,6 +14,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import p8.example.puntoventa.Utilidades.Utilidades;
 import p8.example.puntoventa.db_store.Conexion;
@@ -23,6 +24,7 @@ public class VentaProductos extends AppCompatActivity {
     private EditText txteId_Producto;
     Productos[] producto;
     Double Total;
+    String Id_Producto;
     IntentIntegrator intent =new IntentIntegrator(this);
 
 
