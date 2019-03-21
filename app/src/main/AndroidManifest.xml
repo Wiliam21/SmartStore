@@ -11,9 +11,12 @@
         android:roundIcon="@mipmap/icono"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+        <activity android:name=".EditarProducto"></activity>
         <activity android:name=".Ajustes" />
-        <activity android:name=".Inventario" android:label="Inventario"
-            android:theme="@style/NoActionBar"/>
+        <activity
+            android:name=".Inventario"
+            android:label="Inventario"
+            android:theme="@style/NoActionBar" />
         <activity android:name=".Proveedores" />
         <activity android:name=".ReporteProductos" />
         <activity android:name=".VentaProductos" />
