@@ -47,5 +47,4 @@ public class Proveedores extends AppCompatActivity {
         db.close();
         Toast.makeText(this,"Id proveedor: "+idProveedor,Toast.LENGTH_LONG).show();
     }
-
 }

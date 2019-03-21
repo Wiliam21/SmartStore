@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.venta: i = new Intent(this, VentaProductos.class);startActivity(i);break;
             case R.id.reporte: i = new Intent(this, ReporteProductos.class);startActivity(i);break;
-            case R.id.proveedores: i = new Intent(this, Proveedores.class);startActivity(i);break;
+            case R.id.proveedores: i = new Intent(this, Proveedor.class);startActivity(i);break;
             case R.id.inventario: i = new Intent(this, Inventario.class);startActivity(i);break;
             case R.id.ajustes: i = new Intent(this, Ajustes.class);startActivity(i);break;
             default:break;

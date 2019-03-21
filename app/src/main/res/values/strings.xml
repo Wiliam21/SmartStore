@@ -2,4 +2,5 @@
     <string name="app_name">PuntoVenta</string>
     <string name="title_activity_prueba">PruebaActivity</string>
     <string name="title_activity_inventario">Inventario</string>
+    <string name="title_activity_proveedor">Proveedor</string>
 </resources>
