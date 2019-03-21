@@ -45,6 +45,7 @@ public class Inventario extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(Inventario.this,AltaProductos.class);
                 startActivity(i);
+
             }
         });
     }

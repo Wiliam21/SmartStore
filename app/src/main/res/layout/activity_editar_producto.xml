@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context=".AltaProductos">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_row="0"
+        android:layout_column="0">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="20dp">
+
+            <TextView
+                android:id="@+id/txtPuntoVenta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EDITAR PRODUCTOS"
+                android:textColor="#FFF"
+                android:textSize="22sp" />
+
+            <ImageView
+                android:id="@+id/imgLogo"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/bloc" />
+
+        </RelativeLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="12dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <EditText
+                    android:id="@+id/txteNombre"
+                    android:layout_width="359dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="#fff"
+                    android:drawableLeft="@drawable/name"
+                    android:hint="Nombre del Producto"
+                    android:inputType="textCapCharacters"
+                    android:padding="10dp" />
+
+                <EditText
+                    android:id="@+id/txtnCantidad"
+                    android:layout_width="360dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="#fff"
+                    android:hint="Cantidad"
+                    android:inputType="number"
+                    android:padding="10dp" />
+
+                <EditText
+                    android:id="@+id/txtnCompra"
+                    android:layout_width="359dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="#fff"
+                    android:hint="Costo Compra"
+                    android:inputType="number"
+                    android:padding="10dp" />
+
+                <EditText
+                    android:id="@+id/txtnVenta"
+                    android:layout_width="359dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="#fff"
+                    android:ems="10"
+                    android:hint="Costo Venta"
+                    android:inputType="number"
+                    android:padding="10dp" />
+
+                <Spinner
+                    android:id="@+id/spinner_proveedores"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="15dp"
+                    android:padding="5dp"
+                    />
+
+                <Button
+                    android:id="@+id/btnAlta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="AltaProducto"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/botones"
+                    android:textColor="#fff"
+                    android:text="GUARDAR" />
+                <Button
+                    android:id="@+id/btnEliminar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ELIMINAR"
+                    android:textColor="#FFFF"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/eliminar"/>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+</ScrollView>

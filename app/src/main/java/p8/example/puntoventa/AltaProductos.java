@@ -122,7 +122,7 @@ public class AltaProductos extends AppCompatActivity {
         if (idSpinner!=0){
             db.insert(Utilidades.TABLA_PRODUCTO,"ID_PRODUCTO",Producto);
             Toast.makeText(this,"Producto agregado",Toast.LENGTH_LONG);
-            startActivity(new Intent(getBaseContext(),Inventario.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+            startActivity(new Intent(getBaseContext(),Inventario.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             finish();
         }
         else {
