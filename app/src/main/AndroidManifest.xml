@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         <activity android:name=".Ajustes" />
+        <activity android:name=".Proveedor"></activity>
         <activity android:name=".Inventario" android:label="Inventario"
             android:theme="@style/NoActionBar"/>
         <activity android:name=".Proveedores" />

@@ -1,17 +1,17 @@
 package p8.example.puntoventa.db_store;
 //Clase Proveedor con sus atributos, constructor, getters y sets
-public class Proveedor {
+public class ProveedorObjeto {
     private Integer ID_Proveedor;
     private String Nombre_Proveedor;
     private String Telefono;
 
-    public Proveedor(Integer ID_Proveedor, String nombre_Proveedor, String telefono) {
+    public ProveedorObjeto(Integer ID_Proveedor, String nombre_Proveedor, String telefono) {
         this.ID_Proveedor = ID_Proveedor;
         this.Nombre_Proveedor = nombre_Proveedor;
         this.Telefono = telefono;
     }
 
-    public Proveedor(){
+    public ProveedorObjeto(){
 
     }
 

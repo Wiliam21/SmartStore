@@ -40,7 +40,7 @@ public class AdaptadorInventario extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return ListaProductos.get(position);
     }
 
     @Override
@@ -51,21 +51,15 @@ public class AdaptadorInventario extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         final View vista=inflater.inflate(R.layout.elementro_producto,null);
-
+        Productos producto=(Productos)getItem(position);
         TextView txtNombre;
         ImageButton imgbInfo,imgbEditar;
         txtNombre=(TextView)vista.findViewById(R.id.txtNombreProducto);
         imgbInfo=(ImageButton) vista.findViewById(R.id.imgbInfo);
         imgbEditar=(ImageButton) vista.findViewById(R.id.imgbEditar);
-        String id=ListaProductos.get(position).getID_Producto();
-        imgbEditar.setTag(position);
-        txtNombre.setText(ListaProductos.get(position).getNombre_Producto());
-        imgbEditar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(context,EditarProducto.class).putExtra("ID_PRODUCTO",ListaProductos.get((Integer)v.getTag()).getID_Producto()));
-            }
-        });
+        String id=producto.getID_Producto();
+        txtNombre.setText(producto.getNombre_Producto());
+        imgbEditar.setTag(id);
         return vista;
     }
 

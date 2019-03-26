@@ -55,7 +55,7 @@
                 android:padding="10dp">
 
                 <ListView
-                    android:id="@+id/listLista"
+                    android:id="@+id/lstProveedores"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"></ListView>
 

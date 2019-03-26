@@ -23,6 +23,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 public class Inventario extends AppCompatActivity {
@@ -70,4 +71,10 @@ public class Inventario extends AppCompatActivity {
 
     }
 
+    public void Editar(View view){
+        Button btnEditar=(Button)view;
+        String ID_Producto=btnEditar.getTag().toString();
+        startActivity(new Intent(this,EditarProducto.class).putExtra("ID_PRODUCTO",ID_Producto));
+        finish();
+    }
 }

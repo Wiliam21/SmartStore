@@ -12,6 +12,8 @@ import android.widget.Toast;
 import p8.example.puntoventa.Utilidades.Utilidades;
 import p8.example.puntoventa.db_store.Conexion;
 
+//Alta de proveedor
+
 public class Proveedores extends AppCompatActivity {
     EditText txteNombreProveedor,txtnNumeroProveedor;
     Button btnAltaProveedor;

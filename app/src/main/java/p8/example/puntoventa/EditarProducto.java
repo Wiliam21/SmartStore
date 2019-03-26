@@ -1,5 +1,6 @@
 package p8.example.puntoventa;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -12,19 +13,21 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 
+import com.google.zxing.integration.android.IntentIntegrator;
+
 import java.util.ArrayList;
 
 import p8.example.puntoventa.Utilidades.Utilidades;
 import p8.example.puntoventa.db_store.Conexion;
-import p8.example.puntoventa.db_store.Proveedor;
+import p8.example.puntoventa.db_store.ProveedorObjeto;
 
 public class EditarProducto extends AppCompatActivity {
     private EditText txteNombre,txtnCantidad,txtnCompra,txtnVenta;
     private Button btnAlta,btnEliminar;
     Spinner comboProveedores;
+    Conexion conn=new Conexion(this,"db_SmartStore",null,1);
 
-
-    ArrayList<Proveedor> arrayProveerdor;
+    ArrayList<ProveedorObjeto> arrayProveerdor;
     ArrayList<String> ListaProveedor;
 
     @Override
@@ -52,19 +55,39 @@ public class EditarProducto extends AppCompatActivity {
 
             }
         });
+
+        ObtenerValores();
+    }
+
+    public void ObtenerValores(){
+        Intent intent=getIntent();
+        String ID_PRODUCTO=intent.getStringExtra("ID_PRODUCTO");
+        SQLiteDatabase db=conn.getReadableDatabase();
+        String[] Argmumentos={ID_PRODUCTO};
+        Cursor cursor=db.query(Utilidades.TABLA_PRODUCTO,null,Utilidades.CAMPO_ID_PRODUCTO+"= ?",Argmumentos,null,null,null);
+        txteNombre.setText(cursor.getString(1));
+        txtnVenta.setText(cursor.getInt(2));
+        txtnCompra.setText(cursor.getInt(3));
+        txtnCantidad.setText(cursor.getInt(4));
+        int id_proveedor=cursor.getInt(5);
+
+        for (int i=0;i<arrayProveerdor.size();i++){
+            if (arrayProveerdor.get(i).getID_Proveedor().equals(id_proveedor)){
+                comboProveedores.setSelection(i+1);
+            }
+        }
     }
 
     private void consultarProveedores() {
-        Conexion conn=new Conexion(this,"db_SmartStore",null,1);
         SQLiteDatabase db=conn.getReadableDatabase();
 
-        Proveedor proveedor=null;
-        arrayProveerdor=new ArrayList<Proveedor>();
+        ProveedorObjeto proveedor=null;
+        arrayProveerdor=new ArrayList<ProveedorObjeto>();
 
         Cursor cursor=db.rawQuery("SELECT*FROM "+ Utilidades.TABLA_PROVEEDOR+"",null);
 
         while(cursor.moveToNext()){
-            proveedor=new Proveedor();
+            proveedor = new ProveedorObjeto();
             proveedor.setID_Proveedor(cursor.getInt(0));
             proveedor.setNombre_Proveedor(cursor.getString(1));
             proveedor.setTelefono(cursor.getString(2));

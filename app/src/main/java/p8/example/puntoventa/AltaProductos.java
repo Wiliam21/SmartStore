@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 import p8.example.puntoventa.Utilidades.Utilidades;
 import p8.example.puntoventa.db_store.Conexion;
-import p8.example.puntoventa.db_store.Proveedor;
+import p8.example.puntoventa.db_store.ProveedorObjeto;
 
 public class AltaProductos extends AppCompatActivity {
     private EditText txtnId_Producto,txteNombre,txtnCantidad,txtnCompra,txtnVenta;
@@ -33,7 +33,7 @@ public class AltaProductos extends AppCompatActivity {
     Spinner comboProveedores;
 
 
-    ArrayList<Proveedor> arrayProveerdor;
+    ArrayList<ProveedorObjeto> arrayProveerdor;
     ArrayList<String> ListaProveedor;
 
     @Override
@@ -72,13 +72,13 @@ public class AltaProductos extends AppCompatActivity {
         Conexion conn=new Conexion(this,"db_SmartStore",null,1);
         SQLiteDatabase db=conn.getReadableDatabase();
 
-        Proveedor proveedor=null;
-        arrayProveerdor=new ArrayList<Proveedor>();
+        ProveedorObjeto proveedor=null;
+        arrayProveerdor=new ArrayList<ProveedorObjeto>();
 
         Cursor cursor=db.rawQuery("SELECT*FROM "+Utilidades.TABLA_PROVEEDOR+"",null);
 
         while(cursor.moveToNext()){
-            proveedor=new Proveedor();
+            proveedor=new ProveedorObjeto();
             proveedor.setID_Proveedor(cursor.getInt(0));
             proveedor.setNombre_Proveedor(cursor.getString(1));
             proveedor.setTelefono(cursor.getString(2));
@@ -138,10 +138,6 @@ public class AltaProductos extends AppCompatActivity {
         txtnVenta.setText("");
         txtnId_Producto.setText("");
         comboProveedores.setSelected(false);
-    }
-
-    public void AltaOtro(View view){
-        Limpiar();
     }
 
     public void Escanear(View view){
