@@ -15,7 +15,7 @@
 
     <TextView
         android:id="@+id/txtNombre_Proveedor"
-        android:layout_width="261dp"
+        android:layout_width="205dp"
         android:layout_height="36dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -46,14 +46,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="279dp" />
+        app:layout_constraintGuide_begin="213dp" />
 
     <ImageButton
         android:id="@+id/imgbEditar"
         android:layout_width="27dp"
         android:layout_height="34dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginLeft="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:onClick="Editar"
@@ -75,7 +75,7 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.37"
+        app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toEndOf="@+id/imgbEditar"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
         app:srcCompat="@drawable/pregunta" />

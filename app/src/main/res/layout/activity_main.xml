@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtPuntoVenta"
                 android:layout_marginTop="6dp"
-                android:text="7 items"
+                android:text="5 items"
                 android:textColor="#52BAFF"
                 android:textSize="14sp" />
 
