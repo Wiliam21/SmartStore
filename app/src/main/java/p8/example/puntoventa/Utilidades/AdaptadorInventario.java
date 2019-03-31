@@ -2,6 +2,7 @@ package p8.example.puntoventa.Utilidades;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,6 @@ public class AdaptadorInventario extends BaseAdapter {
     private static LayoutInflater inflater=null;
     Context context;
     ArrayList<Productos> ListaProductos;
-    Conexion conexion =new Conexion(context,Utilidades.DATABASE,null,1);
 
     public AdaptadorInventario(Context context, ArrayList<Productos> ListaProductos){
         this.context=context;
@@ -52,14 +52,24 @@ public class AdaptadorInventario extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         final View vista=inflater.inflate(R.layout.elementro_producto,null);
         Productos producto=(Productos)getItem(position);
-        TextView txtNombre;
+        TextView txtNombre,txtCodigoBarras;
         ImageButton imgbInfo,imgbEditar;
         txtNombre=(TextView)vista.findViewById(R.id.txtNombreProducto);
+        txtCodigoBarras=(TextView)vista.findViewById(R.id.txtCodigoBarras);
         imgbInfo=(ImageButton) vista.findViewById(R.id.imgbInfo);
         imgbEditar=(ImageButton) vista.findViewById(R.id.imgbEditar);
-        String id=producto.getID_Producto();
         txtNombre.setText(producto.getNombre_Producto());
-        imgbEditar.setTag(id);
+        txtCodigoBarras.setText(producto.getID_Producto());
+
+        imgbEditar.setTag(position);
+
+        imgbEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context,EditarProducto.class).putExtra("ID_PRODUCTOS", (Parcelable) ListaProductos.get((Integer) v.getTag())));
+            }
+        });
+
         return vista;
     }
 

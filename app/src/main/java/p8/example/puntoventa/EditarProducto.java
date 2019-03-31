@@ -42,6 +42,7 @@ public class EditarProducto extends AppCompatActivity {
         comboProveedores =(Spinner)findViewById(R.id.spinner_proveedores);
 
         consultarProveedores();
+        ObtenerValores();
         ArrayAdapter<CharSequence> adapter=new ArrayAdapter(this,android.R.layout.simple_spinner_item,ListaProveedor);
         comboProveedores.setAdapter(adapter);
         comboProveedores.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -65,6 +66,7 @@ public class EditarProducto extends AppCompatActivity {
         SQLiteDatabase db=conn.getReadableDatabase();
         String[] Argmumentos={ID_PRODUCTO};
         Cursor cursor=db.query(Utilidades.TABLA_PRODUCTO,null,Utilidades.CAMPO_ID_PRODUCTO+"= ?",Argmumentos,null,null,null);
+        cursor.moveToPosition(0);
         txteNombre.setText(cursor.getString(1));
         txtnVenta.setText(cursor.getInt(2));
         txtnCompra.setText(cursor.getInt(3));

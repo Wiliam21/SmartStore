@@ -74,81 +74,28 @@
 
         </android.support.v7.widget.CardView>
 
+
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="457dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="12dp"
             app:cardCornerRadius="12dp"
             app:cardElevation="6dp">
 
-            <LinearLayout
+            <ListView
+                android:id="@+id/lstVenta"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-
-                android:orientation="vertical"
-                android:padding="10dp">
-
-                <TextView
-                    android:id="@+id/txtNombreProducto"
-                    android:layout_width="wrap_content"
-
-                    android:layout_height="wrap_content"
-                    android:hint="Nombre del producto"
-                    android:padding="10dp"
-                    android:textSize="18dp"
-                    android:textStyle="bold" />
-
-
-                <EditText
-                    android:id="@+id/txtnCantidad"
-                    android:layout_width="135dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="#fff"
-                    android:drawableLeft="@drawable/name"
-                    android:hint="Cantidad"
-                    android:inputType="number"
-                    android:padding="10dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="130dp"
-                    android:layout_marginTop="-45dp"
-                    android:padding="15dp"
-                    android:text="COSTO:"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txtCosto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="185dp"
-                    android:layout_marginTop="-49dp"
-                    android:hint="Ejemplo: $15"
-                    android:padding="15dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:padding="15dp"
-                    android:text="SUBTOTAL:"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="-49dp"
-                    android:layout_marginLeft="80dp"
-                    android:hint="Ejemplo: $15"
-                    android:padding="15dp" />
-
-            </LinearLayout>
-
+                android:layout_height="wrap_content" />
         </android.support.v7.widget.CardView>
 
+        <Button
+            android:id="@+id/btnVenta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="GenerarVenta"
+            android:text="Button" />
 
 
     </LinearLayout>

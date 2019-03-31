@@ -1,6 +1,7 @@
 package p8.example.puntoventa;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -48,5 +49,7 @@ public class Proveedores extends AppCompatActivity {
         Long idProveedor=db.insert(Utilidades.TABLA_PROVEEDOR,Utilidades.CAMPO_ID_PROVEEDOR,values);
         db.close();
         Toast.makeText(this,"Id proveedor: "+idProveedor,Toast.LENGTH_LONG).show();
+        startActivity(new Intent(this,Proveedor.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        finish();
     }
 }

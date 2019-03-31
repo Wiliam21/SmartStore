@@ -3,10 +3,8 @@ package p8.example.puntoventa;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import java.sql.Array;
@@ -23,7 +21,9 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 public class Inventario extends AppCompatActivity {
@@ -31,6 +31,7 @@ public class Inventario extends AppCompatActivity {
     ArrayList<Productos>ListaProductos;
     FloatingActionButton fab;
     ListView Lista;
+    int pos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,8 @@ public class Inventario extends AppCompatActivity {
 
             }
         });
+
+
     }
 
     public void CargarProductos(){
@@ -64,17 +67,10 @@ public class Inventario extends AppCompatActivity {
             producto.setCosto_Compra(cursor.getDouble(3));
             producto.setExistencia(cursor.getInt(4));
             producto.setVeces_Vendido(cursor.getInt(5));
-            producto.setID_Producto(cursor.getString(6));
+            producto.setID_Proveedor(cursor.getInt(6));
             ListaProductos.add(producto);
         }
         db.close();
 
-    }
-
-    public void Editar(View view){
-        Button btnEditar=(Button)view;
-        String ID_Producto=btnEditar.getTag().toString();
-        startActivity(new Intent(this,EditarProducto.class).putExtra("ID_PRODUCTO",ID_Producto));
-        finish();
     }
 }

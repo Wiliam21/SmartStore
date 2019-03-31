@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -101,27 +102,27 @@ public class AltaProductos extends AppCompatActivity {
 
     public void AltaProducto(View view){
         Conexion conn=new Conexion(this,"db_SmartStore",null,1);
+        SQLiteDatabase db=conn.getWritableDatabase();
+        int ID_Proveedor;
         String Nombre=txteNombre.getText().toString();
         String Id_Producto=txtnId_Producto.getText().toString();
         double CostoCompra=Double.parseDouble(txtnCompra.getText().toString());
         double CostoVenta=Double.parseDouble(txtnVenta.getText().toString());
         int Cantidad= Integer.parseInt(txtnCantidad.getText().toString());
         int idSpinner=(int) comboProveedores.getSelectedItemPosition();
-        int ID_Proveedor=arrayProveerdor.get(idSpinner-1).getID_Proveedor();
-        SQLiteDatabase db=conn.getWritableDatabase();
-        ContentValues Producto=new ContentValues();
-
-        Producto.put(Utilidades.CAMPO_ID_PRODUCTO,Id_Producto);
-        Producto.put(Utilidades.CAMPO_NOMBRE_PRODUCTO,Nombre);
-        Producto.put(Utilidades.CAMPO_COSTO_VENTA,CostoVenta);
-        Producto.put(Utilidades.CAMPO_COSTO_COMPRA,CostoCompra);
-        Producto.put(Utilidades.CAMPO_EXISTENCIA_PRODUCTO,Cantidad);
-        Producto.put(Utilidades.CAMPO_VECES_VENDIDO,0);
-        Producto.put(Utilidades.CAMPO_ID_PROVEEDOR_PRODUCTO,ID_Proveedor);
-
-        if (idSpinner!=0){
-            db.insert(Utilidades.TABLA_PRODUCTO,"ID_PRODUCTO",Producto);
-            Toast.makeText(this,"Producto agregado",Toast.LENGTH_LONG);
+        Log.i("Id", "AltaProducto: "+Id_Producto);
+        if (idSpinner>0){
+            ID_Proveedor=arrayProveerdor.get(idSpinner-1).getID_Proveedor();
+            ContentValues Producto=new ContentValues();
+            Producto.put(Utilidades.CAMPO_ID_PRODUCTO,Id_Producto);
+            Producto.put(Utilidades.CAMPO_NOMBRE_PRODUCTO,Nombre);
+            Producto.put(Utilidades.CAMPO_COSTO_VENTA,CostoVenta);
+            Producto.put(Utilidades.CAMPO_COSTO_COMPRA,CostoCompra);
+            Producto.put(Utilidades.CAMPO_EXISTENCIA_PRODUCTO,Cantidad);
+            Producto.put(Utilidades.CAMPO_VECES_VENDIDO,0);
+            Producto.put(Utilidades.CAMPO_ID_PROVEEDOR_PRODUCTO,ID_Proveedor);
+            db.insert(Utilidades.TABLA_PRODUCTO,null,Producto);
+            Toast.makeText(this,"Producto agregado",Toast.LENGTH_LONG).show();
             startActivity(new Intent(getBaseContext(),Inventario.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             finish();
         }

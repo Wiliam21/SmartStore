@@ -18,6 +18,8 @@ import p8.example.puntoventa.Utilidades.Utilidades;
 import p8.example.puntoventa.db_store.Conexion;
 import p8.example.puntoventa.db_store.ProveedorObjeto;
 
+import static p8.example.puntoventa.Utilidades.Utilidades.TABLA_PROVEEDOR;
+
 public class Proveedor extends AppCompatActivity {
 
     //Lista de proveedores
@@ -49,7 +51,7 @@ public class Proveedor extends AppCompatActivity {
         ProveedorObjeto proveedor=null;
         arrayProveerdor=new ArrayList<ProveedorObjeto>();
 
-        Cursor cursor=db.rawQuery("SELECT*FROM "+ Utilidades.TABLA_PROVEEDOR+"",null);
+        Cursor cursor=db.query(TABLA_PROVEEDOR,null,null,null,null,null,Utilidades.CAMPO_NOMBRE_PROVEEDOR+" asc");
 
         while(cursor.moveToNext()){
             proveedor=new ProveedorObjeto();
