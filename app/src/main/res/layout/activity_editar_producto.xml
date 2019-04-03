@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
-    tools:context=".AltaProductos">
+    tools:context=".EditarProducto">
 
 
     <LinearLayout
@@ -109,6 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/botones"
+                    android:onClick="Guardar"
                     android:text="GUARDAR"
                     android:textColor="#fff" />
                 <Button
@@ -118,6 +119,7 @@
                     android:text="ELIMINAR"
                     android:textColor="#FFFF"
                     android:layout_marginTop="15dp"
+                    android:onClick="Eliminar"
                     android:background="@drawable/eliminar"/>
 
             </LinearLayout>

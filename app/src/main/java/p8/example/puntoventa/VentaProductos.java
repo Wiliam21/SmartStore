@@ -86,19 +86,18 @@ public class VentaProductos extends AppCompatActivity {
     }
 
     public void PonerProducto(Cursor cursor){
+        cursor.moveToFirst();
         ProductosVendidos=new ArrayList<Productos>();
-        while(cursor.moveToNext()){
-            producto =new Productos();
-            producto.setID_Producto(cursor.getString(0));
-            producto.setNombre_Producto(cursor.getString(1));
-            producto.setCosto_Venta(cursor.getDouble(2));
-            producto.setCosto_Compra(cursor.getDouble(3));
-            producto.setExistencia(cursor.getInt(4));
-            producto.setVeces_Vendido(cursor.getInt(5));
-            producto.setID_Producto(cursor.getString(6));
-            ProductosVendidos.add(producto);
-            lstVenta.setAdapter(new AdaptadorVenta(this,ProductosVendidos));
-        }
+        producto =new Productos();
+        producto.setID_Producto(cursor.getString(0));
+        producto.setNombre_Producto(cursor.getString(1));
+        producto.setCosto_Venta(cursor.getDouble(2));
+        producto.setCosto_Compra(cursor.getDouble(3));
+        producto.setExistencia(cursor.getInt(4));
+        producto.setVeces_Vendido(cursor.getInt(5));
+        producto.setID_Producto(cursor.getString(6));
+        ProductosVendidos.add(producto);
+        lstVenta.setAdapter(new AdaptadorVenta(this,ProductosVendidos));
     }
 
 }

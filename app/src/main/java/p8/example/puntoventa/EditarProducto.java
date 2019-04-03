@@ -1,5 +1,6 @@
 package p8.example.puntoventa;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -22,8 +23,8 @@ import p8.example.puntoventa.db_store.Productos;
 import p8.example.puntoventa.db_store.ProveedorObjeto;
 
 public class EditarProducto extends AppCompatActivity {
-    private EditText txteNombre,txtnCantidad,txtnCompra,txtnVenta;
-    private Button btnGuardar,btnEliminar;
+    EditText txteNombre,txtnCantidad,txtnCompra,txtnVenta;
+    Button btnGuardar,btnEliminar;
     Spinner spnProveedores;
     Conexion conn=new Conexion(this,"db_SmartStore",null,1);
 
@@ -114,5 +115,36 @@ public class EditarProducto extends AppCompatActivity {
         for (int i=0;i<arrayProveerdor.size();i++){
             ListaProveedor.add(arrayProveerdor.get(i).getNombre_Proveedor());
         }
+    }
+
+    public void Guardar(View view){
+        Productos productos=new Productos();
+        ContentValues contentValues=new ContentValues();
+        productos.setID_Producto(ID_PRODUCTO);
+        productos.setExistencia(Integer.parseInt(txtnCantidad.getText().toString()));
+        productos.setCosto_Compra(Double.parseDouble(txtnCompra.getText().toString()));
+        productos.setCosto_Venta(Double.parseDouble(txtnVenta.getText().toString()));
+        productos.setNombre_Producto(txteNombre.getText().toString());
+        productos.setVeces_Vendido(producto.getVeces_Vendido());
+        int ID_Proveedor=arrayProveerdor.get(spnProveedores.getSelectedItemPosition()-1).getID_Proveedor();
+        productos.setID_Proveedor(ID_Proveedor);
+        SQLiteDatabase db=conn.getWritableDatabase();
+        contentValues.put(Utilidades.CAMPO_ID_PRODUCTO,productos.getID_Producto());
+        contentValues.put(Utilidades.CAMPO_NOMBRE_PRODUCTO,productos.getNombre_Producto());
+        contentValues.put(Utilidades.CAMPO_COSTO_COMPRA,productos.getCosto_Compra());
+        contentValues.put(Utilidades.CAMPO_COSTO_VENTA,productos.getCosto_Venta());
+        contentValues.put(Utilidades.CAMPO_VECES_VENDIDO,productos.getVeces_Vendido());
+        contentValues.put(Utilidades.CAMPO_EXISTENCIA_PRODUCTO,productos.getExistencia());
+        contentValues.put(Utilidades.CAMPO_ID_PROVEEDOR_PRODUCTO,productos.getID_Proveedor());
+        db.update(Utilidades.TABLA_PRODUCTO,contentValues,Utilidades.CAMPO_ID_PRODUCTO+" = ?",new String[]{ID_PRODUCTO});
+        db.close();
+        startActivity(new Intent(this,Inventario.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+    }
+
+    public void Eliminar(View view){
+        SQLiteDatabase db=conn.getWritableDatabase();
+        db.delete(Utilidades.TABLA_PRODUCTO,Utilidades.CAMPO_ID_PRODUCTO+" = ?",new String[]{ID_PRODUCTO});
+        db.close();
+        startActivity(new Intent(this,Inventario.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
     }
 }
