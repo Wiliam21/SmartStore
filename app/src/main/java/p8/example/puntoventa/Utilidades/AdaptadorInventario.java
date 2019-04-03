@@ -3,6 +3,7 @@ package p8.example.puntoventa.Utilidades;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +67,9 @@ public class AdaptadorInventario extends BaseAdapter {
         imgbEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context,EditarProducto.class).putExtra("ID_PRODUCTOS", (Parcelable) ListaProductos.get((Integer) v.getTag())));
+                String ID=ListaProductos.get((Integer) v.getTag()).getID_Producto();
+                Log.w("ID", "onClick: "+ID);
+                context.startActivity(new Intent(context,EditarProducto.class).putExtra("ID_PRODUCTOS",ID));
             }
         });
 

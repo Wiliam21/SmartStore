@@ -61,9 +61,9 @@ public class VentaProductos extends AppCompatActivity {
             Conexion conexion=new Conexion(this, Utilidades.DATABASE,null,1);
             txteId_Producto.setText(result.getContents());
             SQLiteDatabase db=conexion.getReadableDatabase();
-            Cursor cursor=db.rawQuery("SELECT*FROM "+Utilidades.TABLA_PRODUCTO+" where "+Utilidades.CAMPO_ID_PRODUCTO+"="+result.getContents(),null);
+            String[] selectionArgs={result.getContents()};
+            Cursor cursor=db.rawQuery("SELECT*FROM "+Utilidades.TABLA_PRODUCTO+" where "+Utilidades.CAMPO_ID_PRODUCTO+"=?",selectionArgs);
             PonerProducto(cursor);
-            lstVenta.setAdapter(new AdaptadorVenta(this,ProductosVendidos));
         }
         else {
 
@@ -73,6 +73,7 @@ public class VentaProductos extends AppCompatActivity {
     public void Escanear(View view){
         intent.initiateScan();
     }
+
     public void GenerarVenta(View view){
         Conexion conexion=new Conexion(this,Utilidades.DATABASE,null,1);
         SQLiteDatabase bd=conexion.getWritableDatabase();
@@ -96,6 +97,7 @@ public class VentaProductos extends AppCompatActivity {
             producto.setVeces_Vendido(cursor.getInt(5));
             producto.setID_Producto(cursor.getString(6));
             ProductosVendidos.add(producto);
+            lstVenta.setAdapter(new AdaptadorVenta(this,ProductosVendidos));
         }
     }
 

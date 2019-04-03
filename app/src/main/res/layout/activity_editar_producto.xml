@@ -55,7 +55,7 @@
                 android:padding="10dp">
 
                 <EditText
-                    android:id="@+id/txteNombre"
+                    android:id="@+id/txteNombreEdit"
                     android:layout_width="359dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -66,7 +66,7 @@
                     android:padding="10dp" />
 
                 <EditText
-                    android:id="@+id/txtnCantidad"
+                    android:id="@+id/txtnCantidadEdit"
                     android:layout_width="360dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -76,17 +76,17 @@
                     android:padding="10dp" />
 
                 <EditText
-                    android:id="@+id/txtnCompra"
+                    android:id="@+id/txtnCompraEdit"
                     android:layout_width="359dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:background="#fff"
                     android:hint="Costo Compra"
-                    android:inputType="number"
+                    android:inputType="numberSigned"
                     android:padding="10dp" />
 
                 <EditText
-                    android:id="@+id/txtnVenta"
+                    android:id="@+id/txtnVentaEdit"
                     android:layout_width="359dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -97,22 +97,20 @@
                     android:padding="10dp" />
 
                 <Spinner
-                    android:id="@+id/spinner_proveedores"
+                    android:id="@+id/spnProveedroresEdit"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginTop="15dp"
-                    android:padding="5dp"
-                    />
+                    android:padding="5dp" />
 
                 <Button
-                    android:id="@+id/btnAlta"
+                    android:id="@+id/btnGuardar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="AltaProducto"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/botones"
-                    android:textColor="#fff"
-                    android:text="GUARDAR" />
+                    android:text="GUARDAR"
+                    android:textColor="#fff" />
                 <Button
                     android:id="@+id/btnEliminar"
                     android:layout_width="match_parent"
