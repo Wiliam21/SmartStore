@@ -26,12 +26,12 @@ public class AdaptadorVenta extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return ListaProductos.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return ListaProductos.get(position);
     }
 
     @Override
