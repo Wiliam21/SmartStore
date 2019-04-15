@@ -6,7 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -18,10 +21,12 @@ public class AdaptadorVenta extends BaseAdapter {
     private static LayoutInflater inflater=null;
     Context context;
     ArrayList<Productos> ListaProductos;
+    ArrayList<Integer>CantidadPorductos;
 
-    public AdaptadorVenta(Context context, ArrayList<Productos> listaProductos) {
+    public AdaptadorVenta(Context context, ArrayList<Productos> listaProductos, ArrayList<Integer> cantidadPorductos) {
         this.context = context;
         this.ListaProductos = listaProductos;
+        this.CantidadPorductos=cantidadPorductos;
         inflater=(LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -42,21 +47,41 @@ public class AdaptadorVenta extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, final ViewGroup parent) {
         final View vista=inflater.inflate(R.layout.elemento_venta,null);
         Productos producto=(Productos)getItem(position);
         TextView txtNombre,txtPrecio;
+        final EditText txtnCantidadVenta;
+        Button imgbResta,imgbSuma;
+        txtnCantidadVenta=(EditText)vista.findViewById(R.id.txtnCantidadVenta);
+        imgbResta=(Button)vista.findViewById(R.id.imgbResta);
+        imgbSuma=(Button)vista.findViewById(R.id.imgbSuma);
+        txtnCantidadVenta.setText(CantidadPorductos.get(position).toString());
         txtNombre=(TextView)vista.findViewById(R.id.txtNombreProducto);
         txtPrecio=(TextView)vista.findViewById(R.id.txtPrecioProducto);
         txtNombre.setText(producto.getNombre_Producto());
         txtPrecio.setText(producto.getCosto_Venta().toString());
-        Log.e("ITEM", "Producto No: "+position );
+
+        imgbResta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((ListView)parent).performItemClick(v,position,0);
+            }
+        });
+
+        imgbSuma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((ListView)parent).performItemClick(v,position,0);
+            }
+        });
+
         return vista;
     }
 
-    public void setData(ArrayList<Productos> listaProductos){
+    public void setData(ArrayList<Productos> listaProductos,ArrayList<Integer>cantidadPorductos){
         this.ListaProductos=listaProductos;
+        this.CantidadPorductos=cantidadPorductos;
         notifyDataSetChanged();
-        Log.w("UPDATE", "Se actualizo" );
     }
 }

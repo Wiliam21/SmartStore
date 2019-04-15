@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -37,7 +38,8 @@ public class VentaProductos extends AppCompatActivity {
     IntentIntegrator intent =new IntentIntegrator(this);
     TextView txtNombreProducto;
     Button btnVenta;
-    ArrayList<Productos>ProductosVendidos;
+    ArrayList<Productos>ProductosVendidos=new ArrayList<Productos>();
+    ArrayList<Integer>CantidadProductos=new ArrayList<Integer>();
     ListView lstVenta;
     AdaptadorVenta adaptadorVenta;
     Conexion conexion=new Conexion(this, Utilidades.DATABASE,null,1);
@@ -56,19 +58,44 @@ public class VentaProductos extends AppCompatActivity {
         intent.setOrientationLocked(false);
         btnVenta=(Button)findViewById(R.id.btnVenta);
         lstVenta=(ListView)findViewById(R.id.lstVenta);
-        adaptadorVenta=new AdaptadorVenta(this,ProductosVendidos);
+        adaptadorVenta=new AdaptadorVenta(this,ProductosVendidos,CantidadProductos);
         lstVenta.setAdapter(null);
-        ProductosVendidos=new ArrayList<Productos>();
+
+        lstVenta.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int Cantidad=CantidadProductos.get(position);
+                Log.i("CANTIDAD",""+Cantidad);
+                switch (view.getId()){
+                    case R.id.imgbResta:
+                        CantidadProductos.set(position,Cantidad-1);
+                        break;
+                    case R.id.imgbSuma:
+                        CantidadProductos.set(position,Cantidad+1);
+                        break;
+                }
+                adaptadorVenta.setData(ProductosVendidos,CantidadProductos);
+            }
+        });
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         IntentResult result =IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
-        Log.e("CONTADOR",""+contador);
+        String id=result.getContents();
         try {
-            txteId_Producto.setText(result.getContents());
             Log.w("LECTURA", "Code: "+result.getContents() );
-            PonerProducto(result.getContents());
+            boolean Existe=false;
+            if (contador>0){
+                for (int i=0;i<=ProductosVendidos.size();i++){
+                    if (id.equals(ProductosVendidos.get(i).getID_Producto())){
+                        Existe=true;
+                        CantidadProductos.set(i,CantidadProductos.get(i)+1);
+                        adaptadorVenta.setData(ProductosVendidos,CantidadProductos);
+                    }
+                }
+            }
+            if (!Existe) PonerProducto(id);
         }catch (Exception e){
             Log.e("Error",e.getMessage());
         }
@@ -95,6 +122,7 @@ public class VentaProductos extends AppCompatActivity {
         Cursor cursor=db.rawQuery("SELECT*FROM "+Utilidades.TABLA_PRODUCTO+" where "+Utilidades.CAMPO_ID_PRODUCTO+"= ?",selectionArgs);
         cursor.moveToFirst();
         producto=new Productos();
+        Integer cantidad=1;
         producto.setID_Producto(cursor.getString(0));
         producto.setNombre_Producto(cursor.getString(1));
         producto.setCosto_Venta(cursor.getDouble(2));
@@ -104,8 +132,8 @@ public class VentaProductos extends AppCompatActivity {
         producto.setID_Proveedor(cursor.getInt(6));
         Log.w("PRODUCTO", "Nombre: " +producto.getNombre_Producto() );
         ProductosVendidos.add(producto);
-        adaptadorVenta.setData(ProductosVendidos);
-        adaptadorVenta.notifyDataSetChanged();
+        CantidadProductos.add(cantidad);
+        adaptadorVenta.setData(ProductosVendidos,CantidadProductos);
         lstVenta.setAdapter(adaptadorVenta);
         contador++;
         Log.i("CONTADOR",contador.toString());
@@ -114,7 +142,17 @@ public class VentaProductos extends AppCompatActivity {
     public void Buscar(View view){
         try {
             String id=txteId_Producto.getText().toString();
-            PonerProducto(id);
+            boolean Existe=false;
+            if (contador>0){
+                for (int i=0;i<=ProductosVendidos.size();i++){
+                    if (id.equals(ProductosVendidos.get(i).getID_Producto())){
+                        Existe=true;
+                        CantidadProductos.set(i,CantidadProductos.get(i)+1);
+                        adaptadorVenta.setData(ProductosVendidos,CantidadProductos);
+                    }
+                }
+            }
+            if (!Existe) PonerProducto(id);
         }catch (Exception e){
             Log.e("BUSCAR",e.getMessage());
             Toast.makeText(this,"Producto no encontrado",Toast.LENGTH_LONG).show();

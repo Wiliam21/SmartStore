@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.View;
 
+import p8.example.puntoventa.Utilidades.Utilidades;
 import p8.example.puntoventa.db_store.Conexion;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -29,21 +31,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ajustesCard.setOnClickListener(this);
 
         Conexion conexion=new Conexion(this,"db_SmartStore",null,1);
-
+        String Direccion=getDatabasePath(Utilidades.DATABASE).getAbsolutePath();
+        Log.i("DIRECCION",Direccion);
     }
 
     @Override
     public void onClick(View v) {
         Intent i;
         switch (v.getId()){
-
             case R.id.venta: i = new Intent(this, VentaProductos.class);startActivity(i);break;
             case R.id.reporte: i = new Intent(this, ReporteProductos.class);startActivity(i);break;
             case R.id.proveedores: i = new Intent(this, Proveedor.class);startActivity(i);break;
             case R.id.inventario: i = new Intent(this, Inventario.class);startActivity(i);break;
             case R.id.ajustes: i = new Intent(this, Ajustes.class);startActivity(i);break;
             default:break;
-
         }
     }
 }
