@@ -69,6 +69,11 @@ public class VentaProductos extends AppCompatActivity {
                 switch (view.getId()){
                     case R.id.imgbResta:
                         CantidadProductos.set(position,Cantidad-1);
+                        if (CantidadProductos.get(position)<=0){
+                            ProductosVendidos.remove(position);
+                            CantidadProductos.remove(position);
+                            contador--;
+                        }
                         break;
                     case R.id.imgbSuma:
                         CantidadProductos.set(position,Cantidad+1);
@@ -87,7 +92,7 @@ public class VentaProductos extends AppCompatActivity {
             Log.w("LECTURA", "Code: "+result.getContents() );
             boolean Existe=false;
             if (contador>0){
-                for (int i=0;i<=ProductosVendidos.size();i++){
+                for (int i=0;i<ProductosVendidos.size();i++){
                     if (id.equals(ProductosVendidos.get(i).getID_Producto())){
                         Existe=true;
                         CantidadProductos.set(i,CantidadProductos.get(i)+1);
@@ -144,7 +149,7 @@ public class VentaProductos extends AppCompatActivity {
             String id=txteId_Producto.getText().toString();
             boolean Existe=false;
             if (contador>0){
-                for (int i=0;i<=ProductosVendidos.size();i++){
+                for (int i=0;i<ProductosVendidos.size();i++){
                     if (id.equals(ProductosVendidos.get(i).getID_Producto())){
                         Existe=true;
                         CantidadProductos.set(i,CantidadProductos.get(i)+1);

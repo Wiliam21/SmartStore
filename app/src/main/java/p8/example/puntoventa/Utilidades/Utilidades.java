@@ -36,12 +36,16 @@ public class Utilidades {
 
     public static final String TABLA_REPORTE="Reporte";
     public static final String CAMPO_ID_REPORTE="ID_Reporte";
+    public static final String CAMPO_PRODUCTOS_VENDIDOS="Productos_Vendidos";
+    public static final String CAMPO_CANTIDAD_PRODUCTOS="Cantidad_Productos";
     public static final String CAMPO_TOTAL_REPORTE="Total";
     public static final String CAMPO_GANANCIA_REPORTE="Ganancia";
     public static final String CAMPO_FECHA_REPORTE="Fecha";
 
     public static final String CREAR_TABLA_REPORTE= "CREATE TABLE IF NOT EXISTS "+TABLA_REPORTE+"("
             +CAMPO_ID_REPORTE+" integer primary key,"
+            +CAMPO_PRODUCTOS_VENDIDOS+" text"
+            +CAMPO_CANTIDAD_PRODUCTOS+" text"
             +CAMPO_TOTAL_REPORTE+" double,"
             +CAMPO_GANANCIA_REPORTE+" Ganancia double,"
             +CAMPO_FECHA_REPORTE+" date)";
