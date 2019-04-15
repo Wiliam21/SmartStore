@@ -71,6 +71,5 @@ public class Inventario extends AppCompatActivity {
             ListaProductos.add(producto);
         }
         db.close();
-
     }
 }

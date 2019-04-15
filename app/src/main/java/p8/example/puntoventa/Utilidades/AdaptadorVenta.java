@@ -1,6 +1,7 @@
 package p8.example.puntoventa.Utilidades;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,8 @@ public class AdaptadorVenta extends BaseAdapter {
 
     public AdaptadorVenta(Context context, ArrayList<Productos> listaProductos) {
         this.context = context;
-        ListaProductos = listaProductos;
+        this.ListaProductos = listaProductos;
+        inflater=(LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
     }
 
 
@@ -36,7 +38,7 @@ public class AdaptadorVenta extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return Long.parseLong(ListaProductos.get(position).getID_Producto());
     }
 
     @Override
@@ -45,9 +47,16 @@ public class AdaptadorVenta extends BaseAdapter {
         Productos producto=(Productos)getItem(position);
         TextView txtNombre,txtPrecio;
         txtNombre=(TextView)vista.findViewById(R.id.txtNombreProducto);
-        txtPrecio=(TextView)vista.findViewById(R.id.txtPrecio);
+        txtPrecio=(TextView)vista.findViewById(R.id.txtPrecioProducto);
         txtNombre.setText(producto.getNombre_Producto());
         txtPrecio.setText(producto.getCosto_Venta().toString());
+        Log.e("ITEM", "Producto No: "+position );
         return vista;
+    }
+
+    public void setData(ArrayList<Productos> listaProductos){
+        this.ListaProductos=listaProductos;
+        notifyDataSetChanged();
+        Log.w("UPDATE", "Se actualizo" );
     }
 }

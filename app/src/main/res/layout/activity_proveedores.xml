@@ -69,7 +69,7 @@
                     android:layout_marginTop="20dp"
                     android:background="#fff"
                     android:drawableLeft="@drawable/name"
-                    android:hint="Numero del proveedor"
+                    android:hint="Telefono del proveedor"
                     android:inputType="number"
                     android:padding="10dp" />
 

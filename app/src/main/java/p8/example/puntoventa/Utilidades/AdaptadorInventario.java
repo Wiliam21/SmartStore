@@ -46,7 +46,7 @@ public class AdaptadorInventario extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return Long.parseLong(ListaProductos.get(position).getID_Producto());
     }
 
     @Override
@@ -74,6 +74,12 @@ public class AdaptadorInventario extends BaseAdapter {
         });
 
         return vista;
+    }
+
+    public void setData(ArrayList<Productos> listaProductos){
+        this.ListaProductos=listaProductos;
+        notifyDataSetChanged();
+        Log.w("UPDATE", "Se actualizo" );
     }
 
 }

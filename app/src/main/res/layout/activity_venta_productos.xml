@@ -53,7 +53,7 @@
 
                 <EditText
                     android:id="@+id/txtId_Producto"
-                    android:layout_width="278dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#fff"
                     android:drawableLeft="@drawable/name"
@@ -62,10 +62,10 @@
                     android:padding="10dp" />
 
                 <ImageButton
+                    android:layout_gravity="right"
                     android:id="@+id/imageButton5"
                     android:layout_width="33dp"
                     android:layout_height="34dp"
-                    android:layout_marginLeft="284dp"
                     android:layout_marginTop="-40dp"
                     android:onClick="Escanear"
                     app:srcCompat="@drawable/qr2" />
