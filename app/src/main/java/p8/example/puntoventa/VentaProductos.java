@@ -41,6 +41,8 @@ public class VentaProductos extends AppCompatActivity {
     ListView lstVenta;
     AdaptadorVenta adaptadorVenta;
     Conexion conexion=new Conexion(this, Utilidades.DATABASE,null,1);
+    Integer contador=0;
+    Productos producto=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,18 +58,19 @@ public class VentaProductos extends AppCompatActivity {
         lstVenta=(ListView)findViewById(R.id.lstVenta);
         adaptadorVenta=new AdaptadorVenta(this,ProductosVendidos);
         lstVenta.setAdapter(null);
+        ProductosVendidos=new ArrayList<Productos>();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         IntentResult result =IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
-        if (result!=null){
+        Log.e("CONTADOR",""+contador);
+        try {
             txteId_Producto.setText(result.getContents());
-            SQLiteDatabase db=conexion.getReadableDatabase();
-            String[] selectionArgs={result.getContents()};
             Log.w("LECTURA", "Code: "+result.getContents() );
-            Cursor cursor=db.rawQuery("SELECT*FROM "+Utilidades.TABLA_PRODUCTO+" where "+Utilidades.CAMPO_ID_PRODUCTO+"= ?",selectionArgs);
-            PonerProducto(cursor);
+            PonerProducto(result.getContents());
+        }catch (Exception e){
+            Log.e("Error",e.getMessage());
         }
     }
 
@@ -86,10 +89,11 @@ public class VentaProductos extends AppCompatActivity {
         valores.put(Utilidades.CAMPO_FECHA_REPORTE,fechaformato);
     }
 
-    public void PonerProducto(Cursor cursor){
+    public void PonerProducto(String ID){
+        SQLiteDatabase db=conexion.getReadableDatabase();
+        String[] selectionArgs={ID};
+        Cursor cursor=db.rawQuery("SELECT*FROM "+Utilidades.TABLA_PRODUCTO+" where "+Utilidades.CAMPO_ID_PRODUCTO+"= ?",selectionArgs);
         cursor.moveToFirst();
-        ProductosVendidos=new ArrayList<Productos>();
-        Productos producto=null;
         producto=new Productos();
         producto.setID_Producto(cursor.getString(0));
         producto.setNombre_Producto(cursor.getString(1));
@@ -103,6 +107,18 @@ public class VentaProductos extends AppCompatActivity {
         adaptadorVenta.setData(ProductosVendidos);
         adaptadorVenta.notifyDataSetChanged();
         lstVenta.setAdapter(adaptadorVenta);
+        contador++;
+        Log.i("CONTADOR",contador.toString());
+    }
+
+    public void Buscar(View view){
+        try {
+            String id=txteId_Producto.getText().toString();
+            PonerProducto(id);
+        }catch (Exception e){
+            Log.e("BUSCAR",e.getMessage());
+            Toast.makeText(this,"Producto no encontrado",Toast.LENGTH_LONG).show();
+        }
     }
 
 }

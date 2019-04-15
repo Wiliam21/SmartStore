@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,7 +31,11 @@ public class Proveedores extends AppCompatActivity {
         View.OnClickListener Alta=new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AltaProveedor();
+                try {
+                    AltaProveedor();
+                }catch (Exception e){
+                    Log.e("ALTA PROVEEDOR",e.getMessage());
+                }
             }
         };
         btnAltaProveedor.setOnClickListener(Alta);

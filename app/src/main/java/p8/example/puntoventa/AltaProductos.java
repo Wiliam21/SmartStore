@@ -101,6 +101,14 @@ public class AltaProductos extends AppCompatActivity {
     }
 
     public void AltaProducto(View view){
+        try {
+            Alta();
+        }catch (Exception e){
+            Log.e("ALTA PROVEEDOR",e.getMessage());
+        }
+    }
+
+    private void Alta() {
         Conexion conn=new Conexion(this,"db_SmartStore",null,1);
         SQLiteDatabase db=conn.getWritableDatabase();
         int ID_Proveedor;
@@ -130,15 +138,6 @@ public class AltaProductos extends AppCompatActivity {
             Toast.makeText(this,"No selecciono un proveedor",Toast.LENGTH_LONG).show();
         }
         db.close();
-    }
-
-    private void Limpiar() {
-        txteNombre.setText("");
-        txtnCantidad.setText("");
-        txtnCompra.setText("");
-        txtnVenta.setText("");
-        txtnId_Producto.setText("");
-        comboProveedores.setSelected(false);
     }
 
     public void Escanear(View view){
