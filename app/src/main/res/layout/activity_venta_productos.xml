@@ -64,7 +64,7 @@
                     android:padding="10dp" />
 
                 <ImageButton
-                    android:id="@+id/imageButton5"
+                    android:id="@+id/imgbScan"
                     android:layout_width="32dp"
                     android:layout_height="34dp"
                     android:layout_gravity="right"
@@ -104,6 +104,30 @@
                     android:id="@+id/lstVenta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"></ListView>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="12dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <Button
+                    android:id="@+id/btnVenta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="VENDER"/>
 
             </LinearLayout>
         </android.support.v7.widget.CardView>

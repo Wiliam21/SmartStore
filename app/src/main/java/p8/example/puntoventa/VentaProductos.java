@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +41,7 @@ public class VentaProductos extends AppCompatActivity {
     String Id_Producto;
     IntentIntegrator intent =new IntentIntegrator(this);
     TextView txtNombreProducto;
+    ImageButton imgbScan, imgbBuscar;
     Button btnVenta;
     ArrayList<Productos>ProductosVendidos=new ArrayList<Productos>();
     ArrayList<Integer>CantidadProductos=new ArrayList<Integer>();
