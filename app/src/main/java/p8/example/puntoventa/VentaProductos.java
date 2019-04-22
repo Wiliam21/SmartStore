@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -33,7 +35,8 @@ import p8.example.puntoventa.db_store.Productos;
 
 public class VentaProductos extends AppCompatActivity {
     private EditText txteId_Producto;
-    Double Total;
+    int Cantidad=0;
+    Double Total=0.0;
     String Id_Producto;
     IntentIntegrator intent =new IntentIntegrator(this);
     TextView txtNombreProducto;
@@ -61,10 +64,11 @@ public class VentaProductos extends AppCompatActivity {
         adaptadorVenta=new AdaptadorVenta(this,ProductosVendidos,CantidadProductos);
         lstVenta.setAdapter(null);
 
+
         lstVenta.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                int Cantidad=CantidadProductos.get(position);
+                Cantidad=CantidadProductos.get(position);
                 Log.i("CANTIDAD",""+Cantidad);
                 switch (view.getId()){
                     case R.id.imgbResta:
@@ -76,16 +80,19 @@ public class VentaProductos extends AppCompatActivity {
                         }
                         break;
                     case R.id.imgbSuma:
-                        CantidadProductos.set(position,Cantidad+1);
+                        if(Cantidad<ProductosVendidos.get(position).getExistencia())
+                            CantidadProductos.set(position,Cantidad+1);
                         break;
                 }
                 adaptadorVenta.setData(ProductosVendidos,CantidadProductos);
+                ActualizarTotal();
             }
         });
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        //Escanea el codigo edbarras y lo regresa en un Intent
         IntentResult result =IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
         String id=result.getContents();
         try {
@@ -100,7 +107,10 @@ public class VentaProductos extends AppCompatActivity {
                     }
                 }
             }
-            if (!Existe) PonerProducto(id);
+            if (!Existe){
+                PonerProducto(id);
+                ActualizarTotal();
+            }
         }catch (Exception e){
             Log.e("Error",e.getMessage());
         }
@@ -142,6 +152,7 @@ public class VentaProductos extends AppCompatActivity {
         lstVenta.setAdapter(adaptadorVenta);
         contador++;
         Log.i("CONTADOR",contador.toString());
+        ActualizarTotal();
     }
 
     public void Buscar(View view){
@@ -154,14 +165,26 @@ public class VentaProductos extends AppCompatActivity {
                         Existe=true;
                         CantidadProductos.set(i,CantidadProductos.get(i)+1);
                         adaptadorVenta.setData(ProductosVendidos,CantidadProductos);
+                        ActualizarTotal();
                     }
                 }
             }
-            if (!Existe) PonerProducto(id);
+            if (!Existe) {
+                PonerProducto(id);
+            }
+            txteId_Producto.setText(null);
         }catch (Exception e){
             Log.e("BUSCAR",e.getMessage());
             Toast.makeText(this,"Producto no encontrado",Toast.LENGTH_LONG).show();
         }
     }
 
+    public void ActualizarTotal(){
+        Total=0.0;
+        for (int i=0;i<ProductosVendidos.size();i++){
+            Total+=(ProductosVendidos.get(i).getCosto_Venta()*CantidadProductos.get(i));
+        }
+        btnVenta.setText("Total a pagar: $"+Total);
+        Log.e("ACTUALIZACION", "Se actualizo");
+    }
 }
