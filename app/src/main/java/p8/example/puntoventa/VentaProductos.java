@@ -41,7 +41,6 @@ public class VentaProductos extends AppCompatActivity {
     String Id_Producto;
     IntentIntegrator intent =new IntentIntegrator(this);
     TextView txtNombreProducto;
-    ImageButton imgbScan, imgbBuscar;
     Button btnVenta;
     ArrayList<Productos>ProductosVendidos=new ArrayList<Productos>();
     ArrayList<Integer>CantidadProductos=new ArrayList<Integer>();

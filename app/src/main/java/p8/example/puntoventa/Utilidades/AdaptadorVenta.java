@@ -1,8 +1,6 @@
 package p8.example.puntoventa.Utilidades;
 
 import android.content.Context;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,18 +50,17 @@ public class AdaptadorVenta extends BaseAdapter {
     public View getView(final int position, View convertView, final ViewGroup parent) {
         final View vista=inflater.inflate(R.layout.elemento_venta,null);
         Productos producto=(Productos)getItem(position);
-        TextView txtNombre,txtPrecio,txtnCantidadVenta,txtSubtotal;
-        Button imgbResta,imgbSuma;
-        txtSubtotal=(TextView)vista.findViewById(R.id.txtSubtotal);
-        txtnCantidadVenta=(TextView) vista.findViewById(R.id.txtnCantidadVenta);
-        imgbResta=(Button)vista.findViewById(R.id.imgbResta);
-        imgbSuma=(Button)vista.findViewById(R.id.imgbSuma);
+        TextView txtNombre,txtPrecio;
+        final EditText txtnCantidadVenta;
+        ImageButton imgbResta,imgbSuma;
+        txtnCantidadVenta=(EditText)vista.findViewById(R.id.txtnCantidadVenta);
+        imgbResta=(ImageButton)vista.findViewById(R.id.imgbResta);
+        imgbSuma=(ImageButton)vista.findViewById(R.id.imgbSuma);
         txtnCantidadVenta.setText(CantidadPorductos.get(position).toString());
         txtNombre=(TextView)vista.findViewById(R.id.txtNombreProducto);
         txtPrecio=(TextView)vista.findViewById(R.id.txtPrecioProducto);
         txtNombre.setText(producto.getNombre_Producto());
         txtPrecio.setText(producto.getCosto_Venta().toString());
-        txtSubtotal.setText(""+(CantidadPorductos.get(position)*producto.getCosto_Venta()));
 
         imgbResta.setOnClickListener(new View.OnClickListener() {
             @Override
