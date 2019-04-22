@@ -10,7 +10,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_row="0"
+        android:layout_column="0">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -53,7 +55,7 @@
 
                 <EditText
                     android:id="@+id/txtId_Producto"
-                    android:layout_width="wrap_content"
+                    android:layout_width="320dp"
                     android:layout_height="wrap_content"
                     android:background="#fff"
                     android:drawableLeft="@drawable/name"
@@ -62,21 +64,21 @@
                     android:padding="10dp" />
 
                 <ImageButton
-                    android:layout_gravity="right"
                     android:id="@+id/imageButton5"
-                    android:layout_width="33dp"
+                    android:layout_width="32dp"
                     android:layout_height="34dp"
+                    android:layout_gravity="right"
                     android:layout_marginTop="-40dp"
                     android:onClick="Escanear"
-                    app:srcCompat="@drawable/qr2" />
+                    app:srcCompat="@drawable/barcode" />
 
                 <ImageButton
                     android:id="@+id/imgbBuscar"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
                     android:layout_gravity="right"
                     android:onClick="Buscar"
-                    android:src="@drawable/busqueda" />
+                    android:src="@drawable/search" />
 
             </LinearLayout>
 
@@ -85,7 +87,7 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="457dp"
+            android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="12dp"
@@ -95,23 +97,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="10dp">
 
                 <ListView
                     android:id="@+id/lstVenta"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"></ListView>
+
             </LinearLayout>
-
         </android.support.v7.widget.CardView>
-
-        <Button
-            android:id="@+id/btnVenta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="GenerarVenta"
-            android:text="Button" />
-
 
     </LinearLayout>
 

@@ -71,7 +71,7 @@
                     android:layout_height="34dp"
                     android:layout_marginTop="-40dp"
                     android:onClick="Escanear"
-                    app:srcCompat="@drawable/qr2" />
+                    app:srcCompat="@drawable/barcode" />
 
                 <EditText
                     android:id="@+id/txteNombre"
