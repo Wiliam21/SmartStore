@@ -52,10 +52,10 @@ public class AdaptadorVenta extends BaseAdapter {
         Productos producto=(Productos)getItem(position);
         TextView txtNombre,txtPrecio;
         final EditText txtnCantidadVenta;
-        Button imgbResta,imgbSuma;
+        ImageButton imgbResta,imgbSuma;
         txtnCantidadVenta=(EditText)vista.findViewById(R.id.txtnCantidadVenta);
-        imgbResta=(Button)vista.findViewById(R.id.imgbResta);
-        imgbSuma=(Button)vista.findViewById(R.id.imgbSuma);
+        imgbResta=(ImageButton)vista.findViewById(R.id.imgbResta);
+        imgbSuma=(ImageButton)vista.findViewById(R.id.imgbSuma);
         txtnCantidadVenta.setText(CantidadPorductos.get(position).toString());
         txtNombre=(TextView)vista.findViewById(R.id.txtNombreProducto);
         txtPrecio=(TextView)vista.findViewById(R.id.txtPrecioProducto);
