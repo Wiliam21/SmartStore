@@ -7,8 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,7 +14,6 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,8 +33,7 @@ import p8.example.puntoventa.db_store.Productos;
 
 public class VentaProductos extends AppCompatActivity {
     private EditText txteId_Producto;
-    int Cantidad=0;
-    Double Total=0.0;
+    Double Total;
     String Id_Producto;
     IntentIntegrator intent =new IntentIntegrator(this);
     TextView txtNombreProducto;
@@ -65,11 +61,10 @@ public class VentaProductos extends AppCompatActivity {
         adaptadorVenta=new AdaptadorVenta(this,ProductosVendidos,CantidadProductos);
         lstVenta.setAdapter(null);
 
-
         lstVenta.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Cantidad=CantidadProductos.get(position);
+                int Cantidad=CantidadProductos.get(position);
                 Log.i("CANTIDAD",""+Cantidad);
                 switch (view.getId()){
                     case R.id.imgbResta:
@@ -78,22 +73,23 @@ public class VentaProductos extends AppCompatActivity {
                             ProductosVendidos.remove(position);
                             CantidadProductos.remove(position);
                             contador--;
+                            ActualizarVenta();
                         }
                         break;
                     case R.id.imgbSuma:
-                        if(Cantidad<ProductosVendidos.get(position).getExistencia())
-                            CantidadProductos.set(position,Cantidad+1);
+                        if (CantidadProductos.get(position)<ProductosVendidos.get(position).getExistencia())
+                        CantidadProductos.set(position,Cantidad+1);
+                        ActualizarVenta();
                         break;
                 }
                 adaptadorVenta.setData(ProductosVendidos,CantidadProductos);
-                ActualizarTotal();
             }
         });
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        //Escanea el codigo edbarras y lo regresa en un Intent
+        //Escanea codigo de barras y lo regresa en un Intent
         IntentResult result =IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
         String id=result.getContents();
         try {
@@ -108,10 +104,7 @@ public class VentaProductos extends AppCompatActivity {
                     }
                 }
             }
-            if (!Existe){
-                PonerProducto(id);
-                ActualizarTotal();
-            }
+            if (!Existe) PonerProducto(id);
         }catch (Exception e){
             Log.e("Error",e.getMessage());
         }
@@ -153,7 +146,7 @@ public class VentaProductos extends AppCompatActivity {
         lstVenta.setAdapter(adaptadorVenta);
         contador++;
         Log.i("CONTADOR",contador.toString());
-        ActualizarTotal();
+        ActualizarVenta();
     }
 
     public void Buscar(View view){
@@ -166,13 +159,10 @@ public class VentaProductos extends AppCompatActivity {
                         Existe=true;
                         CantidadProductos.set(i,CantidadProductos.get(i)+1);
                         adaptadorVenta.setData(ProductosVendidos,CantidadProductos);
-                        ActualizarTotal();
                     }
                 }
             }
-            if (!Existe) {
-                PonerProducto(id);
-            }
+            if (!Existe) PonerProducto(id);
             txteId_Producto.setText(null);
         }catch (Exception e){
             Log.e("BUSCAR",e.getMessage());
@@ -180,12 +170,12 @@ public class VentaProductos extends AppCompatActivity {
         }
     }
 
-    public void ActualizarTotal(){
+    public void ActualizarVenta(){
         Total=0.0;
         for (int i=0;i<ProductosVendidos.size();i++){
             Total+=(ProductosVendidos.get(i).getCosto_Venta()*CantidadProductos.get(i));
         }
-        btnVenta.setText("Total a pagar: $"+Total);
-        Log.e("ACTUALIZACION", "Se actualizo");
+        btnVenta.setText("TOTAL: $"+Total);
     }
+
 }
