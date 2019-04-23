@@ -50,12 +50,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:padding="5dp">
 
                 <EditText
                     android:id="@+id/txtId_Producto"
-                    android:layout_width="320dp"
+                    android:layout_width="292dp"
                     android:layout_height="wrap_content"
                     android:background="#fff"
                     android:drawableLeft="@drawable/name"
@@ -68,7 +68,8 @@
                     android:layout_width="32dp"
                     android:layout_height="34dp"
                     android:layout_gravity="right"
-                    android:layout_marginTop="-40dp"
+                    android:layout_margin="-40dp"
+                    android:layout_marginHorizontal="10dp"
                     android:onClick="Escanear"
                     app:srcCompat="@drawable/barcode" />
 
@@ -87,7 +88,7 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="462dp"
+            android:layout_height="match_parent"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_marginHorizontal="12dp"
@@ -97,17 +98,17 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="423dp"
+                android:layout_height="466dp"
                 android:orientation="vertical"
-                android:padding="4dp">
+                android:padding="10dp">
 
                 <ListView
                     android:id="@+id/lstVenta"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"></ListView>
-
+                    android:layout_height="wrap_content" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
+
 
         <Button
             android:id="@+id/btnVenta"
