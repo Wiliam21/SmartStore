@@ -11,15 +11,20 @@
         android:roundIcon="@mipmap/icono"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+        <activity android:name=".EditarProveedorActivity"></activity>
         <activity android:name=".Ajustes" />
-        <activity android:name=".Proveedor"></activity>
-        <activity android:name=".Inventario" android:label="Inventario"
-            android:theme="@style/NoActionBar"/>
-        <activity android:name=".Proveedores"
-            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".Proveedor" />
+        <activity
+            android:name=".Inventario"
+            android:label="Inventario"
+            android:theme="@style/NoActionBar" />
+        <activity
+            android:name=".Proveedores"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".ReporteProductos" />
-        <activity android:name=".VentaProductos"
-            android:windowSoftInputMode="stateHidden"/>
+        <activity
+            android:name=".VentaProductos"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,11 +32,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EditarProducto"
-            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name=".EditarProducto"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".AltaProductos"
-            android:windowSoftInputMode="stateHidden"/>
+        <activity
+            android:name=".AltaProductos"
+            android:windowSoftInputMode="stateHidden" />
     </application>
 
 </manifest>
