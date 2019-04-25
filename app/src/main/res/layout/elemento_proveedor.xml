@@ -48,7 +48,7 @@
         app:layout_constraintGuide_begin="225dp" />
 
     <ImageButton
-        android:id="@+id/imgbEditar"
+        android:id="@+id/imgbEditarProveedor"
         android:layout_width="27dp"
         android:layout_height="34dp"
         android:layout_marginStart="8dp"
@@ -63,7 +63,7 @@
         app:srcCompat="@drawable/editar" />
 
     <ImageButton
-        android:id="@+id/imgbInfo"
+        android:id="@+id/imgbInfoProveedor"
         android:layout_width="34dp"
         android:layout_height="33dp"
         android:layout_marginStart="8dp"
@@ -75,7 +75,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.106"
-        app:layout_constraintStart_toEndOf="@+id/imgbEditar"
+        app:layout_constraintStart_toEndOf="@+id/imgbEditarProveedor"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
         app:srcCompat="@drawable/pregunta" />
 </android.support.constraint.ConstraintLayout>

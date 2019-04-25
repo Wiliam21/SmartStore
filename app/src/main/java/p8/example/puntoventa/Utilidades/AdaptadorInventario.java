@@ -58,7 +58,7 @@ public class AdaptadorInventario extends BaseAdapter {
         txtNombre=(TextView)vista.findViewById(R.id.txtNombreProducto);
         txtCodigoBarras=(TextView)vista.findViewById(R.id.txtCodigoBarras);
         imgbInfo=(ImageButton) vista.findViewById(R.id.imgbInfo);
-        imgbEditar=(ImageButton) vista.findViewById(R.id.imgbEditar);
+        imgbEditar=(ImageButton) vista.findViewById(R.id.imgbEditarProducto);
         txtNombre.setText(producto.getNombre_Producto());
         txtCodigoBarras.setText(producto.getID_Producto());
 
