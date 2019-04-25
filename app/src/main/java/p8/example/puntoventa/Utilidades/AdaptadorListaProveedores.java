@@ -2,6 +2,7 @@ package p8.example.puntoventa.Utilidades;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,12 +52,13 @@ public class AdaptadorListaProveedores extends BaseAdapter {
         ImageButton imgbEditarProveedor=(ImageButton)vista.findViewById(R.id.imgbEditarProveedor);
         ImageButton imgbInfoProveedor=(ImageButton)vista.findViewById(R.id.imgbInfoProveedor);
         txtNombre_Proveedor.setText(ListaProveedores.get(position).getNombre_Proveedor());
-        txtNombre_Proveedor.setTag(ListaProveedores.get(position));
+        imgbEditarProveedor.setTag(ListaProveedores.get(position).getID_Proveedor());
 
         imgbEditarProveedor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String ID_PROVEEDOR=String.valueOf((Integer) v.getTag());
+                Log.e("ID", "onClick: "+ID_PROVEEDOR );
                 context.startActivity(new Intent(context, EditarProveedorActivity.class).putExtra("ID_PROVEEDOR",ID_PROVEEDOR));
             }
         });

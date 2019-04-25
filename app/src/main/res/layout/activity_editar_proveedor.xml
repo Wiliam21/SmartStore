@@ -80,6 +80,7 @@
                     android:layout_marginTop="15dp"
                     android:background="@drawable/botones"
                     android:text="GUARDAR"
+                    android:onClick="GuardarProveedor"
                     android:textColor="#fff" />
 
                 <Button
@@ -89,6 +90,7 @@
                     android:background="@drawable/eliminar"
                     android:text="ELIMNAR"
                     android:layout_marginTop="15dp"
+                    android:onClick="EliminarProveedor"
                     android:textColor="#FFFF"/>
 
             </LinearLayout>
