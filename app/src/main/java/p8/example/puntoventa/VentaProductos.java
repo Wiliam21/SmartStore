@@ -33,7 +33,7 @@ import p8.example.puntoventa.db_store.Productos;
 
 public class VentaProductos extends AppCompatActivity {
     private EditText txteId_Producto;
-    Double Total;
+    Double Total,Ganancia,Total_Compra;
     String Id_Producto;
     IntentIntegrator intent =new IntentIntegrator(this);
     TextView txtNombreProducto;
@@ -115,14 +115,27 @@ public class VentaProductos extends AppCompatActivity {
     }
 
     public void GenerarVenta(View view){
+        Ganancia=0.0;
+        Total_Compra=0.0;
         Conexion conexion=new Conexion(this,Utilidades.DATABASE,null,1);
         SQLiteDatabase bd=conexion.getWritableDatabase();
         Calendar fecha = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         String fechaformato = df.format(fecha.getTime());
-
+        String Codigo_Productos=null,Cantidad_Productos=null;
+        for (int i=0; i<ProductosVendidos.size();i++){
+            Codigo_Productos+=ProductosVendidos.get(i).getID_Producto()+",";
+            Cantidad_Productos+=CantidadProductos.get(i).toString()+",";
+            Total_Compra+=CantidadProductos.get(i).doubleValue()*ProductosVendidos.get(i).getCosto_Compra();
+        }
+        Ganancia=Total-Total_Compra;
         ContentValues valores = new ContentValues();
         valores.put(Utilidades.CAMPO_FECHA_REPORTE,fechaformato);
+        valores.put(Utilidades.CAMPO_PRODUCTOS_VENDIDOS,Codigo_Productos);
+        valores.put(Utilidades.CAMPO_CANTIDAD_PRODUCTOS,Cantidad_Productos);
+        valores.put(Utilidades.CAMPO_GANANCIA_REPORTE,Ganancia);
+        valores.put(Utilidades.CAMPO_TOTAL_REPORTE,Total);
+        bd.insert(Utilidades.TABLA_REPORTE,Utilidades.CAMPO_ID_REPORTE,valores);
     }
 
     public void PonerProducto(String ID){

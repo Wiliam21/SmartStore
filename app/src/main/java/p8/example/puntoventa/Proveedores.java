@@ -47,14 +47,19 @@ public class Proveedores extends AppCompatActivity {
         String NombreProveedor=txteNombreProveedor.getText().toString();
         String TelefonoProveedor=txtnNumeroProveedor.getText().toString();
 
-        ContentValues values =new ContentValues();
-        values.put(Utilidades.CAMPO_NOMBRE_PROVEEDOR,NombreProveedor);
-        values.put(Utilidades.CAMPO_TELEFONO_PROVEEDOR,TelefonoProveedor);
+        if (NombreProveedor.isEmpty() || TelefonoProveedor.isEmpty())
+            Toast.makeText(this,"Llene los campos",Toast.LENGTH_LONG).show();
+        else{
+            ContentValues values =new ContentValues();
+            values.put(Utilidades.CAMPO_NOMBRE_PROVEEDOR,NombreProveedor);
+            values.put(Utilidades.CAMPO_TELEFONO_PROVEEDOR,TelefonoProveedor);
 
-        Long idProveedor=db.insert(Utilidades.TABLA_PROVEEDOR,Utilidades.CAMPO_ID_PROVEEDOR,values);
-        db.close();
-        Toast.makeText(this,"Id proveedor: "+idProveedor,Toast.LENGTH_LONG).show();
-        startActivity(new Intent(this,Proveedor.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-        finish();
+            Long idProveedor=db.insert(Utilidades.TABLA_PROVEEDOR,Utilidades.CAMPO_ID_PROVEEDOR,values);
+            db.close();
+            Toast.makeText(this,"Id proveedor: "+idProveedor,Toast.LENGTH_LONG).show();
+            startActivity(new Intent(this,Proveedor.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            finish();
+        }
+
     }
 }
