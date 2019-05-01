@@ -54,25 +54,11 @@ public class AdaptadorInventario extends BaseAdapter {
         final View vista=inflater.inflate(R.layout.elementro_producto,null);
         Productos producto=(Productos)getItem(position);
         TextView txtNombre,txtCodigoBarras;
-        ImageButton imgbInfo,imgbEditar;
+
         txtNombre=(TextView)vista.findViewById(R.id.txtNombreProducto);
         txtCodigoBarras=(TextView)vista.findViewById(R.id.txtCodigoBarras);
-        imgbInfo=(ImageButton) vista.findViewById(R.id.imgbInfo);
-        imgbEditar=(ImageButton) vista.findViewById(R.id.imgbEditarProducto);
         txtNombre.setText(producto.getNombre_Producto());
         txtCodigoBarras.setText(producto.getID_Producto());
-
-        imgbEditar.setTag(position);
-
-        imgbEditar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String ID=ListaProductos.get((Integer) v.getTag()).getID_Producto();
-                Log.w("ID", "onClick: "+ID);
-                context.startActivity(new Intent(context,EditarProducto.class).putExtra("ID_PRODUCTOS",ID));
-            }
-        });
-
         return vista;
     }
 

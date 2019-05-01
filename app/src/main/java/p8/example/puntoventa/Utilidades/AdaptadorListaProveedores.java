@@ -50,7 +50,7 @@ public class AdaptadorListaProveedores extends BaseAdapter {
         final View vista=inflater.inflate(R.layout.elemento_proveedor,null);
         final TextView txtNombre_Proveedor=(TextView)vista.findViewById(R.id.txtNombre_Proveedor);
         ImageButton imgbEditarProveedor=(ImageButton)vista.findViewById(R.id.imgbEditarProveedor);
-        ImageButton imgbInfoProveedor=(ImageButton)vista.findViewById(R.id.imgbInfoProveedor);
+
         txtNombre_Proveedor.setText(ListaProveedores.get(position).getNombre_Proveedor());
         imgbEditarProveedor.setTag(ListaProveedores.get(position).getID_Proveedor());
 
