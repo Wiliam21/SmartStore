@@ -12,10 +12,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import p8.example.puntoventa.EditarProveedorActivity;
+import p8.example.puntoventa.EditarProveedor;
 import p8.example.puntoventa.R;
-import p8.example.puntoventa.db_store.Conexion;
-import p8.example.puntoventa.db_store.Productos;
 import p8.example.puntoventa.db_store.ProveedorObjeto;
 
 public class AdaptadorListaProveedores extends BaseAdapter {
@@ -59,7 +57,7 @@ public class AdaptadorListaProveedores extends BaseAdapter {
             public void onClick(View v) {
                 String ID_PROVEEDOR=String.valueOf((Integer) v.getTag());
                 Log.e("ID", "onClick: "+ID_PROVEEDOR );
-                context.startActivity(new Intent(context, EditarProveedorActivity.class).putExtra("ID_PROVEEDOR",ID_PROVEEDOR));
+                context.startActivity(new Intent(context, EditarProveedor.class).putExtra("ID_PROVEEDOR",ID_PROVEEDOR));
             }
         });
         return vista;

@@ -1,24 +1,17 @@
 package p8.example.puntoventa.Utilidades;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageButton;
 import android.widget.TextView;
-import android.app.Activity;
 
 
 import java.util.ArrayList;
 
-import p8.example.puntoventa.EditarProducto;
-import p8.example.puntoventa.Inventario;
 import p8.example.puntoventa.R;
-import p8.example.puntoventa.db_store.Conexion;
 import p8.example.puntoventa.db_store.Productos;
 
 
@@ -51,7 +44,7 @@ public class AdaptadorInventario extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        final View vista=inflater.inflate(R.layout.elementro_producto,null);
+        final View vista=inflater.inflate(R.layout.elemento_producto,null);
         Productos producto=(Productos)getItem(position);
         TextView txtNombre,txtCodigoBarras;
 

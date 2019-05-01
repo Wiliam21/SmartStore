@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/icono"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        <activity android:name=".EditarProveedorActivity"></activity>
+        <activity android:name=".EditarProveedor"></activity>
         <activity android:name=".Ajustes" />
         <activity android:name=".Proveedor" />
         <activity
@@ -19,7 +19,7 @@
             android:label="Inventario"
             android:theme="@style/NoActionBar" />
         <activity
-            android:name=".Proveedores"
+            android:name=".AltaProveedores"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".ReporteProductos" />
         <activity

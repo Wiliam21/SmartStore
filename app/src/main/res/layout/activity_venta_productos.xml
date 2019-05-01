@@ -58,7 +58,6 @@
                     android:layout_width="248dp"
                     android:layout_height="wrap_content"
                     android:background="#fff"
-                    android:drawableLeft="@drawable/name"
                     android:hint="Codigo del Producto"
                     android:inputType="number|textCapCharacters"
                     android:padding="10dp" />

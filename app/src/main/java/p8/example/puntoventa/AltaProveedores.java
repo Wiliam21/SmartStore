@@ -16,14 +16,14 @@ import p8.example.puntoventa.db_store.Conexion;
 
 //Alta de proveedor
 
-public class Proveedores extends AppCompatActivity {
+public class AltaProveedores extends AppCompatActivity {
     EditText txteNombreProveedor,txtnNumeroProveedor;
     Button btnAltaProveedor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_proveedores);
+        setContentView(R.layout.activity_alta_proveedores);
         txteNombreProveedor=(EditText)findViewById(R.id.txteNombreProveedor);
         txtnNumeroProveedor=(EditText)findViewById(R.id.txtnNumeroProveedor);
         btnAltaProveedor=(Button)findViewById(R.id.btnAltaProveedor);

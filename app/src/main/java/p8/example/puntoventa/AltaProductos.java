@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,7 +39,7 @@ public class AltaProductos extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_alta_productos);
+        setContentView(R.layout.activity_alta_producto);
 
         txtnId_Producto=(EditText)findViewById(R.id.txtnId_Producto);
         txteNombre=(EditText)findViewById(R.id.txteNombre);
