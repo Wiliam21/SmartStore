@@ -92,7 +92,7 @@
                     android:background="#fff"
                     android:ems="10"
                     android:hint="Costo Venta"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:padding="10dp" />
 
                 <Spinner
