@@ -11,7 +11,10 @@
         android:roundIcon="@mipmap/icono"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        <activity android:name=".EditarProveedor"></activity>
+        <activity android:name=".ReporteMensual"></activity>
+        <activity android:name=".ReporteSemanal" />
+        <activity android:name=".ReporteDiario" />
+        <activity android:name=".EditarProveedor" />
         <activity android:name=".Ajustes" />
         <activity android:name=".Proveedor" />
         <activity
