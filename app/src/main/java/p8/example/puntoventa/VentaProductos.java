@@ -42,7 +42,7 @@ public class VentaProductos extends AppCompatActivity {
     ArrayList<Integer>CantidadProductos=new ArrayList<Integer>();
     ListView lstVenta;
     AdaptadorVenta adaptadorVenta;
-    Conexion conexion=new Conexion(this, Utilidades.DATABASE,null,1);
+    Conexion conexion=new Conexion(this, Utilidades.DATABASE,null,2);
     Integer contador=0;
     Productos producto=null;
 
@@ -117,16 +117,19 @@ public class VentaProductos extends AppCompatActivity {
     public void GenerarVenta(View view){
         Ganancia=0.0;
         Total_Compra=0.0;
-        Conexion conexion=new Conexion(this,Utilidades.DATABASE,null,1);
         SQLiteDatabase bd=conexion.getWritableDatabase();
         Calendar fecha = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         String fechaformato = df.format(fecha.getTime());
-        String Codigo_Productos=null,Cantidad_Productos=null;
+        String Codigo_Productos="",Cantidad_Productos="";
         for (int i=0; i<ProductosVendidos.size();i++){
             Codigo_Productos+=ProductosVendidos.get(i).getID_Producto()+",";
             Cantidad_Productos+=CantidadProductos.get(i).toString()+",";
             Total_Compra+=CantidadProductos.get(i).doubleValue()*ProductosVendidos.get(i).getCosto_Compra();
+            ContentValues DatosProducto=new ContentValues();
+            DatosProducto.put(Utilidades.CAMPO_EXISTENCIA_PRODUCTO,ProductosVendidos.get(i).getExistencia()-CantidadProductos.get(i));
+            DatosProducto.put(Utilidades.CAMPO_VECES_VENDIDO,ProductosVendidos.get(i).getVeces_Vendido()+CantidadProductos.get(i));
+            bd.update(Utilidades.TABLA_PRODUCTO,DatosProducto,Utilidades.CAMPO_ID_PRODUCTO+" = ?",new String[]{ProductosVendidos.get(i).getID_Producto()});
         }
         Ganancia=Total-Total_Compra;
         ContentValues valores = new ContentValues();
@@ -152,6 +155,7 @@ public class VentaProductos extends AppCompatActivity {
         producto.setExistencia(cursor.getInt(4));
         producto.setVeces_Vendido(cursor.getInt(5));
         producto.setID_Proveedor(cursor.getInt(6));
+        if (producto.getExistencia().intValue()==0) cantidad=0;
         Log.w("PRODUCTO", "Nombre: " +producto.getNombre_Producto() );
         ProductosVendidos.add(producto);
         CantidadProductos.add(cantidad);

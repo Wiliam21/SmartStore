@@ -62,6 +62,7 @@ public class AdaptadorVenta extends BaseAdapter {
         txtNombre.setText(producto.getNombre_Producto());
         txtPrecio.setText(producto.getCosto_Venta().toString());
         txtSubtotal.setText(""+(producto.getCosto_Venta()*CantidadPorductos.get(position)));
+        if (CantidadPorductos.get(position)==0)txtnCantidadVenta.setText("AGOTADO");
 
         imgbResta.setOnClickListener(new View.OnClickListener() {
             @Override

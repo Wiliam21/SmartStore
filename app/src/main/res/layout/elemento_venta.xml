@@ -109,8 +109,9 @@
 
                         <TextView
                             android:id="@+id/txtnCantidadVenta"
-                            android:layout_width="35dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:layout_marginHorizontal="5dp"
                             android:gravity="center" />
 
                         <ImageButton

@@ -2,6 +2,7 @@ package p8.example.puntoventa;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -30,9 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         inventarioCard.setOnClickListener(this);
         ajustesCard.setOnClickListener(this);
 
-        Conexion conexion=new Conexion(this,"db_SmartStore",null,1);
-        String Direccion=getDatabasePath(Utilidades.DATABASE).getAbsolutePath();
-        Log.i("DIRECCION",Direccion);
+
     }
 
     @Override

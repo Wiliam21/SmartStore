@@ -27,11 +27,10 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 
 public class Inventario extends AppCompatActivity {
-    Conexion conexion=new Conexion(this, Utilidades.DATABASE,null,1);
+    Conexion conexion=new Conexion(this, Utilidades.DATABASE,null,2);
     ArrayList<Productos>ListaProductos;
     FloatingActionButton fab;
     ListView Lista;
-    int pos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

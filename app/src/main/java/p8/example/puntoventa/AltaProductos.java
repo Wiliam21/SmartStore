@@ -69,7 +69,7 @@ public class AltaProductos extends AppCompatActivity {
     }
 
     private void consultarProveedores() {
-        Conexion conn=new Conexion(this,"db_SmartStore",null,1);
+        Conexion conn=new Conexion(this,"db_SmartStore",null,2);
         SQLiteDatabase db=conn.getReadableDatabase();
 
         ProveedorObjeto proveedor=null;
@@ -108,7 +108,7 @@ public class AltaProductos extends AppCompatActivity {
     }
 
     private void Alta() {
-        Conexion conn=new Conexion(this,"db_SmartStore",null,1);
+        Conexion conn=new Conexion(this,"db_SmartStore",null,2);
         SQLiteDatabase db=conn.getWritableDatabase();
         int ID_Proveedor;
         String Nombre=txteNombre.getText().toString();

@@ -47,9 +47,11 @@ public class AdaptadorListaProveedores extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         final View vista=inflater.inflate(R.layout.elemento_proveedor,null);
         final TextView txtNombre_Proveedor=(TextView)vista.findViewById(R.id.txtNombre_Proveedor);
+        TextView txtNumeroProveedor=(TextView)vista.findViewById(R.id.txtNumeroProveedor);
         ImageButton imgbEditarProveedor=(ImageButton)vista.findViewById(R.id.imgbEditarProveedor);
 
         txtNombre_Proveedor.setText(ListaProveedores.get(position).getNombre_Proveedor());
+        txtNumeroProveedor.setText(ListaProveedores.get(position).getTelefono());
         imgbEditarProveedor.setTag(ListaProveedores.get(position).getID_Proveedor());
 
         imgbEditarProveedor.setOnClickListener(new View.OnClickListener() {

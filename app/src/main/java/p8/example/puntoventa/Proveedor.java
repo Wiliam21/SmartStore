@@ -43,7 +43,7 @@ public class Proveedor extends AppCompatActivity {
     }
 
     private void consultarProveedores() {
-        Conexion conn=new Conexion(this,"db_SmartStore",null,1);
+        Conexion conn=new Conexion(this,"db_SmartStore",null,2);
         SQLiteDatabase db=conn.getReadableDatabase();
 
         ProveedorObjeto proveedor=null;
