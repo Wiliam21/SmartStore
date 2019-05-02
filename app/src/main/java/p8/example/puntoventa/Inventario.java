@@ -2,6 +2,8 @@ package p8.example.puntoventa;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,37 +28,61 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import com.baoyz.swipemenulistview.SwipeMenu;
+import com.baoyz.swipemenulistview.SwipeMenuCreator;
+import com.baoyz.swipemenulistview.SwipeMenuItem;
+import com.baoyz.swipemenulistview.SwipeMenuListView;
+
 public class Inventario extends AppCompatActivity {
     Conexion conexion=new Conexion(this, Utilidades.DATABASE,null,2);
     ArrayList<Productos>ListaProductos;
     FloatingActionButton fab;
-    ListView Lista;
+    SwipeMenuListView Lista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventario);
         fab = (FloatingActionButton) findViewById(R.id.fbtnAdd);
-        Lista=(ListView)findViewById(R.id.listLista);
+        Lista=(SwipeMenuListView) findViewById(R.id.listLista);
         CargarProductos();
         Lista.setAdapter(new AdaptadorInventario(this,ListaProductos));
 
-        fab.setOnClickListener(new View.OnClickListener() {
+        SwipeMenuCreator creator =new SwipeMenuCreator() {
             @Override
-            public void onClick(View view) {
-                Intent i = new Intent(Inventario.this,AltaProductos.class);
-                startActivity(i);
+            public void create(SwipeMenu menu) {
+                SwipeMenuItem openItem = new SwipeMenuItem(
+                        getApplicationContext());
+                // set item background
+                openItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
+                        0xCE)));
+                // set item width
+                openItem.setWidth(100);
+                // set item title
+                openItem.setTitle("Open");
+                // set item title fontsize
+                openItem.setTitleSize(18);
+                // set item title font color
+                openItem.setTitleColor(Color.WHITE);
+                // add to menu
+                menu.addMenuItem(openItem);
 
+                // create "delete" item
+                SwipeMenuItem deleteItem = new SwipeMenuItem(
+                        getApplicationContext());
+                // set item background
+                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
+                        0x3F, 0x25)));
+                // set item width
+                deleteItem.setWidth((90));
+                // set a icon
+                deleteItem.setIcon(R.drawable.ic_edit);
+                // add to menu
+                menu.addMenuItem(deleteItem);
             }
-        });
+        };
 
-        Lista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                return false;
-            }
-        });
-
+        Lista.setMenuCreator(creator);
 
     }
 

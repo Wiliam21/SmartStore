@@ -54,10 +54,10 @@
                 android:orientation="vertical"
                 android:padding="10dp">
 
-                <ListView
+                <com.baoyz.swipemenulistview.SwipeMenuListView
                     android:id="@+id/lstProveedores"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></ListView>
+                    android:layout_height="wrap_content"></com.baoyz.swipemenulistview.SwipeMenuListView>
 
             </LinearLayout>
         </android.support.v7.widget.CardView>
