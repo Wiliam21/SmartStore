@@ -17,7 +17,7 @@ import p8.example.puntoventa.db_store.ProveedorObjeto;
 public class EditarProveedor extends AppCompatActivity {
     EditText txtnEditarNumeroProveedor,txteEditarNombreProveedor;
     Button btnEliminarProveedor,btnGuardarProveedor;
-    Conexion conexion=new Conexion(this, Utilidades.DATABASE,null,1);
+    Conexion conexion=new Conexion(this, Utilidades.DATABASE,null,2);
     Integer ID_PROVEEDOR;
     ProveedorObjeto proveedorObjeto=new ProveedorObjeto();
 

@@ -1,12 +1,17 @@
 package p8.example.puntoventa;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ListView;
@@ -51,34 +56,53 @@ public class Proveedor extends AppCompatActivity {
         lstProveedores.setMenuCreator(new SwipeMenuCreator() {
             @Override
             public void create(SwipeMenu menu) {
-                SwipeMenuItem openItem = new SwipeMenuItem(
+                SwipeMenuItem editItem = new SwipeMenuItem(
                         getApplicationContext());
                 // set item background
-                openItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
-                        0xCE)));
+                editItem.setBackground(new ColorDrawable(Color.rgb(0, 161,
+                        255)));
                 // set item width
-                openItem.setWidth(100);
-                // set item title
-                openItem.setTitle("Open");
-                // set item title fontsize
-                openItem.setTitleSize(18);
-                // set item title font color
-                openItem.setTitleColor(Color.WHITE);
+                editItem.setWidth(150);
+                // set a icon
+                editItem .setIcon(R.drawable.ic_edit);
                 // add to menu
-                menu.addMenuItem(openItem);
+                menu.addMenuItem(editItem);
 
                 // create "delete" item
-                SwipeMenuItem deleteItem = new SwipeMenuItem(
+                SwipeMenuItem callItem = new SwipeMenuItem(
                         getApplicationContext());
                 // set item background
-                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
-                        0x3F, 0x25)));
+                callItem .setBackground(new ColorDrawable(Color.rgb(3,
+                        222, 35)));
                 // set item width
-                deleteItem.setWidth((90));
+                callItem .setWidth(150);
                 // set a icon
-                deleteItem.setIcon(R.drawable.ic_edit);
+                callItem .setIcon(R.drawable.ic_phone);
                 // add to menu
-                menu.addMenuItem(deleteItem);
+                menu.addMenuItem(callItem );
+            }
+        });
+
+        lstProveedores.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+                switch (index){
+                    case 0:
+                        String ID_PROVEEDOR=arrayProveerdor.get(position).getID_Proveedor().toString();
+                        startActivity(new Intent(Proveedor.this,EditarProveedor.class).putExtra("ID_PROVEEDOR",ID_PROVEEDOR));
+                        break;
+                    case 1:
+                        String TELEFONO=arrayProveerdor.get(position).getTelefono();
+                        if (ActivityCompat.checkSelfPermission(Proveedor.this,Manifest.permission.CALL_PHONE)!=PackageManager.PERMISSION_GRANTED){
+                            ActivityCompat.requestPermissions(Proveedor.this,new String[]{Manifest.permission.CALL_PHONE},1);
+                            startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+TELEFONO)));
+                        }else {
+                            startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+TELEFONO)));
+                        }
+
+                        break;
+                }
+                return false;
             }
         });
     }

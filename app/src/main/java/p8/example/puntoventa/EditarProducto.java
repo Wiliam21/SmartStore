@@ -26,7 +26,7 @@ public class EditarProducto extends AppCompatActivity {
     EditText txteNombre,txtnCantidad,txtnCompra,txtnVenta;
     Button btnGuardar,btnEliminar;
     Spinner spnProveedores;
-    Conexion conn=new Conexion(this,"db_SmartStore",null,1);
+    Conexion conn=new Conexion(this,"db_SmartStore",null,2);
 
     ArrayList<ProveedorObjeto> arrayProveerdor;
     ArrayList<String> ListaProveedor;
@@ -45,7 +45,7 @@ public class EditarProducto extends AppCompatActivity {
         spnProveedores =(Spinner)findViewById(R.id.spnProveedroresEdit);
 
         Intent intent=getIntent();
-        ID_PRODUCTO=intent.getStringExtra("ID_PRODUCTOS");
+        ID_PRODUCTO=intent.getStringExtra("ID_PRODUCTO");
         Log.w("ID", "Id recibido: "+ID_PRODUCTO);
 
         consultarProveedores();
