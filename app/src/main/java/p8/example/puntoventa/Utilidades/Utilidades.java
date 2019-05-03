@@ -44,9 +44,9 @@ public class Utilidades {
 
     public static final String CREAR_TABLA_REPORTE= "CREATE TABLE IF NOT EXISTS "+TABLA_REPORTE+"("
             +CAMPO_ID_REPORTE+" integer primary key,"
-            +CAMPO_PRODUCTOS_VENDIDOS+" text"
-            +CAMPO_CANTIDAD_PRODUCTOS+" text"
+            +CAMPO_PRODUCTOS_VENDIDOS+" text,"
+            +CAMPO_CANTIDAD_PRODUCTOS+" text,"
             +CAMPO_TOTAL_REPORTE+" double,"
-            +CAMPO_GANANCIA_REPORTE+" Ganancia double,"
+            +CAMPO_GANANCIA_REPORTE+" double,"
             +CAMPO_FECHA_REPORTE+" date)";
 }
