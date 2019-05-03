@@ -54,7 +54,7 @@ public class Inventario extends AppCompatActivity {
                 SwipeMenuItem editItem = new SwipeMenuItem(
                         getApplicationContext());
                 // set item background
-                editItem.setBackground(new ColorDrawable(Color.rgb(0, 176,
+                editItem.setBackground(new ColorDrawable(Color.rgb(255, 255,
                         255)));
                 // set item width
                 editItem.setWidth(150);

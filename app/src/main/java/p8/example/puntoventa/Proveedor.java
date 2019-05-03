@@ -59,7 +59,7 @@ public class Proveedor extends AppCompatActivity {
                 SwipeMenuItem editItem = new SwipeMenuItem(
                         getApplicationContext());
                 // set item background
-                editItem.setBackground(new ColorDrawable(Color.rgb(0, 161,
+                editItem.setBackground(new ColorDrawable(Color.rgb(255, 255,
                         255)));
                 // set item width
                 editItem.setWidth(150);
@@ -72,8 +72,8 @@ public class Proveedor extends AppCompatActivity {
                 SwipeMenuItem callItem = new SwipeMenuItem(
                         getApplicationContext());
                 // set item background
-                callItem .setBackground(new ColorDrawable(Color.rgb(3,
-                        222, 35)));
+                callItem .setBackground(new ColorDrawable(Color.rgb(255,
+                        255, 255)));
                 // set item width
                 callItem .setWidth(150);
                 // set a icon
