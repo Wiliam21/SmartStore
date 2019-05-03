@@ -115,30 +115,35 @@ public class VentaProductos extends AppCompatActivity {
     }
 
     public void GenerarVenta(View view){
-        Ganancia=0.0;
-        Total_Compra=0.0;
-        SQLiteDatabase bd=conexion.getWritableDatabase();
-        Calendar fecha = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-        String fechaformato = df.format(fecha.getTime());
-        String Codigo_Productos="",Cantidad_Productos="";
-        for (int i=0; i<ProductosVendidos.size();i++){
-            Codigo_Productos+=ProductosVendidos.get(i).getID_Producto()+",";
-            Cantidad_Productos+=CantidadProductos.get(i).toString()+",";
-            Total_Compra+=CantidadProductos.get(i).doubleValue()*ProductosVendidos.get(i).getCosto_Compra();
-            ContentValues DatosProducto=new ContentValues();
-            DatosProducto.put(Utilidades.CAMPO_EXISTENCIA_PRODUCTO,ProductosVendidos.get(i).getExistencia()-CantidadProductos.get(i));
-            DatosProducto.put(Utilidades.CAMPO_VECES_VENDIDO,ProductosVendidos.get(i).getVeces_Vendido()+CantidadProductos.get(i));
-            bd.update(Utilidades.TABLA_PRODUCTO,DatosProducto,Utilidades.CAMPO_ID_PRODUCTO+" = ?",new String[]{ProductosVendidos.get(i).getID_Producto()});
+        try {
+            Ganancia=0.0;
+            Total_Compra=0.0;
+            SQLiteDatabase bd=conexion.getWritableDatabase();
+            Calendar fecha = Calendar.getInstance();
+            SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+            String fechaformato = df.format(fecha.getTime());
+            String Codigo_Productos="",Cantidad_Productos="";
+            for (int i=0; i<ProductosVendidos.size();i++){
+                Codigo_Productos+=ProductosVendidos.get(i).getID_Producto()+",";
+                Cantidad_Productos+=CantidadProductos.get(i).toString()+",";
+                Total_Compra+=CantidadProductos.get(i).doubleValue()*ProductosVendidos.get(i).getCosto_Compra();
+                ContentValues DatosProducto=new ContentValues();
+                DatosProducto.put(Utilidades.CAMPO_EXISTENCIA_PRODUCTO,ProductosVendidos.get(i).getExistencia()-CantidadProductos.get(i));
+                DatosProducto.put(Utilidades.CAMPO_VECES_VENDIDO,ProductosVendidos.get(i).getVeces_Vendido()+CantidadProductos.get(i));
+                bd.update(Utilidades.TABLA_PRODUCTO,DatosProducto,Utilidades.CAMPO_ID_PRODUCTO+" = ?",new String[]{ProductosVendidos.get(i).getID_Producto()});
+            }
+            Ganancia=Total-Total_Compra;
+            ContentValues valores = new ContentValues();
+            valores.put(Utilidades.CAMPO_FECHA_REPORTE,fechaformato);
+            valores.put(Utilidades.CAMPO_PRODUCTOS_VENDIDOS,Codigo_Productos);
+            valores.put(Utilidades.CAMPO_CANTIDAD_PRODUCTOS,Cantidad_Productos);
+            valores.put(Utilidades.CAMPO_GANANCIA_REPORTE,Ganancia);
+            valores.put(Utilidades.CAMPO_TOTAL_REPORTE,Total);
+            bd.insert(Utilidades.TABLA_REPORTE,Utilidades.CAMPO_ID_REPORTE,valores);
+            Toast.makeText(this,"Venta realizada",Toast.LENGTH_LONG).show();
+        }catch (Exception e){
+            Log.e("GenerarVenta: ",e.getMessage());
         }
-        Ganancia=Total-Total_Compra;
-        ContentValues valores = new ContentValues();
-        valores.put(Utilidades.CAMPO_FECHA_REPORTE,fechaformato);
-        valores.put(Utilidades.CAMPO_PRODUCTOS_VENDIDOS,Codigo_Productos);
-        valores.put(Utilidades.CAMPO_CANTIDAD_PRODUCTOS,Cantidad_Productos);
-        valores.put(Utilidades.CAMPO_GANANCIA_REPORTE,Ganancia);
-        valores.put(Utilidades.CAMPO_TOTAL_REPORTE,Total);
-        bd.insert(Utilidades.TABLA_REPORTE,Utilidades.CAMPO_ID_REPORTE,valores);
     }
 
     public void PonerProducto(String ID){
