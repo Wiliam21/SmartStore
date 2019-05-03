@@ -107,6 +107,7 @@ public class VentaProductos extends AppCompatActivity {
             if (!Existe) PonerProducto(id);
         }catch (Exception e){
             Log.e("Error",e.getMessage());
+            Toast.makeText(this,"Producto no encontrado",Toast.LENGTH_LONG).show();
         }
     }
 
