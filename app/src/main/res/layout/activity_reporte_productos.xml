@@ -48,9 +48,11 @@
             app:cardElevation="6dp">
 
             <LinearLayout
+                android:id="@+id/Lyt_Diario"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:onClick="onClick"
                 android:orientation="vertical"
                 android:padding="15dp">
 
@@ -83,9 +85,11 @@
             app:cardElevation="6dp">
 
             <LinearLayout
+                android:id="@+id/Lyt_Semanal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:onClick="onClick"
                 android:orientation="vertical"
                 android:padding="15dp">
 
@@ -118,9 +122,11 @@
             app:cardElevation="6dp">
 
             <LinearLayout
+                android:id="@+id/Lyt_Mensual"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:onClick="onClick"
                 android:orientation="vertical"
                 android:padding="15dp">
 
