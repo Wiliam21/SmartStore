@@ -48,6 +48,7 @@ public class ReporteDiario extends AppCompatActivity implements DatePickerDialog
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         String currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
 
+
         txtfecha.setText(currentDateString);
     }
 }
