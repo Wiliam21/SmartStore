@@ -17,10 +17,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import p8.example.puntoventa.Utilidades.DatePickerFragment;
+import p8.example.puntoventa.Utilidades.Utilidades;
+import p8.example.puntoventa.db_store.Conexion;
 
 public class ReporteDiario extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
+    Conexion conexion=new Conexion(this,Utilidades.DATABASE,null,2);
     Button btnSelectdate;
     TextView txtfecha;
     @Override
@@ -46,10 +52,11 @@ public class ReporteDiario extends AppCompatActivity implements DatePickerDialog
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        String currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        String UserDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
+        String dbDateString = df.format(c.getTime());
+        txtfecha.setText(UserDateString);
 
-
-        txtfecha.setText(currentDateString);
     }
 }
 
