@@ -1,13 +1,10 @@
 package p8.example.puntoventa.Utilidades;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -57,7 +54,7 @@ public class AdaptadorVenta extends BaseAdapter {
         imgbResta=(ImageButton)vista.findViewById(R.id.imgbResta);
         imgbSuma=(ImageButton)vista.findViewById(R.id.imgbSuma);
         txtnCantidadVenta.setText(CantidadPorductos.get(position).toString());
-        txtNombre=(TextView)vista.findViewById(R.id.txtNombreProducto);
+        txtNombre=(TextView)vista.findViewById(R.id.txtFecha);
         txtPrecio=(TextView)vista.findViewById(R.id.txtPrecioProducto);
         txtNombre.setText(producto.getNombre_Producto());
         txtPrecio.setText(producto.getCosto_Venta().toString());

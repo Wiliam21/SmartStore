@@ -32,7 +32,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/txtNombreProducto"
+                    android:id="@+id/txtFecha"
                     android:layout_width="125dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="7dp"
@@ -60,7 +60,7 @@
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/textView7"
+                        android:id="@+id/txtTotalVendido"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right" />
@@ -87,7 +87,7 @@
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/textView11"
+                        android:id="@+id/txtGanancias"
                         android:layout_width="166dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right" />
