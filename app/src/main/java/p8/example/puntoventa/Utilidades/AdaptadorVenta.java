@@ -54,7 +54,7 @@ public class AdaptadorVenta extends BaseAdapter {
         imgbResta=(ImageButton)vista.findViewById(R.id.imgbResta);
         imgbSuma=(ImageButton)vista.findViewById(R.id.imgbSuma);
         txtnCantidadVenta.setText(CantidadPorductos.get(position).toString());
-        txtNombre=(TextView)vista.findViewById(R.id.txtFecha);
+        txtNombre=(TextView)vista.findViewById(R.id.txtID);
         txtPrecio=(TextView)vista.findViewById(R.id.txtPrecioProducto);
         txtNombre.setText(producto.getNombre_Producto());
         txtPrecio.setText(producto.getCosto_Venta().toString());

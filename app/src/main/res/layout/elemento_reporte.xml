@@ -28,11 +28,11 @@
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="10dp"
                     android:gravity="center_vertical"
-                    android:text="Fecha"
+                    android:text="ID de Venta"
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/txtFecha"
+                    android:id="@+id/txtID"
                     android:layout_width="125dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="7dp"

@@ -1,6 +1,7 @@
 package p8.example.puntoventa.Utilidades;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,35 +27,36 @@ public class AdaptadorReporte extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return ListaReportes.size();
     }
 
     @Override
-    public Object getItem(int i) {
-        return null;
+    public Object getItem(int pos) {
+        return ListaReportes.get(pos);
     }
 
     @Override
-    public long getItemId(int i) {
-        return 0;
+    public long getItemId(int pos) {
+        return ListaReportes.get(pos).getID_Reporte();
     }
 
     @Override
-    public View getView(final int position, View ConvertView, final ViewGroup parent) {
+    public View getView(final int position, View ConvertView, ViewGroup parent) {
         final View vista=inflater.inflate(R.layout.elemento_reporte,null);
         Reportes reporte=(Reportes)getItem(position);
-        TextView txtFecha,txtTotalvendido,txtGanancias;
-        txtFecha=(TextView)vista.findViewById(R.id.txtFecha);
+        TextView txtID,txtTotalvendido,txtGanancias;
+        txtID=(TextView)vista.findViewById(R.id.txtID);
         txtTotalvendido=(TextView)vista.findViewById(R.id.txtTotalVendido);
         txtGanancias=(TextView)vista.findViewById(R.id.txtGanancias);
-        txtFecha.setText(reporte.getFecha().toString());
+        txtID.setText(reporte.getID_Reporte().toString());
         txtTotalvendido.setText(reporte.getTotal().toString());
         txtGanancias.setText(reporte.getGanancia().toString());
-        return null;
+        return vista;
 
     }
     public void setData(ArrayList<Reportes> listaReportes){
         this.ListaReportes=listaReportes;
         notifyDataSetChanged();
+        Log.w("UPDATE","Se acualizó");
     }
 }

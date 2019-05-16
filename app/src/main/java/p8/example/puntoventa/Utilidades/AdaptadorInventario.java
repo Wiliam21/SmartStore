@@ -48,7 +48,7 @@ public class AdaptadorInventario extends BaseAdapter {
         Productos producto=(Productos)getItem(position);
         TextView txtNombre,txtCodigoBarras;
 
-        txtNombre=(TextView)vista.findViewById(R.id.txtFecha);
+        txtNombre=(TextView)vista.findViewById(R.id.txtID);
         txtCodigoBarras=(TextView)vista.findViewById(R.id.txtCodigoBarras);
         txtNombre.setText(producto.getNombre_Producto());
         txtCodigoBarras.setText(producto.getID_Producto());
