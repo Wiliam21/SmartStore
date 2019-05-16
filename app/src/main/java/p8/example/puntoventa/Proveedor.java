@@ -105,6 +105,9 @@ public class Proveedor extends AppCompatActivity {
                 return false;
             }
         });
+
+        lstProveedores.setSwipeDirection(SwipeMenuListView.DIRECTION_RIGHT);
+        //lstProveedores.setSwipeDirection(SwipeMenuListView.DIRECTION_LEFT);
     }
 
     private void consultarProveedores() {

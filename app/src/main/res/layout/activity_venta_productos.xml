@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,115 +11,120 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_row="0"
-        android:layout_column="0">
+        android:orientation="vertical">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginRight="20dp">
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
 
-            <TextView
-                android:id="@+id/txtPuntoVenta"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="VENTA PRODUCTOS"
-                android:textColor="#FFF"
-                android:textSize="22sp" />
-
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/datafono" />
-
-        </RelativeLayout>
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginVertical="7dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="6dp">
-
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:padding="5dp">
-
-                    <EditText
-                        android:id="@+id/txtId_Producto"
-                        android:layout_width="248dp"
-                        android:layout_height="wrap_content"
-                        android:background="#fff"
-
-                        android:hint="Codigo del Producto"
-                        android:inputType="number|textCapCharacters"
-                        android:padding="10dp" />
-
-                    <ImageButton
-                        android:id="@+id/imgbBuscar"
-                        android:layout_width="33dp"
-                        android:layout_height="33dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginHorizontal="10dp"
-                        android:onClick="Buscar"
-                        android:src="@drawable/search" />
-
-                    <ImageButton
-                        android:id="@+id/imgbScan"
-                        android:layout_width="32dp"
-                        android:layout_height="34dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_margin="-40dp"
-                        android:onClick="Escanear"
-                        app:srcCompat="@drawable/barcode" />
-
-                </LinearLayout>
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginRight="20dp">
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#C2C2C2"
-                    />
+                    android:id="@+id/txtPuntoVenta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="VENTA PRODUCTOS"
+                    android:textColor="#FFF"
+                    android:textSize="22sp" />
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/datafono" />
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.CardView
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginVertical="7dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="10dp">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                    <ListView
-                        android:id="@+id/lstVenta"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
+
+                        <EditText
+                            android:id="@+id/txtId_Producto"
+                            android:layout_width="248dp"
+                            android:layout_height="wrap_content"
+                            android:background="#fff"
+                            android:hint="Codigo del Producto"
+                            android:inputType="number"
+                            android:layout_weight="1"
+                            android:padding="10dp" />
+
+                        <ImageButton
+                            android:id="@+id/imgbBuscar"
+                            android:layout_width="33dp"
+                            android:layout_height="33dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginHorizontal="10dp"
+                            android:onClick="Buscar"
+                            android:src="@drawable/search" />
+
+                        <ImageButton
+                            android:id="@+id/imgbScan"
+                            android:layout_width="32dp"
+                            android:layout_height="34dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="-40dp"
+                            android:onClick="Escanear"
+                            app:srcCompat="@drawable/barcode" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:padding="10dp">
+
+                        <ListView
+                            android:id="@+id/lstVenta"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
-            </LinearLayout>
+            </android.support.v7.widget.CardView>
 
-        </android.support.v7.widget.CardView>
+            <Button
+                android:id="@+id/btnVenta"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/pago"
+                android:onClick="GenerarVenta"
+                android:text="TOTAL"
+                android:textColor="#FFF" />
 
-        <Button
-            android:id="@+id/btnVenta"
-            android:layout_width="match_parent"
-            android:layout_height="42dp"
-            android:layout_marginHorizontal="12dp"
-            android:textColor="#FFF"
-            android:background="@drawable/pago"
-            android:onClick="GenerarVenta"
-            android:text="TOTAL" />
+        </LinearLayout>
+
+
 
     </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>

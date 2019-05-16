@@ -54,24 +54,31 @@
                 android:orientation="vertical"
                 android:padding="10dp">
 
-                <EditText
-                    android:id="@+id/txtnId_Producto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#fff"
-                    android:drawableLeft="@drawable/codigo"
-                    android:hint="Codigo del producto"
-                    android:inputType="number"
-                    android:padding="10dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <ImageButton
-                    android:layout_gravity="right"
-                    android:id="@+id/imgbScan"
-                    android:layout_width="33dp"
-                    android:layout_height="34dp"
-                    android:layout_marginTop="-40dp"
-                    android:onClick="Escanear"
-                    app:srcCompat="@drawable/barcode" />
+                    <EditText
+                        android:layout_weight="1"
+                        android:id="@+id/txtnId_Producto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"
+                        android:drawableLeft="@drawable/codigo"
+                        android:hint="Codigo del producto"
+                        android:inputType="number"
+                        android:padding="10dp" />
+
+                    <ImageButton
+                        android:layout_gravity="right"
+                        android:id="@+id/imgbScan"
+                        android:layout_width="33dp"
+                        android:layout_height="34dp"
+                        android:layout_marginTop="-40dp"
+                        android:onClick="Escanear"
+                        app:srcCompat="@drawable/barcode" />
+
+                </LinearLayout>
 
                 <EditText
                     android:id="@+id/txteNombre"
