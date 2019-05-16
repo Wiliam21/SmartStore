@@ -52,7 +52,6 @@ public class AdaptadorReporte extends BaseAdapter {
         txtTotalvendido.setText(reporte.getTotal().toString());
         txtGanancias.setText(reporte.getGanancia().toString());
         return vista;
-
     }
     public void setData(ArrayList<Reportes> listaReportes){
         this.ListaReportes=listaReportes;
