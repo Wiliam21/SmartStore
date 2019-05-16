@@ -64,7 +64,7 @@
                         android:layout_height="wrap_content"
                         android:background="#fff"
 
-                        android:hint="Código del Producto"
+                        android:hint="Codigo del Producto"
                         android:inputType="number|textCapCharacters"
                         android:padding="10dp" />
 

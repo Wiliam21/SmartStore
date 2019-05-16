@@ -1,6 +1,7 @@
 package p8.example.puntoventa.Utilidades;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import p8.example.puntoventa.R;
+import p8.example.puntoventa.VentaProductos;
 import p8.example.puntoventa.db_store.Productos;
 
 public class AdaptadorVenta extends BaseAdapter {
@@ -60,6 +62,16 @@ public class AdaptadorVenta extends BaseAdapter {
         txtPrecio.setText(producto.getCosto_Venta().toString());
         txtSubtotal.setText(""+(producto.getCosto_Venta()*CantidadPorductos.get(position)));
         if (CantidadPorductos.get(position)==0)txtnCantidadVenta.setText("AGOTADO");
+
+        vista.setLongClickable(true);
+        imgbResta.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                ((ListView)parent).performItemClick(v,position,1);
+                Log.e("onLongClick: ","Presion larga: "+position);
+                return true;
+            }
+        });
 
         imgbResta.setOnClickListener(new View.OnClickListener() {
             @Override

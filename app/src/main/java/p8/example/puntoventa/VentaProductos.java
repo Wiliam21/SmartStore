@@ -64,27 +64,35 @@ public class VentaProductos extends AppCompatActivity {
         lstVenta.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                int Cantidad=CantidadProductos.get(position);
-                Log.i("CANTIDAD",""+Cantidad);
-                switch (view.getId()){
-                    case R.id.imgbResta:
-                        CantidadProductos.set(position,Cantidad-1);
-                        if (CantidadProductos.get(position)<=0){
-                            ProductosVendidos.remove(position);
-                            CantidadProductos.remove(position);
-                            contador--;
+                if (id==0){
+                    int Cantidad=CantidadProductos.get(position);
+                    switch (view.getId()){
+                        case R.id.imgbResta:
+                            CantidadProductos.set(position,Cantidad-1);
+                            if (CantidadProductos.get(position)<=0){
+                                ProductosVendidos.remove(position);
+                                CantidadProductos.remove(position);
+                                contador--;
+                                ActualizarVenta();
+                            }
+                            break;
+                        case R.id.imgbSuma:
+                            if (CantidadProductos.get(position)<ProductosVendidos.get(position).getExistencia())
+                                CantidadProductos.set(position,Cantidad+1);
                             ActualizarVenta();
-                        }
-                        break;
-                    case R.id.imgbSuma:
-                        if (CantidadProductos.get(position)<ProductosVendidos.get(position).getExistencia())
-                        CantidadProductos.set(position,Cantidad+1);
-                        ActualizarVenta();
-                        break;
+                            break;
+                    }
+                }
+                else if (id==1){
+                    ProductosVendidos.remove(position);
+                    CantidadProductos.remove(position);
+                    contador--;
+                    ActualizarVenta();
                 }
                 adaptadorVenta.setData(ProductosVendidos,CantidadProductos);
             }
         });
+        lstVenta.setLongClickable(true);
     }
 
     @Override
@@ -202,5 +210,7 @@ public class VentaProductos extends AppCompatActivity {
         }
         btnVenta.setText("TOTAL: $"+Total);
     }
+
+
 
 }

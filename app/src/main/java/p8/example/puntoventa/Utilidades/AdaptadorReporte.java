@@ -44,11 +44,11 @@ public class AdaptadorReporte extends BaseAdapter {
     public View getView(final int position, View ConvertView, ViewGroup parent) {
         final View vista=inflater.inflate(R.layout.elemento_reporte,null);
         Reportes reporte=(Reportes)getItem(position);
-        TextView txtID,txtTotalvendido,txtGanancias;
-        txtID=(TextView)vista.findViewById(R.id.txtID);
+        TextView txtFecha,txtTotalvendido,txtGanancias;
+        txtFecha=(TextView)vista.findViewById(R.id.txtFecha);
         txtTotalvendido=(TextView)vista.findViewById(R.id.txtTotalVendido);
         txtGanancias=(TextView)vista.findViewById(R.id.txtGanancias);
-        txtID.setText(reporte.getID_Reporte().toString());
+        txtFecha.setText(reporte.getFecha().toString());
         txtTotalvendido.setText(reporte.getTotal().toString());
         txtGanancias.setText(reporte.getGanancia().toString());
         return vista;
