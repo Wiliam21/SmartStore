@@ -109,6 +109,7 @@ public class ReporteDiario extends AppCompatActivity implements DatePickerDialog
         }
         catch(ParseException ex){
 
+
         }
         return fechaf;
     }
