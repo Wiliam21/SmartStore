@@ -10,9 +10,9 @@ public class Reportes {
     private Integer ID_Reporte;
     private Double Total;
     private Double Ganancia;
-    private Date Fecha;
+    private java.sql.Date Fecha;
 
-    public Reportes(Integer ID_Reporte, Double total, Double ganancia, Date fecha,ArrayList<Productos> ProductosVendidos,ArrayList<Integer> CantidadProductos) {
+    public Reportes(Integer ID_Reporte, Double total, Double ganancia, java.sql.Date fecha, ArrayList<Productos> ProductosVendidos, ArrayList<Integer> CantidadProductos) {
         this.ProductosVendidos=ProductosVendidos;
         this.CantidadProductos=CantidadProductos;
         this.ID_Reporte = ID_Reporte;
@@ -53,7 +53,7 @@ public class Reportes {
         return Fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(java.sql.Date fecha) {
         Fecha = fecha;
     }
 }
