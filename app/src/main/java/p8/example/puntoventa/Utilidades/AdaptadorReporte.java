@@ -48,7 +48,7 @@ public class AdaptadorReporte extends BaseAdapter {
         txtFecha=(TextView)vista.findViewById(R.id.txtFecha);
         txtTotalvendido=(TextView)vista.findViewById(R.id.txtTotalVendido);
         txtGanancias=(TextView)vista.findViewById(R.id.txtGanancias);
-        txtFecha.setText(reporte.getFecha().toString());
+        txtFecha.setText(reporte.getID_Reporte().toString());
         txtTotalvendido.setText(reporte.getTotal().toString());
         txtGanancias.setText(reporte.getGanancia().toString());
         return vista;

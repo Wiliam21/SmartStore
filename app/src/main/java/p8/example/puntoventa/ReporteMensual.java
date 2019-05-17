@@ -31,6 +31,7 @@ public class ReporteMensual extends AppCompatActivity implements DatePickerDialo
     AdaptadorReporte adaptadorReporte;
     ArrayList<Reportes> ListaReportesMes;
     String dbDateString1,dbDateString2;
+    Integer Mes,Año;
     Conexion conexion=new Conexion(this, Utilidades.DATABASE,null,2);
 
     @Override
@@ -57,17 +58,17 @@ public class ReporteMensual extends AppCompatActivity implements DatePickerDialo
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
         Calendar c=Calendar.getInstance();
         Calendar c2=Calendar.getInstance();
 
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        int monthf=month+1;
-        c2.set(year,monthf,dayOfMonth);
+        c2.set(year,month,dayOfMonth+31);
         String UserDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
         String UserLastDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c2.getTime());
+
         dbDateString1=df.format(c.getTime());
         dbDateString2=df.format(c2.getTime());
         txtMesFechaI.setText(UserDateString);
@@ -79,8 +80,7 @@ public class ReporteMensual extends AppCompatActivity implements DatePickerDialo
 
         ListaReportesMes=new ArrayList<Reportes>();
         Reportes reportes=null;
-        Cursor cursor=db.rawQuery("SELECT*FROM "+Utilidades.TABLA_REPORTE+" where "+Utilidades.CAMPO_FECHA_REPORTE+" between ? and ?",new String[] {dbDateString1,dbDateString2});
-       // Cursor cursor=db.query(Utilidades.TABLA_REPORTE,new String[]{Utilidades.CAMPO_ID_REPORTE,Utilidades.CAMPO_TOTAL_REPORTE,Utilidades.CAMPO_GANANCIA_REPORTE},Utilidades.CAMPO_FECHA_REPORTE+" between ? and ? ",new String[] {dbDateString1,dbDateString2},null,null,null);
+        Cursor cursor=db.rawQuery("SELECT*FROM "+Utilidades.TABLA_REPORTE+" where "+Utilidades.CAMPO_FECHA_REPORTE+" >= ? and "+Utilidades.CAMPO_FECHA_REPORTE+" <= ?",new String[] {dbDateString1,dbDateString2});
         while (cursor.moveToNext()){
             reportes=new Reportes();
             reportes.setID_Reporte(cursor.getInt(0));
