@@ -12,9 +12,12 @@
         android:roundIcon="@mipmap/icono"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        <activity android:name=".ReporteMensual"></activity>
-        <activity android:name=".ReporteSemanal" />
-        <activity android:name=".ReporteDiario" />
+        <activity android:name=".ReporteMensual"
+            android:configChanges="orientation|screenSize"/>
+        <activity android:name=".ReporteSemanal"
+            android:configChanges="orientation|screenSize"/>
+        <activity android:name=".ReporteDiario"
+            android:configChanges="orientation|screenSize"/>
         <activity android:name=".EditarProveedor" />
         <activity android:name=".Ajustes" />
         <activity android:name=".Proveedor" />
@@ -28,7 +31,8 @@
         <activity android:name=".ReporteProductos" />
         <activity
             android:name=".VentaProductos"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize"/>
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="18dp"
                 android:layout_marginRight="20dp">
 
                 <TextView
@@ -96,14 +96,73 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:padding="10dp">
+                        android:layout_weight="1">
 
                         <ListView
                             android:id="@+id/lstVenta"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
+
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginVertical="7dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+                    <LinearLayout
+                        android:layout_marginTop="-10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txtTotalVenta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="TOTAL: $0"
+                            android:textSize="18sp" />
+                        <LinearLayout
+                            android:gravity="right"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_marginLeft="15dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="18sp"
+                                android:text="EFECTIVO"/>
+                            <EditText
+                                android:inputType="numberDecimal"
+                                android:id="@+id/txtnEfectivo"
+                                android:gravity="center"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"/>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/txtCambio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:text="CAMBIO: $0"/>
 
                 </LinearLayout>
 
@@ -117,7 +176,7 @@
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/pago"
                 android:onClick="GenerarVenta"
-                android:text="TOTAL"
+                android:text="REALIZAR VENTA"
                 android:textColor="#FFF" />
 
         </LinearLayout>

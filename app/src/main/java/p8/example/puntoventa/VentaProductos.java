@@ -7,7 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -32,11 +35,12 @@ import p8.example.puntoventa.db_store.Conexion;
 import p8.example.puntoventa.db_store.Productos;
 
 public class VentaProductos extends AppCompatActivity {
-    private EditText txteId_Producto;
-    Double Total,Ganancia,Total_Compra;
+    Boolean Dinero=false;
+    EditText txteId_Producto,txtnEfectivo;
+    Double Total,Ganancia,Total_Compra,Efectivo=0.0,Cambio=0.0;
     String Id_Producto;
     IntentIntegrator intent =new IntentIntegrator(this);
-    TextView txtNombreProducto;
+    TextView txtCambio,txtTotalVenta;
     Button btnVenta;
     ArrayList<Productos>ProductosVendidos=new ArrayList<Productos>();
     ArrayList<Integer>CantidadProductos=new ArrayList<Integer>();
@@ -54,12 +58,37 @@ public class VentaProductos extends AppCompatActivity {
         intent.setDesiredBarcodeFormats(IntentIntegrator.PRODUCT_CODE_TYPES);
         intent.setPrompt("Escanea el codigo de barras");
         intent.setCameraId(0);
+        txtCambio=(TextView)findViewById(R.id.txtCambio);
+        txtnEfectivo=(EditText)findViewById(R.id.txtnEfectivo);
+        txtTotalVenta=(TextView)findViewById(R.id.txtTotalVenta);
         intent.setBeepEnabled(true);
         intent.setOrientationLocked(false);
         btnVenta=(Button)findViewById(R.id.btnVenta);
         lstVenta=(ListView)findViewById(R.id.lstVenta);
         adaptadorVenta=new AdaptadorVenta(this,ProductosVendidos,CantidadProductos);
         lstVenta.setAdapter(null);
+
+        txtnEfectivo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                try {
+                    Efectivo=Double.parseDouble(txtnEfectivo.getText().toString());
+                    ActualizarVenta();
+                }catch (Exception e){
+
+                }
+            }
+        });
 
         lstVenta.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -73,13 +102,11 @@ public class VentaProductos extends AppCompatActivity {
                                 ProductosVendidos.remove(position);
                                 CantidadProductos.remove(position);
                                 contador--;
-                                ActualizarVenta();
                             }
                             break;
                         case R.id.imgbSuma:
                             if (CantidadProductos.get(position)<ProductosVendidos.get(position).getExistencia())
                                 CantidadProductos.set(position,Cantidad+1);
-                            ActualizarVenta();
                             break;
                     }
                 }
@@ -87,8 +114,8 @@ public class VentaProductos extends AppCompatActivity {
                     ProductosVendidos.remove(position);
                     CantidadProductos.remove(position);
                     contador--;
-                    ActualizarVenta();
                 }
+                ActualizarVenta();
                 adaptadorVenta.setData(ProductosVendidos,CantidadProductos);
             }
         });
@@ -124,34 +151,44 @@ public class VentaProductos extends AppCompatActivity {
     }
 
     public void GenerarVenta(View view){
-        try {
-            Ganancia=0.0;
-            Total_Compra=0.0;
-            SQLiteDatabase bd=conexion.getWritableDatabase();
-            Calendar fecha = Calendar.getInstance();
-            SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-            String fechaformato = df.format(fecha.getTime());
-            String Codigo_Productos="",Cantidad_Productos="";
-            for (int i=0; i<ProductosVendidos.size();i++){
-                Codigo_Productos+=ProductosVendidos.get(i).getID_Producto()+",";
-                Cantidad_Productos+=CantidadProductos.get(i).toString()+",";
-                Total_Compra+=CantidadProductos.get(i).doubleValue()*ProductosVendidos.get(i).getCosto_Compra();
-                ContentValues DatosProducto=new ContentValues();
-                DatosProducto.put(Utilidades.CAMPO_EXISTENCIA_PRODUCTO,ProductosVendidos.get(i).getExistencia()-CantidadProductos.get(i));
-                DatosProducto.put(Utilidades.CAMPO_VECES_VENDIDO,ProductosVendidos.get(i).getVeces_Vendido()+CantidadProductos.get(i));
-                bd.update(Utilidades.TABLA_PRODUCTO,DatosProducto,Utilidades.CAMPO_ID_PRODUCTO+" = ?",new String[]{ProductosVendidos.get(i).getID_Producto()});
+        if (Dinero){
+            try {
+                Ganancia=0.0;
+                Total_Compra=0.0;
+                SQLiteDatabase bd=conexion.getWritableDatabase();
+                Calendar fecha = Calendar.getInstance();
+                SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+                String fechaformato = df.format(fecha.getTime());
+                String Codigo_Productos="",Cantidad_Productos="";
+                for (int i=0; i<ProductosVendidos.size();i++){
+                    if (ProductosVendidos.get(i).getExistencia()==0){
+                        ProductosVendidos.remove(i);
+                        CantidadProductos.remove(i);
+                    }else{
+                        Codigo_Productos+=ProductosVendidos.get(i).getID_Producto()+",";
+                        Cantidad_Productos+=CantidadProductos.get(i).toString()+",";
+                        Total_Compra+=CantidadProductos.get(i).doubleValue()*ProductosVendidos.get(i).getCosto_Compra();
+                        ContentValues DatosProducto=new ContentValues();
+                        DatosProducto.put(Utilidades.CAMPO_EXISTENCIA_PRODUCTO,ProductosVendidos.get(i).getExistencia()-CantidadProductos.get(i));
+                        DatosProducto.put(Utilidades.CAMPO_VECES_VENDIDO,ProductosVendidos.get(i).getVeces_Vendido()+CantidadProductos.get(i));
+                        bd.update(Utilidades.TABLA_PRODUCTO,DatosProducto,Utilidades.CAMPO_ID_PRODUCTO+" = ?",new String[]{ProductosVendidos.get(i).getID_Producto()});
+                    }
+                }
+                Ganancia=Total-Total_Compra;
+                ContentValues valores = new ContentValues();
+                valores.put(Utilidades.CAMPO_FECHA_REPORTE,fechaformato);
+                valores.put(Utilidades.CAMPO_PRODUCTOS_VENDIDOS,Codigo_Productos);
+                valores.put(Utilidades.CAMPO_CANTIDAD_PRODUCTOS,Cantidad_Productos);
+                valores.put(Utilidades.CAMPO_GANANCIA_REPORTE,Ganancia);
+                valores.put(Utilidades.CAMPO_TOTAL_REPORTE,Total);
+                bd.insert(Utilidades.TABLA_REPORTE,Utilidades.CAMPO_ID_REPORTE,valores);
+                Toast.makeText(this,"Venta realizada",Toast.LENGTH_LONG).show();
+                startActivity(new Intent(VentaProductos.this,VentaProductos.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            }catch (Exception e){
+                Log.e("GenerarVenta: ",e.getMessage());
             }
-            Ganancia=Total-Total_Compra;
-            ContentValues valores = new ContentValues();
-            valores.put(Utilidades.CAMPO_FECHA_REPORTE,fechaformato);
-            valores.put(Utilidades.CAMPO_PRODUCTOS_VENDIDOS,Codigo_Productos);
-            valores.put(Utilidades.CAMPO_CANTIDAD_PRODUCTOS,Cantidad_Productos);
-            valores.put(Utilidades.CAMPO_GANANCIA_REPORTE,Ganancia);
-            valores.put(Utilidades.CAMPO_TOTAL_REPORTE,Total);
-            bd.insert(Utilidades.TABLA_REPORTE,Utilidades.CAMPO_ID_REPORTE,valores);
-            Toast.makeText(this,"Venta realizada",Toast.LENGTH_LONG).show();
-        }catch (Exception e){
-            Log.e("GenerarVenta: ",e.getMessage());
+        }else{
+            Toast.makeText(this,"Dinero insuficiente",Toast.LENGTH_LONG).show();
         }
     }
 
@@ -208,7 +245,16 @@ public class VentaProductos extends AppCompatActivity {
         for (int i=0;i<ProductosVendidos.size();i++){
             Total+=(ProductosVendidos.get(i).getCosto_Venta()*CantidadProductos.get(i));
         }
-        btnVenta.setText("TOTAL: $"+Total);
+        txtTotalVenta.setText("TOTAL: $"+Total);
+        if (Efectivo>=Total){
+            Cambio=Efectivo-Total;
+            txtCambio.setText("CAMBIO: $"+Cambio);
+            Dinero=true;
+        }else {
+            txtCambio.setText("Efectivo insuficiente");
+            Dinero=false;
+        }
+
     }
 
 
