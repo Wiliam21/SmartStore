@@ -61,7 +61,7 @@
 
                     <TextView
                         android:id="@+id/txtTotalVendido"
-                        android:layout_width="wrap_content"
+                        android:layout_width="75dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="right" />
 
@@ -81,14 +81,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="10dp"
-                        android:layout_weight="1"
 
                         android:text="Ganancias"
                         android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/txtGanancias"
-                        android:layout_width="wrap_content"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right" />
                 </LinearLayout>

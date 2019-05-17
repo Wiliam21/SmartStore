@@ -58,7 +58,7 @@ public class ReporteSemanal extends AppCompatActivity implements DatePickerDialo
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
         Calendar c=Calendar.getInstance();
         Calendar c2=Calendar.getInstance();
 
@@ -86,8 +86,8 @@ public class ReporteSemanal extends AppCompatActivity implements DatePickerDialo
             reporte.setTotal(cursor.getDouble(3));
             reporte.setGanancia(cursor.getDouble(4));
             ListaReportes.add(reporte);
-            adaptadorReporte.setData(ListaReportes);
         }
+        adaptadorReporte.setData(ListaReportes);
         if(cursor.getCount()==0) lstReporteSemanal.setAdapter(null);
         else lstReporteSemanal.setAdapter(adaptadorReporte);
         db.close();

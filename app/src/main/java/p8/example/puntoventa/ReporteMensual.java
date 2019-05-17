@@ -65,7 +65,7 @@ public class ReporteMensual extends AppCompatActivity implements DatePickerDialo
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        c2.set(year,month,dayOfMonth+31);
+        c2.set(year,month+1,dayOfMonth);
         String UserDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
         String UserLastDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c2.getTime());
 
@@ -80,15 +80,15 @@ public class ReporteMensual extends AppCompatActivity implements DatePickerDialo
 
         ListaReportesMes=new ArrayList<Reportes>();
         Reportes reportes=null;
-        Cursor cursor=db.rawQuery("SELECT*FROM "+Utilidades.TABLA_REPORTE+" where "+Utilidades.CAMPO_FECHA_REPORTE+" >= ? and "+Utilidades.CAMPO_FECHA_REPORTE+" <= ?",new String[] {dbDateString1,dbDateString2});
+        Cursor cursor=db.rawQuery("SELECT*FROM "+Utilidades.TABLA_REPORTE+" where "+Utilidades.CAMPO_FECHA_REPORTE+" between ? and ?",new String[] {dbDateString1,dbDateString2});
         while (cursor.moveToNext()){
             reportes=new Reportes();
             reportes.setID_Reporte(cursor.getInt(0));
             reportes.setTotal(cursor.getDouble(3));
             reportes.setGanancia(cursor.getDouble(4));
             ListaReportesMes.add(reportes);
-            adaptadorReporte.setData(ListaReportesMes);
         }
+        adaptadorReporte.setData(ListaReportesMes);
         if(cursor.getCount()==0) lstMesReporte.setAdapter(null);
         else lstMesReporte.setAdapter(adaptadorReporte);
         db.close();

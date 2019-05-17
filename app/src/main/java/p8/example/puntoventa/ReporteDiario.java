@@ -59,7 +59,7 @@ public class ReporteDiario extends AppCompatActivity implements DatePickerDialog
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
         String UserDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
         dbDateString = df.format(c.getTime());
         txtfecha.setText(UserDateString);
@@ -77,8 +77,8 @@ public class ReporteDiario extends AppCompatActivity implements DatePickerDialog
             reporte.setTotal(cursor.getDouble(3));
             reporte.setGanancia(cursor.getDouble(4));
             ListaReportes.add(reporte);
-            adaptadorReporte.setData(ListaReportes);
         }
+        adaptadorReporte.setData(ListaReportes);
         if (cursor.getCount()==0) lstReportes.setAdapter(null);
         else lstReportes.setAdapter(adaptadorReporte);
         db.close();
