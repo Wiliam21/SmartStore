@@ -68,11 +68,9 @@ public class ReporteDiario extends AppCompatActivity implements DatePickerDialog
     public void PonerReporte(){
         SQLiteDatabase db=conexion.getReadableDatabase();
 
-        String[] selectionArgs={dbDateString};
-
         ListaReportes=new ArrayList<Reportes>();
         Reportes reporte=null;
-       Cursor cursor=db.query(Utilidades.TABLA_REPORTE,null,Utilidades.CAMPO_FECHA_REPORTE+"=?",selectionArgs,null,null,null);
+       Cursor cursor=db.query(Utilidades.TABLA_REPORTE,null,Utilidades.CAMPO_FECHA_REPORTE+"=?", new String[]{dbDateString},null,null,null);
         while (cursor.moveToNext()){
             reporte=new Reportes();
             reporte.setID_Reporte(cursor.getInt(0));
@@ -84,7 +82,6 @@ public class ReporteDiario extends AppCompatActivity implements DatePickerDialog
         if (cursor.getCount()==0) lstReportes.setAdapter(null);
         else lstReportes.setAdapter(adaptadorReporte);
         db.close();
-
     }
 }
 
