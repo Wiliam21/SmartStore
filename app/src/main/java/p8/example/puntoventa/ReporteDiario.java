@@ -71,7 +71,7 @@ public class ReporteDiario extends AppCompatActivity implements DatePickerDialog
         ListaReportes=new ArrayList<Reportes>();
         Reportes reporte=null;
         Cursor cursor=db.query(Utilidades.TABLA_REPORTE,null,Utilidades.CAMPO_FECHA_REPORTE+"=?", new String[]{dbDateString},null,null,null);
-        while (cursor.moveToNext()){
+        while(cursor.moveToNext()){
             reporte=new Reportes();
             reporte.setID_Reporte(cursor.getInt(0));
             reporte.setTotal(cursor.getDouble(3));
