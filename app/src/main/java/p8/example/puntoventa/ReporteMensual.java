@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -31,7 +32,6 @@ public class ReporteMensual extends AppCompatActivity implements DatePickerDialo
     AdaptadorReporte adaptadorReporte;
     ArrayList<Reportes> ListaReportesMes;
     String dbDateString1,dbDateString2;
-    Integer Mes,Año;
     Conexion conexion=new Conexion(this, Utilidades.DATABASE,null,2);
 
     @Override
@@ -89,7 +89,10 @@ public class ReporteMensual extends AppCompatActivity implements DatePickerDialo
             ListaReportesMes.add(reportes);
         }
         adaptadorReporte.setData(ListaReportesMes);
-        if(cursor.getCount()==0) lstMesReporte.setAdapter(null);
+        if(cursor.getCount()==0){
+            lstMesReporte.setAdapter(null);
+            Toast.makeText(this,"No se han encontrado registros",Toast.LENGTH_LONG).show();
+        }
         else lstMesReporte.setAdapter(adaptadorReporte);
         db.close();
         cursor.close();

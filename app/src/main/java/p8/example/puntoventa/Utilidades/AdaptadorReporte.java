@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import p8.example.puntoventa.R;
 import p8.example.puntoventa.db_store.Reportes;
@@ -44,12 +46,13 @@ public class AdaptadorReporte extends BaseAdapter {
     public View getView(final int position, View ConvertView, ViewGroup parent) {
         final View vista=inflater.inflate(R.layout.elemento_reporte,null);
         Reportes reporte=(Reportes)getItem(position);
+
         TextView txtFecha,txtTotalvendido,txtGanancias;
         txtFecha=(TextView)vista.findViewById(R.id.txtFecha);
         txtTotalvendido=(TextView)vista.findViewById(R.id.txtTotalVendido);
         txtGanancias=(TextView)vista.findViewById(R.id.txtGanancias);
         txtFecha.setText(reporte.getID_Reporte().toString());
-        txtTotalvendido.setText(reporte.getTotal().toString());
+        txtTotalvendido.setText(reporte.getID_Reporte().toString());
         txtGanancias.setText(reporte.getGanancia().toString());
         return vista;
     }

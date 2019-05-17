@@ -1,21 +1,25 @@
 package p8.example.puntoventa;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 import p8.example.puntoventa.Utilidades.AdaptadorReporte;
 import p8.example.puntoventa.Utilidades.DatePickerFragment;
@@ -51,6 +55,14 @@ public class ReporteDiario extends AppCompatActivity implements DatePickerDialog
                 datePicker.show(getSupportFragmentManager(), "date picker");
             }
         });
+
+        lstReportes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String ID_Reporte=ListaReportes.get(position).getID_Reporte().toString();
+                startActivity(new Intent(ReporteDiario.this,ElementosReporte.class).putExtra("ID",ID_Reporte));
+            }
+        });
     }
 
     @Override
@@ -73,13 +85,17 @@ public class ReporteDiario extends AppCompatActivity implements DatePickerDialog
         Cursor cursor=db.query(Utilidades.TABLA_REPORTE,null,Utilidades.CAMPO_FECHA_REPORTE+"=?", new String[]{dbDateString},null,null,null);
         while(cursor.moveToNext()){
             reporte=new Reportes();
+            SimpleDateFormat df=new SimpleDateFormat("dd-MM-yyyy");
             reporte.setID_Reporte(cursor.getInt(0));
             reporte.setTotal(cursor.getDouble(3));
             reporte.setGanancia(cursor.getDouble(4));
             ListaReportes.add(reporte);
         }
         adaptadorReporte.setData(ListaReportes);
-        if (cursor.getCount()==0) lstReportes.setAdapter(null);
+        if(cursor.getCount()==0){
+            lstReportes.setAdapter(null);
+            Toast.makeText(this,"No se han encontrado registros",Toast.LENGTH_LONG).show();
+        }
         else lstReportes.setAdapter(adaptadorReporte);
         db.close();
     }

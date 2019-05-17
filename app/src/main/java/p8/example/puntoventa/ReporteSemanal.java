@@ -12,6 +12,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.sql.Date;
 import java.text.DateFormat;
@@ -87,7 +88,10 @@ public class ReporteSemanal extends AppCompatActivity implements DatePickerDialo
             ListaReportes.add(reporte);
         }
         adaptadorReporte.setData(ListaReportes);
-        if(cursor.getCount()==0) lstReporteSemanal.setAdapter(null);
+        if(cursor.getCount()==0){
+            lstReporteSemanal.setAdapter(null);
+            Toast.makeText(this,"No se han encontrado registros",Toast.LENGTH_LONG).show();
+        }
         else lstReporteSemanal.setAdapter(adaptadorReporte);
         db.close();
         cursor.close();

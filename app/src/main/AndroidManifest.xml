@@ -3,7 +3,8 @@
     package="p8.example.puntoventa">
 
     <uses-feature android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -12,12 +13,17 @@
         android:roundIcon="@mipmap/icono"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        <activity android:name=".ReporteMensual"
-            android:configChanges="orientation|screenSize"/>
-        <activity android:name=".ReporteSemanal"
-            android:configChanges="orientation|screenSize"/>
-        <activity android:name=".ReporteDiario"
-            android:configChanges="orientation|screenSize"/>
+        <activity android:name=".ElementosReporte"></activity>
+        <activity android:name=".ReportePerson" />
+        <activity
+            android:name=".ReporteMensual"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".ReporteSemanal"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".ReporteDiario"
+            android:configChanges="orientation|screenSize" />
         <activity android:name=".EditarProveedor" />
         <activity android:name=".Ajustes" />
         <activity android:name=".Proveedor" />
@@ -31,8 +37,8 @@
         <activity android:name=".ReporteProductos" />
         <activity
             android:name=".VentaProductos"
-            android:windowSoftInputMode="stateHidden"
-            android:configChanges="orientation|screenSize"/>
+            android:configChanges="orientation|screenSize"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
