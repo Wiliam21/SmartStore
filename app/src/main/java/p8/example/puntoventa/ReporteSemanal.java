@@ -61,7 +61,6 @@ public class ReporteSemanal extends AppCompatActivity implements DatePickerDialo
         SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
         Calendar c=Calendar.getInstance();
         Calendar c2=Calendar.getInstance();
-
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
