@@ -10,9 +10,9 @@ public class Reportes {
     private Integer ID_Reporte;
     private Double Total;
     private Double Ganancia;
-    private String Fecha;
+    private Date Fecha;
 
-    public Reportes(Integer ID_Reporte, Double total, Double ganancia, String fecha,ArrayList<Productos> ProductosVendidos,ArrayList<Integer> CantidadProductos) {
+    public Reportes(Integer ID_Reporte, Double total, Double ganancia, Date fecha,ArrayList<Productos> ProductosVendidos,ArrayList<Integer> CantidadProductos) {
         this.ProductosVendidos=ProductosVendidos;
         this.CantidadProductos=CantidadProductos;
         this.ID_Reporte = ID_Reporte;
@@ -49,12 +49,11 @@ public class Reportes {
         Ganancia = ganancia;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return Fecha;
     }
 
-    public void setFecha(String fecha) {
-
+    public void setFecha(Date fecha) {
         Fecha = fecha;
     }
 }

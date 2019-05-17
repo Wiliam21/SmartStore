@@ -51,14 +51,9 @@ public class AdaptadorReporte extends BaseAdapter {
         txtFecha=(TextView)vista.findViewById(R.id.txtFecha);
         txtTotalvendido=(TextView)vista.findViewById(R.id.txtTotalVendido);
         txtGanancias=(TextView)vista.findViewById(R.id.txtGanancias);
-        String fecha=reporte.getFecha(),FechaFinal="",Year="";
-        for (int i=0;i<4;i++) Year+=String.valueOf(fecha.charAt(i));
-        String Month=String.valueOf(fecha.charAt(4))+fecha.charAt(5);
-        String Day=String.valueOf(fecha.charAt(6))+fecha.charAt(7);
-        FechaFinal=Day+"/"+Month+"/"+Year;
-        txtFecha.setText(FechaFinal);
-        txtTotalvendido.setText("$ "+reporte.getTotal().toString());
-        txtGanancias.setText("$ "+reporte.getGanancia().toString());
+        txtFecha.setText(reporte.getID_Reporte().toString());
+        txtTotalvendido.setText(reporte.getID_Reporte().toString());
+        txtGanancias.setText(reporte.getGanancia().toString());
         return vista;
     }
     public void setData(ArrayList<Reportes> listaReportes){
