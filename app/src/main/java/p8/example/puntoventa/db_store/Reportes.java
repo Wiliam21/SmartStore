@@ -1,15 +1,20 @@
 package p8.example.puntoventa.db_store;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 //Clase Reportes con sus atributos, constructor, getters y sets
 public class Reportes {
+    private ArrayList<Productos> ProductosVendidos;
+    private ArrayList<Integer> CantidadProductos;
     private Integer ID_Reporte;
     private Double Total;
     private Double Ganancia;
     private Date Fecha;
 
-    public Reportes(Integer ID_Reporte, Double total, Double ganancia, Date fecha) {
+    public Reportes(Integer ID_Reporte, Double total, Double ganancia, Date fecha,ArrayList<Productos> ProductosVendidos,ArrayList<Integer> CantidadProductos) {
+        this.ProductosVendidos=ProductosVendidos;
+        this.CantidadProductos=CantidadProductos;
         this.ID_Reporte = ID_Reporte;
         this.Total = total;
         this.Ganancia = ganancia;
