@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -85,10 +86,11 @@ public class ReporteDiario extends AppCompatActivity implements DatePickerDialog
         Cursor cursor=db.query(Utilidades.TABLA_REPORTE,null,Utilidades.CAMPO_FECHA_REPORTE+"=?", new String[]{dbDateString},null,null,null);
         while(cursor.moveToNext()){
             reporte=new Reportes();
-            SimpleDateFormat df=new SimpleDateFormat("dd-MM-yyyy");
             reporte.setID_Reporte(cursor.getInt(0));
             reporte.setTotal(cursor.getDouble(3));
             reporte.setGanancia(cursor.getDouble(4));
+            String fecha=cursor.getString(5);
+            Date Fechaf=FechaFormato(fecha);
             ListaReportes.add(reporte);
         }
         adaptadorReporte.setData(ListaReportes);
@@ -98,6 +100,17 @@ public class ReporteDiario extends AppCompatActivity implements DatePickerDialog
         }
         else lstReportes.setAdapter(adaptadorReporte);
         db.close();
+    }
+    public Date FechaFormato(String fecha){
+        SimpleDateFormat fm=new SimpleDateFormat("dd/MM/yyyy");
+        Date fechaf=null;
+        try{
+            fechaf=fm.parse(fecha);
+        }
+        catch(ParseException ex){
+
+        }
+        return fechaf;
     }
 }
 
