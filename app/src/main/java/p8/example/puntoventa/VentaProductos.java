@@ -129,7 +129,7 @@ public class VentaProductos extends AppCompatActivity {
             Total_Compra=0.0;
             SQLiteDatabase bd=conexion.getWritableDatabase();
             Calendar fecha = Calendar.getInstance();
-            SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
+            SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
             String fechaformato = df.format(fecha.getTime());
             String Codigo_Productos="",Cantidad_Productos="";
             for (int i=0; i<ProductosVendidos.size();i++){

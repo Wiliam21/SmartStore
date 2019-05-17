@@ -29,7 +29,6 @@ public class AdaptadorVenta extends BaseAdapter {
         inflater=(LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
     }
 
-
     @Override
     public int getCount() {
         return ListaProductos.size();
