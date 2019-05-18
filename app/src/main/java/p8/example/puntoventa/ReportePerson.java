@@ -73,7 +73,6 @@ public class ReportePerson extends AppCompatActivity implements DatePickerDialog
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
         Calendar c=Calendar.getInstance();
-
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
