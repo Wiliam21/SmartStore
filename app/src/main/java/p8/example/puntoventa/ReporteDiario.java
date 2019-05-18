@@ -32,7 +32,7 @@ public class ReporteDiario extends AppCompatActivity implements DatePickerDialog
 
     Conexion conexion=new Conexion(this,Utilidades.DATABASE,null,2);
     Button btnSelectdate;
-    TextView txtfecha,txtTotal,txtGanancias;
+    TextView txtfecha;
     ListView lstReportes;
     AdaptadorReporte adaptadorReporte;
     ArrayList <Reportes>ListaReportes;
@@ -44,8 +44,6 @@ public class ReporteDiario extends AppCompatActivity implements DatePickerDialog
 
         btnSelectdate=(Button)findViewById(R.id.btnSelectdate);
         txtfecha=(TextView)findViewById(R.id.txtfecha);
-        txtTotal=(TextView)findViewById(R.id.txtTotalVendidoDiario);
-        txtGanancias=(TextView)findViewById(R.id.txtTotalGananciasDiario);
         lstReportes=(ListView)findViewById(R.id.lstReporte);
 
         adaptadorReporte=new AdaptadorReporte(this,ListaReportes);
@@ -82,7 +80,6 @@ public class ReporteDiario extends AppCompatActivity implements DatePickerDialog
     }
     public void PonerReporte(){
         SQLiteDatabase db=conexion.getReadableDatabase();
-        Double Total=0.0,Ganancias=0.0;
 
         ListaReportes=new ArrayList<Reportes>();
         Reportes reporte=null;
@@ -93,24 +90,28 @@ public class ReporteDiario extends AppCompatActivity implements DatePickerDialog
             reporte.setTotal(cursor.getDouble(3));
             reporte.setGanancia(cursor.getDouble(4));
             String fecha=cursor.getString(5);
-            Total+=reporte.getTotal();
-            Ganancias+=reporte.getGanancia();
-            reporte.setFecha(fecha);
+            Date Fechaf=FechaFormato(fecha);
             ListaReportes.add(reporte);
         }
         adaptadorReporte.setData(ListaReportes);
         if(cursor.getCount()==0){
             lstReportes.setAdapter(null);
             Toast.makeText(this,"No se han encontrado registros",Toast.LENGTH_LONG).show();
-            txtGanancias.setText("");
-            txtTotal.setText("");
         }
-        else {
-            txtTotal.setText("Total Vendido: $"+Total.toString());
-            txtGanancias.setText("Ganancias: $"+Ganancias.toString());
-            lstReportes.setAdapter(adaptadorReporte);
-        }
+        else lstReportes.setAdapter(adaptadorReporte);
         db.close();
+    }
+    public Date FechaFormato(String fecha){
+        SimpleDateFormat fm=new SimpleDateFormat("dd/MM/yyyy");
+        Date fechaf=null;
+        try{
+            fechaf=fm.parse(fecha);
+        }
+        catch(ParseException ex){
+
+
+        }
+        return fechaf;
     }
 }
 
