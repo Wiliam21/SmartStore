@@ -58,8 +58,7 @@
                     android:id="@+id/btnFechaSemanal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="25dp"
-                    android:layout_marginTop="36dp"
+                    android:layout_margin="20dp"
                     android:background="@drawable/pago"
                     android:text="Seleccione fecha de Inicio"
                     android:textColor="#ffffff" />
@@ -105,7 +104,9 @@
                 <ListView
                     android:id="@+id/lstReporteSemanal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
                     android:layout_marginTop="10dp">
 
                 </ListView>
@@ -113,12 +114,19 @@
                 <TextView
                     android:id="@+id/txtTotalVendidoSemanal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/txtGananciasSemanal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="18sp" />
 
             </LinearLayout>
 

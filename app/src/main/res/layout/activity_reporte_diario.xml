@@ -49,19 +49,18 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <Button
                     android:id="@+id/btnSelectdate"
-                    android:layout_gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="25dp"
-                    android:layout_marginTop="36dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/pago"
                     android:text="Seleccione una fecha"
-                    android:textColor="#ffffff"
-                    android:background="@drawable/pago"/>
+                    android:textColor="#ffffff" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -72,23 +71,23 @@
                         android:id="@+id/imageView2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/calendar"
-                        android:layout_marginTop="10dp"
                         android:layout_marginLeft="25dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        />
+                        app:srcCompat="@drawable/calendar" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
+
                         <TextView
                             android:id="@+id/txtfecha"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:hint="Seleccione una fecha"
-                            android:layout_marginTop="10dp" />
+                            android:layout_marginTop="10dp"
+                            android:hint="Seleccione una fecha" />
 
                     </LinearLayout>
 
@@ -98,18 +97,27 @@
                 <ListView
                     android:id="@+id/lstReporte"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
                     android:layout_marginTop="10dp" />
 
                 <TextView
                     android:id="@+id/txtTotalVendidoDiario"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/txtGananciasDiario"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
