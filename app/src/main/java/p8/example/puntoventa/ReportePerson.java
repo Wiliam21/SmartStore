@@ -27,7 +27,7 @@ import p8.example.puntoventa.db_store.Reportes;
 public class ReportePerson extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     Button btnFechaI,btnFechaF,btnSearch;
-    TextView txtFechaI,txtFechaF;
+    TextView txtFechaI,txtFechaF,txtTotal,txtGanancias;
     ListView lstPReportes;
     AdaptadorReporte adaptadorReporte;
     ArrayList<Reportes> ListaReportesP;
@@ -43,6 +43,8 @@ public class ReportePerson extends AppCompatActivity implements DatePickerDialog
         btnFechaF=(Button)findViewById(R.id.btnPFechaF);
         txtFechaI=(TextView)findViewById(R.id.txtPersonFechaI);
         txtFechaF=(TextView)findViewById(R.id.txtPersonFechaF);
+        txtTotal=(TextView)findViewById(R.id.txtTotalVendidoPerson);
+        txtGanancias=(TextView)findViewById(R.id.txtGananciasPerson);
         lstPReportes=(ListView)findViewById(R.id.lstPReportes);
 
         adaptadorReporte=new AdaptadorReporte(this,ListaReportesP);
@@ -89,6 +91,7 @@ public class ReportePerson extends AppCompatActivity implements DatePickerDialog
     public void PonerReporte(View view){
         fecha1=Integer.parseInt(dbDateStringI);
         fecha2=Integer.parseInt(dbDateStringF);
+        Double Total=0.0,Ganancias=0.0;
         if ((!dbDateStringI.isEmpty() & !dbDateStringF.isEmpty())&&(fecha1<fecha2)){
             SQLiteDatabase db=conexion.getReadableDatabase();
 
@@ -100,20 +103,32 @@ public class ReportePerson extends AppCompatActivity implements DatePickerDialog
                 reportes.setID_Reporte(cursor.getInt(0));
                 reportes.setTotal(cursor.getDouble(3));
                 reportes.setGanancia(cursor.getDouble(4));
+                String fecha=cursor.getString(5);
+                Total+=reportes.getTotal();
+                Ganancias+=reportes.getGanancia();
+                reportes.setFecha(fecha);
                 ListaReportesP.add(reportes);
             }
             adaptadorReporte.setData(ListaReportesP);
             if(cursor.getCount()==0){
                 lstPReportes.setAdapter(null);
                 Toast.makeText(this,"No se han encontrado registros",Toast.LENGTH_LONG).show();
+                txtTotal.setText("");
+                txtGanancias.setText("");
             }
-            else lstPReportes.setAdapter(adaptadorReporte);
+            else{
+                lstPReportes.setAdapter(adaptadorReporte);
+                txtTotal.setText("Total Vendido: $"+ Total.toString());
+                txtGanancias.setText("Ganancias: $"+ Ganancias.toString());
+            }
             db.close();
             cursor.close();
         }
         else{
             lstPReportes.setAdapter(null);
             Toast.makeText(this,"Seleccione correctamente las fechas",Toast.LENGTH_LONG).show();
+            txtTotal.setText("");
+            txtGanancias.setText("");
         }
     }
 }

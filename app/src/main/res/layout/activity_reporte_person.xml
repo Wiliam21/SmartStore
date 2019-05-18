@@ -92,6 +92,16 @@
             android:id="@+id/lstPReportes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"/>
+            android:layout_marginTop="25dp" />
+
+        <TextView
+            android:id="@+id/txtTotalVendidoPerson"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/txtGananciasPerson"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </LinearLayout>
