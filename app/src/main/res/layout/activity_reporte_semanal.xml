@@ -5,67 +5,114 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ReporteSemanal"
+    android:background="@drawable/bg"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_row="0"
+        android:layout_column="0">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/btnFechaSemanal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="25dp"
-                android:layout_marginTop="36dp"
-                android:background="@drawable/pago"
-                android:text="Seleccione fecha de Inicio"
-                android:textColor="#ffffff" />
-        </RelativeLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="20dp">
+
+            <TextView
+                android:id="@+id/txtPuntoVenta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="REPORTE SEMANAL"
+                android:textColor="#FFF"
+                android:textSize="22sp" />
 
             <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/calendar"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="10dp"/>
-         <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/imgLogo"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/barras" />
+
+        </RelativeLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="12dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/txtFechaInicio"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="Seleccione una fecha de inicio semanal"
-                    android:layout_marginTop="10dp"/>
 
-                <TextView
-                    android:id="@+id/txtFechaFinal"
-                    android:layout_width="wrap_content"
+                <Button
+                    android:id="@+id/btnFechaSemanal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Fecha de término" />
+                    android:layout_margin="25dp"
+                    android:layout_marginTop="36dp"
+                    android:background="@drawable/pago"
+                    android:text="Seleccione fecha de Inicio"
+                    android:textColor="#ffffff" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/calendar"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/txtFechaInicio"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="Seleccione una fecha de inicio semanal"
+                            android:layout_marginTop="10dp"/>
+
+                        <TextView
+                            android:id="@+id/txtFechaFinal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="Fecha de término" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <ListView
+                    android:id="@+id/lstReporteSemanal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    />
+
             </LinearLayout>
 
+        </android.support.v7.widget.CardView>
 
-        </LinearLayout>
-
-    <ListView
-        android:id="@+id/lstReporteSemanal"
-        android:layout_width="404dp"
-        android:layout_height="599dp"
-        android:layout_marginTop="35dp"/>
     </LinearLayout>
 
 </LinearLayout>
