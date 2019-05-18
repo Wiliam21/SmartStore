@@ -32,8 +32,17 @@
         <ListView
             android:id="@+id/lstReporte"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="492dp" />
 
+        <TextView
+            android:id="@+id/txtTotalVendidoDiario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/txtTotalGananciasDiario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

@@ -26,7 +26,7 @@ import p8.example.puntoventa.db_store.Reportes;
 
 public class ReporteMensual extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
-    TextView txtMesFechaI,txtMesFechaF;
+    TextView txtMesFechaI,txtMesFechaF,txtTotal,txtGanancias;
     ListView lstMesReporte;
     Button btnSelFechaM;
     AdaptadorReporte adaptadorReporte;
@@ -41,6 +41,8 @@ public class ReporteMensual extends AppCompatActivity implements DatePickerDialo
 
         txtMesFechaI=(TextView)findViewById(R.id.txtMesFechaI);
         txtMesFechaF=(TextView)findViewById(R.id.txtMesFechaF);
+        txtTotal=(TextView)findViewById(R.id.txtTotalVendidoMensual);
+        txtGanancias=(TextView)findViewById(R.id.txtGananciasMensuales);
         btnSelFechaM=(Button)findViewById(R.id.btnSelFechaM);
         lstMesReporte=(ListView)findViewById(R.id.lstReporteMensual);
 
@@ -77,6 +79,7 @@ public class ReporteMensual extends AppCompatActivity implements DatePickerDialo
     }
     public void PonerReporte(){
         SQLiteDatabase db=conexion.getReadableDatabase();
+        Double Total=0.0,Ganancias=0.0;
 
         ListaReportesMes=new ArrayList<Reportes>();
         Reportes reportes=null;
@@ -86,6 +89,8 @@ public class ReporteMensual extends AppCompatActivity implements DatePickerDialo
             reportes.setID_Reporte(cursor.getInt(0));
             reportes.setTotal(cursor.getDouble(3));
             reportes.setGanancia(cursor.getDouble(4));
+            Total+=reportes.getTotal();
+            Ganancias+=reportes.getGanancia();
             String fecha=cursor.getString(5);
             reportes.setFecha(fecha);
             ListaReportesMes.add(reportes);
@@ -94,8 +99,14 @@ public class ReporteMensual extends AppCompatActivity implements DatePickerDialo
         if(cursor.getCount()==0){
             lstMesReporte.setAdapter(null);
             Toast.makeText(this,"No se han encontrado registros",Toast.LENGTH_LONG).show();
+            txtGanancias.setText("");
+            txtTotal.setText("");
         }
-        else lstMesReporte.setAdapter(adaptadorReporte);
+        else {
+            txtTotal.setText("Total Vendido: $"+Total.toString());
+            txtGanancias.setText("Ganancias: $"+Ganancias.toString());
+            lstMesReporte.setAdapter(adaptadorReporte);
+        }
         db.close();
         cursor.close();
     }

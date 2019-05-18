@@ -57,8 +57,8 @@ public class AdaptadorReporte extends BaseAdapter {
         String Day=String.valueOf(fecha.charAt(6))+fecha.charAt(7);
         FechaFinal=Day+"/"+Month+"/"+Year;
         txtFecha.setText(FechaFinal);
-        txtTotalvendido.setText(reporte.getTotal().toString());
-        txtGanancias.setText(reporte.getGanancia().toString());
+        txtTotalvendido.setText("$ "+reporte.getTotal().toString());
+        txtGanancias.setText("$ "+reporte.getGanancia().toString());
         return vista;
     }
     public void setData(ArrayList<Reportes> listaReportes){
