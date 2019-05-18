@@ -41,7 +41,6 @@ public class ReportePerson extends AppCompatActivity implements DatePickerDialog
         setContentView(R.layout.activity_reporte_person);
         btnFechaI=(Button)findViewById(R.id.btnPFechaI);
         btnFechaF=(Button)findViewById(R.id.btnPFechaF);
-        btnSearch=(Button)findViewById(R.id.btnSearchReportes);
         txtFechaI=(TextView)findViewById(R.id.txtPersonFechaI);
         txtFechaF=(TextView)findViewById(R.id.txtPersonFechaF);
         lstPReportes=(ListView)findViewById(R.id.lstPReportes);

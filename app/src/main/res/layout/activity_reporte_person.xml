@@ -57,6 +57,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
@@ -73,20 +74,15 @@
                     android:hint="Seleccione fecha de término"/>
 
             </LinearLayout>
+            <ImageButton
+                android:layout_weight="0"
+                android:layout_gravity="right"
+                android:layout_width="50dp"
+                android:onClick="PonerReporte"
+                android:layout_height="match_parent"
+                android:background="@drawable/ic_search_black"/>
 
         </LinearLayout>
-
-        <Button
-            android:id="@+id/btnSearchReportes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/botones"
-            android:onClick="PonerReporte"
-            android:text="Buscar Reportes"
-            android:layout_marginRight="25dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="25dp"
-            android:textColor="#ffffff" />
 
         <ListView
             android:id="@+id/lstPReportes"
