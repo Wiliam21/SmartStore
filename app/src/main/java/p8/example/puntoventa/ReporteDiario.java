@@ -90,7 +90,7 @@ public class ReporteDiario extends AppCompatActivity implements DatePickerDialog
             reporte.setTotal(cursor.getDouble(3));
             reporte.setGanancia(cursor.getDouble(4));
             String fecha=cursor.getString(5);
-            Date Fechaf=FechaFormato(fecha);
+            reporte.setFecha(fecha);
             ListaReportes.add(reporte);
         }
         adaptadorReporte.setData(ListaReportes);
@@ -100,18 +100,6 @@ public class ReporteDiario extends AppCompatActivity implements DatePickerDialog
         }
         else lstReportes.setAdapter(adaptadorReporte);
         db.close();
-    }
-    public Date FechaFormato(String fecha){
-        SimpleDateFormat fm=new SimpleDateFormat("dd/MM/yyyy");
-        Date fechaf=null;
-        try{
-            fechaf=fm.parse(fecha);
-        }
-        catch(ParseException ex){
-
-
-        }
-        return fechaf;
     }
 }
 

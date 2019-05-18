@@ -101,6 +101,8 @@ public class ReportePerson extends AppCompatActivity implements DatePickerDialog
                 reportes.setID_Reporte(cursor.getInt(0));
                 reportes.setTotal(cursor.getDouble(3));
                 reportes.setGanancia(cursor.getDouble(4));
+                String fecha=cursor.getString(5);
+                reportes.setFecha(fecha);
                 ListaReportesP.add(reportes);
             }
             adaptadorReporte.setData(ListaReportesP);

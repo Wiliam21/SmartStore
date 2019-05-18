@@ -86,6 +86,8 @@ public class ReporteMensual extends AppCompatActivity implements DatePickerDialo
             reportes.setID_Reporte(cursor.getInt(0));
             reportes.setTotal(cursor.getDouble(3));
             reportes.setGanancia(cursor.getDouble(4));
+            String fecha=cursor.getString(5);
+            reportes.setFecha(fecha);
             ListaReportesMes.add(reportes);
         }
         adaptadorReporte.setData(ListaReportesMes);

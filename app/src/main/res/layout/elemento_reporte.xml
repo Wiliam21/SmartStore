@@ -27,17 +27,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
+                    android:gravity="center_vertical"
                     android:text="Fecha"
                     android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/txtFecha"
-                    android:layout_width="100dp"
+                    android:layout_width="125dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="7dp"
-                    android:gravity="center"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -63,7 +63,7 @@
                         android:id="@+id/txtTotalVendido"
                         android:layout_width="75dp"
                         android:layout_height="match_parent"
-                        android:textSize="18sp"/>
+                        android:layout_gravity="right" />
 
 
                 </LinearLayout>
@@ -89,7 +89,7 @@
                         android:id="@+id/txtGanancias"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:textSize="18sp" />
+                        android:layout_gravity="right" />
                 </LinearLayout>
             </LinearLayout>
 
