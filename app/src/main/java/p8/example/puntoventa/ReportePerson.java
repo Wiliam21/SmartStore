@@ -93,7 +93,6 @@ public class ReportePerson extends AppCompatActivity implements DatePickerDialog
         Double Total=0.0,Ganancias=0.0;
         fecha1=Integer.parseInt(dbDateStringI);
         fecha2=Integer.parseInt(dbDateStringF);
-
         if ((!dbDateStringI.isEmpty() & !dbDateStringF.isEmpty())&&(fecha1<fecha2)){
             SQLiteDatabase db=conexion.getReadableDatabase();
 
