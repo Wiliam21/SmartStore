@@ -152,7 +152,13 @@ public class VentaProductos extends AppCompatActivity {
     }
 
     public void GenerarVenta(View view){
-        if (adaptadorVenta.getCount()!=0){
+        for (int i=0; i<ProductosVendidos.size();i++) {
+            if (ProductosVendidos.get(i).getExistencia() == 0) {
+                ProductosVendidos.remove(i);
+                CantidadProductos.remove(i);
+            }
+        }
+        if (ProductosVendidos.size()!=0){
             if (Dinero){
                 try {
                     Ganancia=0.0;
@@ -163,18 +169,13 @@ public class VentaProductos extends AppCompatActivity {
                     String fechaformato = df.format(fecha.getTime());
                     String Codigo_Productos="",Cantidad_Productos="";
                     for (int i=0; i<ProductosVendidos.size();i++){
-                        if (ProductosVendidos.get(i).getExistencia()==0){
-                            ProductosVendidos.remove(i);
-                            CantidadProductos.remove(i);
-                        }else{
-                            Codigo_Productos+=ProductosVendidos.get(i).getID_Producto()+",";
-                            Cantidad_Productos+=CantidadProductos.get(i).toString()+",";
-                            Total_Compra+=CantidadProductos.get(i).doubleValue()*ProductosVendidos.get(i).getCosto_Compra();
-                            ContentValues DatosProducto=new ContentValues();
-                            DatosProducto.put(Utilidades.CAMPO_EXISTENCIA_PRODUCTO,ProductosVendidos.get(i).getExistencia()-CantidadProductos.get(i));
-                            DatosProducto.put(Utilidades.CAMPO_VECES_VENDIDO,ProductosVendidos.get(i).getVeces_Vendido()+CantidadProductos.get(i));
-                            bd.update(Utilidades.TABLA_PRODUCTO,DatosProducto,Utilidades.CAMPO_ID_PRODUCTO+" = ?",new String[]{ProductosVendidos.get(i).getID_Producto()});
-                        }
+                        Codigo_Productos+=ProductosVendidos.get(i).getID_Producto()+",";
+                        Cantidad_Productos+=CantidadProductos.get(i).toString()+",";
+                        Total_Compra+=CantidadProductos.get(i).doubleValue()*ProductosVendidos.get(i).getCosto_Compra();
+                        ContentValues DatosProducto=new ContentValues();
+                        DatosProducto.put(Utilidades.CAMPO_EXISTENCIA_PRODUCTO,ProductosVendidos.get(i).getExistencia()-CantidadProductos.get(i));
+                        DatosProducto.put(Utilidades.CAMPO_VECES_VENDIDO,ProductosVendidos.get(i).getVeces_Vendido()+CantidadProductos.get(i));
+                        bd.update(Utilidades.TABLA_PRODUCTO,DatosProducto,Utilidades.CAMPO_ID_PRODUCTO+" = ?",new String[]{ProductosVendidos.get(i).getID_Producto()});
                     }
                     Ganancia=Total-Total_Compra;
                     ContentValues valores = new ContentValues();
