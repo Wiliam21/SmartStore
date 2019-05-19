@@ -15,10 +15,12 @@ import p8.example.puntoventa.db_store.Productos;
 public class AdaptadorMostrarReporte extends BaseAdapter {
     private static LayoutInflater inflater=null;
     Context context;
+    String[] Cantidades;
     ArrayList<Productos> ListaReportes;
 
-    public AdaptadorMostrarReporte(Context context,ArrayList<Productos> listaReportes){
+    public AdaptadorMostrarReporte(Context context,ArrayList<Productos> listaReportes,String[] cantidades){
         this.context=context;
+        this.Cantidades=cantidades;
         this.ListaReportes=listaReportes;
         inflater=(LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
     }
@@ -49,9 +51,9 @@ public class AdaptadorMostrarReporte extends BaseAdapter {
         txtProducto=(TextView)vista.findViewById(R.id.txtProductoVerReporte);
         txtCosto=(TextView)vista.findViewById(R.id.txtPrecioVerProducto);
 
-        //txtCantidad.setText(productos.getVeces_Vendido().toString());
-        //txtProducto.setText(productos.getNombre_Producto());
-        //txtCosto.setText(productos.getCosto_Venta().toString());
+        txtCantidad.setText(Cantidades[position]);
+        txtProducto.setText(productos.getNombre_Producto());
+        txtCosto.setText(productos.getCosto_Venta().toString());
 
         return vista;
     }

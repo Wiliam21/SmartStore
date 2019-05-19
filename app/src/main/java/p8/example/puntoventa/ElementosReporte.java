@@ -22,11 +22,12 @@ public class ElementosReporte extends AppCompatActivity {
     TextView txtFecha,txtID,txtTotal,txtGanancia;
     ListView lstElementos;
     Conexion conexion=new Conexion(this, Utilidades.DATABASE,null,Utilidades.DB_VERSION);
-    String ID,Fecha=null,CodigosP="",CantidadesP="",Productos,Cantidades;
+    String ID,Fecha=null,CodigosP="",CantidadesP="",ProductosVenta,Cantidades;
     Double Total=0.0,Ganancias=0.0;
     SimpleDateFormat df=new SimpleDateFormat("dd-MM-yyyy");
     ArrayList<Productos> ProductosVendidos;
     AdaptadorMostrarReporte adaptadorMostrarReporte;
+    Productos producto=new Productos();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +39,6 @@ public class ElementosReporte extends AppCompatActivity {
         txtTotal=(TextView)findViewById(R.id.txtTotalVerReporte);
         txtGanancia=(TextView)findViewById(R.id.txtGananciasVerReporte);
         lstElementos=(ListView)findViewById(R.id.lstElementosVerReporte);
-        adaptadorMostrarReporte=new AdaptadorMostrarReporte(this,ProductosVendidos);
-        //lstElementos.setAdapter(null);
 
         Intent recibir=getIntent();
         ID=recibir.getStringExtra("ID");
@@ -49,9 +48,9 @@ public class ElementosReporte extends AppCompatActivity {
         Cursor cursor=db.rawQuery("SELECT*FROM "+Utilidades.TABLA_REPORTE+" where "+Utilidades.CAMPO_ID_REPORTE+" = ? ",new String[]{ID});
 
         cursor.moveToFirst();
-        Productos=cursor.getString(1);
+        ProductosVenta=cursor.getString(1);
         Cantidades=cursor.getString(2);
-        Log.e("PRODUCTOS",Productos);
+        Log.e("PRODUCTOS",ProductosVenta);
         Total=cursor.getDouble(3);
         Ganancias=cursor.getDouble(4);
         String fecha=cursor.getString(5),FechaFinal="",Year="";
@@ -69,23 +68,27 @@ public class ElementosReporte extends AppCompatActivity {
     public void PonerDatos(){
         ProductosVendidos=new ArrayList<Productos>();
         SQLiteDatabase db=conexion.getReadableDatabase();
-        String[] IDs=Productos.split(","),Cant=Cantidades.split(",");
+        Productos producto=null;
+        String[] IDs=ProductosVenta.split(","),Cant=Cantidades.split(",");
         for (int i=0;i<IDs.length;i++){
-            Productos productos=null;
-            Cursor cursor=db.rawQuery("SELECT*FROM "+Utilidades.TABLA_PRODUCTO+" where "+Utilidades.CAMPO_ID_PRODUCTO+" = ?", new String[]{IDs[i]});
-            cursor.moveToFirst();
-            /**
-             * El error son estas líneas, fuera de eso, ya reconoce la cantidad de productos vendidos
-             * Y si ejecutas con éstas líneas comentadas, la aplicación abre el activity correcto, con los items necesarios en el listview
-             * pero obvio sin la información requerida
-             *              productos.setCosto_Venta(cursor.getDouble(2));
-             *             productos.setNombre_Producto(cursor.getString(1));
-             *             productos.setVeces_Vendido(Integer.parseInt(Cant[i]));
-             */
+            Log.e("IDs: ",IDs[i] );
+            producto=new Productos();
+            String id=IDs[i];
+            try {
+                Cursor cursor=db.query(Utilidades.TABLA_PRODUCTO, null, Utilidades.CAMPO_ID_PRODUCTO+"= ?", new String[]{id}, null, null, null);
+                cursor.moveToFirst();
+                producto.setID_Producto(id);
+                producto.setNombre_Producto(cursor.getString(1));
+                producto.setCosto_Venta(cursor.getDouble(2));
+                producto.setCosto_Compra(cursor.getDouble(3));
+                producto.setExistencia(cursor.getInt(4));
 
-            ProductosVendidos.add(productos);
+                ProductosVendidos.add(producto);
+            }catch (Exception e){
+                Log.e("Error",e.getMessage());
+            }
         }
-        adaptadorMostrarReporte.SetData(ProductosVendidos);
+        adaptadorMostrarReporte=new AdaptadorMostrarReporte(this,ProductosVendidos,Cant);
         lstElementos.setAdapter(adaptadorMostrarReporte);
         db.close();
     }
