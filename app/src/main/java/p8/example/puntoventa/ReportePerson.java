@@ -96,46 +96,52 @@ public class ReportePerson extends AppCompatActivity implements DatePickerDialog
         }
     }
     public void PonerReporte(View view){
-        fecha1=Integer.parseInt(dbDateStringI);
-        fecha2=Integer.parseInt(dbDateStringF);
-        Double Total=0.0,Ganancias=0.0;
-        if ((!dbDateStringI.isEmpty() & !dbDateStringF.isEmpty())&&(fecha1<fecha2)){
-            SQLiteDatabase db=conexion.getReadableDatabase();
+        if (txtFechaI.getText().toString().isEmpty() || txtFechaF.getText().toString().isEmpty()){
+            Toast.makeText(this,"selecciones las fechas",Toast.LENGTH_LONG).show();
+        }
+        else{
+            fecha1=Integer.parseInt(dbDateStringI);
+            fecha2=Integer.parseInt(dbDateStringF);
+            Double Total=0.0,Ganancias=0.0;
+            if (fecha1<fecha2){
+                SQLiteDatabase db=conexion.getReadableDatabase();
 
-            ListaReportesP=new ArrayList<Reportes>();
-            Reportes reportes=null;
-            Cursor cursor=db.rawQuery("SELECT*FROM "+Utilidades.TABLA_REPORTE+" where "+Utilidades.CAMPO_FECHA_REPORTE+" between ? and ?",new String[] {dbDateStringI,dbDateStringF});
-            while (cursor.moveToNext()){
-                reportes=new Reportes();
-                reportes.setID_Reporte(cursor.getInt(0));
-                reportes.setTotal(cursor.getDouble(3));
-                reportes.setGanancia(cursor.getDouble(4));
-                String fecha=cursor.getString(5);
-                Total+=reportes.getTotal();
-                Ganancias+=reportes.getGanancia();
-                reportes.setFecha(fecha);
-                ListaReportesP.add(reportes);
+                ListaReportesP=new ArrayList<Reportes>();
+                Reportes reportes=null;
+                Cursor cursor=db.rawQuery("SELECT*FROM "+Utilidades.TABLA_REPORTE+" where "+Utilidades.CAMPO_FECHA_REPORTE+" between ? and ?",new String[] {dbDateStringI,dbDateStringF});
+                while (cursor.moveToNext()){
+                    reportes=new Reportes();
+                    reportes.setID_Reporte(cursor.getInt(0));
+                    reportes.setTotal(cursor.getDouble(3));
+                    reportes.setGanancia(cursor.getDouble(4));
+                    String fecha=cursor.getString(5);
+                    Total+=reportes.getTotal();
+                    Ganancias+=reportes.getGanancia();
+                    reportes.setFecha(fecha);
+                    ListaReportesP.add(reportes);
+                }
+                adaptadorReporte.setData(ListaReportesP);
+                if(cursor.getCount()==0){
+                    lstPReportes.setAdapter(null);
+                    Toast.makeText(this,"No se han encontrado registros",Toast.LENGTH_LONG).show();
+                    txtTotal.setText("");
+                    txtGanancias.setText("");
+                }
+                else{
+                    lstPReportes.setAdapter(adaptadorReporte);
+                    txtTotal.setText("Total Vendido: $"+ Total.toString());
+                    txtGanancias.setText("Ganancias: $"+ Ganancias.toString());
+                }
+                db.close();
+                cursor.close();
             }
-            adaptadorReporte.setData(ListaReportesP);
-            if(cursor.getCount()==0){
+            else{
                 lstPReportes.setAdapter(null);
-                Toast.makeText(this,"No se han encontrado registros",Toast.LENGTH_LONG).show();
+                Toast.makeText(this,"Seleccione correctamente las fechas",Toast.LENGTH_LONG).show();
                 txtTotal.setText("");
                 txtGanancias.setText("");
             }
-            else{
-                lstPReportes.setAdapter(adaptadorReporte);
-                txtTotal.setText("Total Vendido: $"+ Total.toString());
-                txtGanancias.setText("Ganancias: $"+ Ganancias.toString());
-            }
-            db.close();
-            cursor.close();
         }
-        else{
-            lstPReportes.setAdapter(null);
-            Toast.makeText(this,"Seleccione correctamente las fechas",Toast.LENGTH_LONG).show();
-            txtTotal.setText("");
-            txtGanancias.setText("");
-        }
+
     }
 }
