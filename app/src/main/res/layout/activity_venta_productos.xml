@@ -79,7 +79,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginHorizontal="10dp"
                             android:onClick="Buscar"
-                            android:src="@drawable/search" />
+                            android:background="@drawable/ic_add_shopping_cart_black_24dp" />
 
                         <ImageButton
                             android:id="@+id/imgbScan"
