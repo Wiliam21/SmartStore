@@ -53,7 +53,7 @@ public class AdaptadorMostrarReporte extends BaseAdapter {
 
         txtCantidad.setText(Cantidades[position]);
         txtProducto.setText(productos.getNombre_Producto());
-        txtCosto.setText(productos.getCosto_Venta().toString());
+        txtCosto.setText("$"+productos.getCosto_Venta().toString());
 
         return vista;
     }
