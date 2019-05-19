@@ -1,12 +1,14 @@
 package p8.example.puntoventa;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ListView;
@@ -66,7 +68,13 @@ public class ReportePerson extends AppCompatActivity implements DatePickerDialog
                 datePicker.show(getSupportFragmentManager(),"Date Picker");
             }
         });
-
+        lstPReportes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String ID_Reporte=ListaReportesP.get(position).getID_Reporte().toString();
+                startActivity(new Intent(ReportePerson.this,ElementosReporte.class).putExtra("ID",ID_Reporte));
+            }
+        });
     }
 
     @Override

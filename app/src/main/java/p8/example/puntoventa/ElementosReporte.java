@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import p8.example.puntoventa.Utilidades.Utilidades;
 import p8.example.puntoventa.db_store.Conexion;
 import p8.example.puntoventa.db_store.Productos;
-import p8.example.puntoventa.db_store.Reportes;
 
 public class ElementosReporte extends AppCompatActivity {
 
@@ -51,10 +50,19 @@ public class ElementosReporte extends AppCompatActivity {
         Log.e("PRODUCTOS",Productos);
         Total=cursor.getDouble(3);
         Ganancias=cursor.getDouble(4);
+        String fecha=cursor.getString(5),FechaFinal="",Year="";
+        for (int i=0;i<4;i++) Year+=String.valueOf(fecha.charAt(i));
+        String Month=String.valueOf(fecha.charAt(4))+fecha.charAt(5);
+        String Day=String.valueOf(fecha.charAt(6))+fecha.charAt(7);
+        FechaFinal=Day+"/"+Month+"/"+Year;
         Fecha=cursor.getString(5);
-        txtFecha.setText("Fecha: "+Fecha);
+        txtFecha.setText("Fecha: "+FechaFinal);
         txtTotal.setText("Vendido: $"+Total);
         txtGanancia.setText("Ganancia: $"+Ganancias);
+    }
+    public void PonerDatos(){
+        SQLiteDatabase db=conexion.getReadableDatabase();
+        String[] IDs=Productos.split(","),Cant=Cantidades.split(",");
 
     }
 }

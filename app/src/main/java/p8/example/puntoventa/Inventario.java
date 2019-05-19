@@ -36,6 +36,7 @@ import com.baoyz.swipemenulistview.SwipeMenuListView;
 public class Inventario extends AppCompatActivity {
     Conexion conexion=new Conexion(this, Utilidades.DATABASE,null,2);
     ArrayList<Productos>ListaProductos;
+    AdaptadorInventario adaptadorInventario;
     FloatingActionButton fab;
     SwipeMenuListView Lista;
 
@@ -45,9 +46,8 @@ public class Inventario extends AppCompatActivity {
         setContentView(R.layout.activity_inventario);
         fab = (FloatingActionButton) findViewById(R.id.fbtnAdd);
         Lista=(SwipeMenuListView) findViewById(R.id.listLista);
+        adaptadorInventario=new AdaptadorInventario(this,ListaProductos);
         CargarProductos();
-        Lista.setAdapter(new AdaptadorInventario(this,ListaProductos));
-
         SwipeMenuCreator creator =new SwipeMenuCreator() {
             @Override
             public void create(SwipeMenu menu) {
@@ -82,7 +82,6 @@ public class Inventario extends AppCompatActivity {
                         startActivity(new Intent(Inventario.this,EditarProducto.class).putExtra("ID_PRODUCTO",ID_Producto));
                         break;
                 }
-
                 return false;
             }
         });
@@ -104,6 +103,8 @@ public class Inventario extends AppCompatActivity {
             producto.setID_Proveedor(cursor.getInt(6));
             ListaProductos.add(producto);
         }
+        adaptadorInventario.setData(ListaProductos);
+        Lista.setAdapter(adaptadorInventario);
         db.close();
     }
 }
