@@ -85,6 +85,7 @@ public class Inventario extends AppCompatActivity {
                 return false;
             }
         });
+        Lista.setSwipeDirection(SwipeMenuListView.DIRECTION_RIGHT);
     }
 
     public void CargarProductos(){
