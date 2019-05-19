@@ -97,7 +97,7 @@ public class ReportePerson extends AppCompatActivity implements DatePickerDialog
     }
     public void PonerReporte(View view){
         if (txtFechaI.getText().toString().isEmpty() || txtFechaF.getText().toString().isEmpty()){
-            Toast.makeText(this,"selecciones las fechas",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Seleccione las fechas",Toast.LENGTH_LONG).show();
         }
         else{
             fecha1=Integer.parseInt(dbDateStringI);
