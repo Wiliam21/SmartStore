@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import p8.example.puntoventa.Utilidades.AdaptadorMostrarReporte;
 import p8.example.puntoventa.Utilidades.Utilidades;
 import p8.example.puntoventa.db_store.Conexion;
 import p8.example.puntoventa.db_store.Productos;
@@ -24,8 +25,9 @@ public class ElementosReporte extends AppCompatActivity {
     String ID,Fecha=null,CodigosP="",CantidadesP="",Productos,Cantidades;
     Double Total=0.0,Ganancias=0.0;
     SimpleDateFormat df=new SimpleDateFormat("dd-MM-yyyy");
-    ArrayList<Integer> CantidadProducto=new ArrayList<>();
-    ArrayList<Productos> ProductosVendidos=new ArrayList<>();
+    ArrayList<Productos> ProductosVendidos;
+    AdaptadorMostrarReporte adaptadorMostrarReporte;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +38,8 @@ public class ElementosReporte extends AppCompatActivity {
         txtTotal=(TextView)findViewById(R.id.txtTotalVerReporte);
         txtGanancia=(TextView)findViewById(R.id.txtGananciasVerReporte);
         lstElementos=(ListView)findViewById(R.id.lstElementosVerReporte);
+        adaptadorMostrarReporte=new AdaptadorMostrarReporte(this,ProductosVendidos);
+        //lstElementos.setAdapter(null);
 
         Intent recibir=getIntent();
         ID=recibir.getStringExtra("ID");
@@ -59,10 +63,30 @@ public class ElementosReporte extends AppCompatActivity {
         txtFecha.setText("Fecha: "+FechaFinal);
         txtTotal.setText("Vendido: $"+Total);
         txtGanancia.setText("Ganancia: $"+Ganancias);
+        db.close();
+        PonerDatos();
     }
     public void PonerDatos(){
+        ProductosVendidos=new ArrayList<Productos>();
         SQLiteDatabase db=conexion.getReadableDatabase();
         String[] IDs=Productos.split(","),Cant=Cantidades.split(",");
+        for (int i=0;i<IDs.length;i++){
+            Productos productos=null;
+            Cursor cursor=db.rawQuery("SELECT*FROM "+Utilidades.TABLA_PRODUCTO+" where "+Utilidades.CAMPO_ID_PRODUCTO+" = ?", new String[]{IDs[i]});
+            cursor.moveToFirst();
+            /**
+             * El error son estas líneas, fuera de eso, ya reconoce la cantidad de productos vendidos
+             * Y si ejecutas con éstas líneas comentadas, la aplicación abre el activity correcto, con los items necesarios en el listview
+             * pero obvio sin la información requerida
+             *              productos.setCosto_Venta(cursor.getDouble(2));
+             *             productos.setNombre_Producto(cursor.getString(1));
+             *             productos.setVeces_Vendido(Integer.parseInt(Cant[i]));
+             */
 
+            ProductosVendidos.add(productos);
+        }
+        adaptadorMostrarReporte.SetData(ProductosVendidos);
+        lstElementos.setAdapter(adaptadorMostrarReporte);
+        db.close();
     }
 }
