@@ -50,10 +50,13 @@ public class AdaptadorMostrarReporte extends BaseAdapter {
         txtCantidad=(TextView)vista.findViewById(R.id.txtCantidadVerReporte);
         txtProducto=(TextView)vista.findViewById(R.id.txtProductoVerReporte);
         txtCosto=(TextView)vista.findViewById(R.id.txtPrecioVerProducto);
+        TextView txtTotal=(TextView)vista.findViewById(R.id.txtTotalVerProducto);
 
+        Double Total=productos.getCosto_Venta()*Double.parseDouble(Cantidades[position]);
         txtCantidad.setText(Cantidades[position]);
         txtProducto.setText(productos.getNombre_Producto());
-        txtCosto.setText("$"+productos.getCosto_Venta().toString());
+        txtCosto.setText("$"+productos.getCosto_Venta());
+        txtTotal.setText("$"+Total);
 
         return vista;
     }
