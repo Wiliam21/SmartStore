@@ -211,8 +211,6 @@ public class VentaProductos extends AppCompatActivity {
         producto.setCosto_Venta(cursor.getDouble(2));
         producto.setCosto_Compra(cursor.getDouble(3));
         producto.setExistencia(cursor.getInt(4));
-
-
         producto.setVeces_Vendido(cursor.getInt(5));
         producto.setID_Proveedor(cursor.getInt(6));
         if (producto.getExistencia().intValue()==0) cantidad=0;

@@ -1,6 +1,7 @@
 package p8.example.puntoventa.Utilidades;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,17 +45,30 @@ public class AdaptadorInventario extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        final View vista=inflater.inflate(R.layout.elemento_producto,null);
-        Productos producto=(Productos)getItem(position);
-        TextView txtNombre,txtCodigoBarras;
+        View vista=convertView;
+        ViewHolder holder=new ViewHolder();
+        if (vista==null){
+            try {
+                vista=inflater.inflate(R.layout.elemento_producto,null);
+                holder=new ViewHolder();
+                holder.txtCodigoBarras=(TextView)vista.findViewById(R.id.txtCodigoBarras);
+                holder.txtNombre=(TextView)vista.findViewById(R.id.txtID);
+                vista.setTag(holder);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
 
-        txtNombre=(TextView)vista.findViewById(R.id.txtID);
-        txtCodigoBarras=(TextView)vista.findViewById(R.id.txtCodigoBarras);
-        txtNombre.setText(producto.getNombre_Producto());
-        txtCodigoBarras.setText(producto.getID_Producto());
+
+        } else holder = (ViewHolder) vista.getTag();
+
+        holder.txtNombre.setText(ListaProductos.get(position).getNombre_Producto());
+        holder.txtCodigoBarras.setText(ListaProductos.get(position).getID_Producto());
         return vista;
     }
 
+    class ViewHolder{
+        TextView txtNombre,txtCodigoBarras;
+    }
     public void setData(ArrayList<Productos> listaProductos){
         this.ListaProductos=listaProductos;
         notifyDataSetChanged();
