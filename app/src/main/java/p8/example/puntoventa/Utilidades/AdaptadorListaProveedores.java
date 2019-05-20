@@ -63,25 +63,6 @@ public class AdaptadorListaProveedores extends BaseAdapter {
         holder.txtNombre.setText(ListaProveedores.get(position).getNombre_Proveedor());
         holder.txtTelefono.setText(ListaProveedores.get(position).getTelefono());
         return vista;
-        /*
-        final View vista=inflater.inflate(R.layout.elemento_proveedor,null);
-        final TextView txtNombre_Proveedor=(TextView)vista.findViewById(R.id.txtNombre_Proveedor);
-        TextView txtNumeroProveedor=(TextView)vista.findViewById(R.id.txtNumeroProveedor);
-        ImageButton imgbEditarProveedor=(ImageButton)vista.findViewById(R.id.imgbEditarProveedor);
-
-        txtNombre_Proveedor.setText(ListaProveedores.get(position).getNombre_Proveedor());
-        txtNumeroProveedor.setText(ListaProveedores.get(position).getTelefono());
-        imgbEditarProveedor.setTag(ListaProveedores.get(position).getID_Proveedor());
-
-        imgbEditarProveedor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String ID_PROVEEDOR=String.valueOf((Integer) v.getTag());
-                Log.e("ID", "onClick: "+ID_PROVEEDOR );
-                context.startActivity(new Intent(context, EditarProveedor.class).putExtra("ID_PROVEEDOR",ID_PROVEEDOR));
-            }
-        });
-        return vista;*/
     }
     class  ViewHolder{
         TextView txtNombre,txtTelefono;
