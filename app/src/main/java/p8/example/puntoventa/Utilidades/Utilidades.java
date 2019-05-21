@@ -2,6 +2,7 @@ package p8.example.puntoventa.Utilidades;
 
 public class Utilidades {
     public static final String DATABASE="db_SmartStore";
+    public static final int DB_VERSION=2;
 
     public static final String TABLA_PROVEEDOR="Proveedor";
     public static final String CAMPO_ID_PROVEEDOR="ID_Proveedor";
@@ -24,14 +25,14 @@ public class Utilidades {
     public static final String CAMPO_ID_PROVEEDOR_PRODUCTO="ID_Proveedor";
 
     public static final String CREAR_TABLA_PRODUCTO=
-            "CREATE TABLE IF NOT EXISTS "+TABLA_PRODUCTO+"(" +CAMPO_ID_PRODUCTO+" varchar(25) primary key," +
-            CAMPO_NOMBRE_PRODUCTO+" TEXT," +
-            CAMPO_COSTO_VENTA+" double," +
-            CAMPO_COSTO_COMPRA+" double," +
-            CAMPO_EXISTENCIA_PRODUCTO+" INTEGER," +
-            CAMPO_VECES_VENDIDO+" integer," +
-            CAMPO_ID_PROVEEDOR_PRODUCTO+" INTEGER" +
-                    "," +
+            "CREATE TABLE IF NOT EXISTS "+TABLA_PRODUCTO+"(" +
+                    CAMPO_ID_PRODUCTO+" varchar(25) primary key," +
+                    CAMPO_NOMBRE_PRODUCTO+" TEXT," +
+                    CAMPO_COSTO_VENTA+" double," +
+                    CAMPO_COSTO_COMPRA+" double," +
+                    CAMPO_EXISTENCIA_PRODUCTO+" INTEGER," +
+                    CAMPO_VECES_VENDIDO+" integer," +
+                    CAMPO_ID_PROVEEDOR_PRODUCTO+" INTEGER" + "," +
             "foreign key ("+CAMPO_ID_PROVEEDOR_PRODUCTO+") references "+TABLA_PROVEEDOR+"("+CAMPO_ID_PROVEEDOR+"))";
 
     public static final String TABLA_REPORTE="Reporte";

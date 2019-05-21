@@ -1,12 +1,14 @@
 package p8.example.puntoventa;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ListView;
@@ -41,7 +43,6 @@ public class ReportePerson extends AppCompatActivity implements DatePickerDialog
         setContentView(R.layout.activity_reporte_person);
         btnFechaI=(Button)findViewById(R.id.btnPFechaI);
         btnFechaF=(Button)findViewById(R.id.btnPFechaF);
-        btnSearch=(Button)findViewById(R.id.btnSearchReportes);
         txtFechaI=(TextView)findViewById(R.id.txtPersonFechaI);
         txtFechaF=(TextView)findViewById(R.id.txtPersonFechaF);
         txtTotal=(TextView)findViewById(R.id.txtTotalVendidoPerson);
@@ -67,14 +68,19 @@ public class ReportePerson extends AppCompatActivity implements DatePickerDialog
                 datePicker.show(getSupportFragmentManager(),"Date Picker");
             }
         });
-
+        lstPReportes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String ID_Reporte=ListaReportesP.get(position).getID_Reporte().toString();
+                startActivity(new Intent(ReportePerson.this,ElementosReporte.class).putExtra("ID",ID_Reporte));
+            }
+        });
     }
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
         Calendar c=Calendar.getInstance();
-
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -90,47 +96,52 @@ public class ReportePerson extends AppCompatActivity implements DatePickerDialog
         }
     }
     public void PonerReporte(View view){
-        Double Total=0.0,Ganancias=0.0;
-        fecha1=Integer.parseInt(dbDateStringI);
-        fecha2=Integer.parseInt(dbDateStringF);
-
-        if ((!dbDateStringI.isEmpty() & !dbDateStringF.isEmpty())&&(fecha1<fecha2)){
-            SQLiteDatabase db=conexion.getReadableDatabase();
-
-            ListaReportesP=new ArrayList<Reportes>();
-            Reportes reportes=null;
-            Cursor cursor=db.rawQuery("SELECT*FROM "+Utilidades.TABLA_REPORTE+" where "+Utilidades.CAMPO_FECHA_REPORTE+" between ? and ?",new String[] {dbDateStringI,dbDateStringF});
-            while (cursor.moveToNext()){
-                reportes=new Reportes();
-                reportes.setID_Reporte(cursor.getInt(0));
-                reportes.setTotal(cursor.getDouble(3));
-                reportes.setGanancia(cursor.getDouble(4));
-                Total+=reportes.getTotal();
-                Ganancias+=reportes.getGanancia();
-                String fecha=cursor.getString(5);
-                reportes.setFecha(fecha);
-                ListaReportesP.add(reportes);
-            }
-            adaptadorReporte.setData(ListaReportesP);
-            if(cursor.getCount()==0){
-                lstPReportes.setAdapter(null);
-                Toast.makeText(this,"No se han encontrado registros",Toast.LENGTH_LONG).show();
-                txtGanancias.setText("");
-                txtTotal.setText("");
-            }
-            else {
-                txtTotal.setText("Total Vendido: $"+Total.toString());
-                txtGanancias.setText("Ganacias: $"+Ganancias.toString());
-                lstPReportes.setAdapter(adaptadorReporte);
-            }
-            db.close();
-            cursor.close();
+        if (txtFechaI.getText().toString().isEmpty() || txtFechaF.getText().toString().isEmpty()){
+            Toast.makeText(this,"Seleccione las fechas",Toast.LENGTH_LONG).show();
         }
         else{
-            lstPReportes.setAdapter(null);
-            Toast.makeText(this,"Seleccione correctamente las fechas",Toast.LENGTH_LONG).show();
-            txtGanancias.setText("");
-            txtTotal.setText("");
+            fecha1=Integer.parseInt(dbDateStringI);
+            fecha2=Integer.parseInt(dbDateStringF);
+            Double Total=0.0,Ganancias=0.0;
+            if (fecha1<fecha2){
+                SQLiteDatabase db=conexion.getReadableDatabase();
+
+                ListaReportesP=new ArrayList<Reportes>();
+                Reportes reportes=null;
+                Cursor cursor=db.rawQuery("SELECT*FROM "+Utilidades.TABLA_REPORTE+" where "+Utilidades.CAMPO_FECHA_REPORTE+" between ? and ?",new String[] {dbDateStringI,dbDateStringF});
+                while (cursor.moveToNext()){
+                    reportes=new Reportes();
+                    reportes.setID_Reporte(cursor.getInt(0));
+                    reportes.setTotal(cursor.getDouble(3));
+                    reportes.setGanancia(cursor.getDouble(4));
+                    String fecha=cursor.getString(5);
+                    Total+=reportes.getTotal();
+                    Ganancias+=reportes.getGanancia();
+                    reportes.setFecha(fecha);
+                    ListaReportesP.add(reportes);
+                }
+                adaptadorReporte.setData(ListaReportesP);
+                if(cursor.getCount()==0){
+                    lstPReportes.setAdapter(null);
+                    Toast.makeText(this,"No se han encontrado registros",Toast.LENGTH_LONG).show();
+                    txtTotal.setText("");
+                    txtGanancias.setText("");
+                }
+                else{
+                    lstPReportes.setAdapter(adaptadorReporte);
+                    txtTotal.setText("Total Vendido: $"+ Total.toString());
+                    txtGanancias.setText("Ganancias: $"+ Ganancias.toString());
+                }
+                db.close();
+                cursor.close();
+            }
+            else{
+                lstPReportes.setAdapter(null);
+                Toast.makeText(this,"Seleccione correctamente las fechas",Toast.LENGTH_LONG).show();
+                txtTotal.setText("");
+                txtGanancias.setText("");
+            }
         }
+
     }
 }

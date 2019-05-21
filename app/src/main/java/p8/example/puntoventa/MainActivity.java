@@ -14,7 +14,7 @@ import p8.example.puntoventa.db_store.Conexion;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private CardView ventaCard, reporteCard, proveedoresCard, inventarioCard, ajustesCard;
+    private CardView ventaCard, reporteCard, proveedoresCard, inventarioCard;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -23,14 +23,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         reporteCard = (CardView) findViewById(R.id.reporte);
         proveedoresCard = (CardView) findViewById(R.id.proveedores);
         inventarioCard = (CardView) findViewById(R.id.inventario);
-        ajustesCard = (CardView) findViewById(R.id.ajustes);
 
         ventaCard.setOnClickListener(this);
         reporteCard.setOnClickListener(this);
         proveedoresCard.setOnClickListener(this);
         inventarioCard.setOnClickListener(this);
-        ajustesCard.setOnClickListener(this);
-
 
     }
 
@@ -42,7 +39,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.reporte: i = new Intent(this, ReporteProductos.class);startActivity(i);break;
             case R.id.proveedores: i = new Intent(this, Proveedor.class);startActivity(i);break;
             case R.id.inventario: i = new Intent(this, Inventario.class);startActivity(i);break;
-            case R.id.ajustes: i = new Intent(this, Ajustes.class);startActivity(i);break;
             default:break;
         }
     }

@@ -57,9 +57,9 @@
                     android:id="@+id/txteNombreProveedor"
                     android:layout_width="365dp"
                     android:layout_height="wrap_content"
-                    android:background="#fff"
                     android:hint="Nombre del proveedor"
                     android:inputType="textCapCharacters"
+                    android:drawableLeft="@drawable/ic_account"
                     android:padding="10dp" />
 
                 <EditText
@@ -67,8 +67,7 @@
                     android:layout_width="365dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:background="#fff"
-                    android:drawableLeft="@drawable/name"
+                    android:drawableLeft="@drawable/ic_phone"
                     android:hint="Telefono del proveedor"
                     android:inputType="number"
                     android:padding="10dp" />

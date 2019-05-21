@@ -20,6 +20,6 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:backgroundTint="#6FC89E"
-        app:srcCompat="@drawable/mas" />
+        app:srcCompat="@drawable/ic_person_add" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -13,13 +13,11 @@
         android:roundIcon="@mipmap/lg"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        <activity android:name=".ElementosReporte"></activity>
+        <activity android:name=".ReporteSemanal" />
+        <activity android:name=".ElementosReporte" />
         <activity android:name=".ReportePerson" />
         <activity
             android:name=".ReporteMensual"
-            android:configChanges="orientation|screenSize" />
-        <activity
-            android:name=".ReporteSemanal"
             android:configChanges="orientation|screenSize" />
         <activity
             android:name=".ReporteDiario"

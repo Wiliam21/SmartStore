@@ -13,6 +13,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
@@ -92,14 +93,18 @@ public class Proveedor extends AppCompatActivity {
                         startActivity(new Intent(Proveedor.this,EditarProveedor.class).putExtra("ID_PROVEEDOR",ID_PROVEEDOR));
                         break;
                     case 1:
-                        String TELEFONO=arrayProveerdor.get(position).getTelefono();
-                        if (ActivityCompat.checkSelfPermission(Proveedor.this,Manifest.permission.CALL_PHONE)!=PackageManager.PERMISSION_GRANTED){
-                            ActivityCompat.requestPermissions(Proveedor.this,new String[]{Manifest.permission.CALL_PHONE},1);
-                            startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+TELEFONO)));
-                        }else {
-                            startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+TELEFONO)));
-                        }
+                        try {
+                            String TELEFONO=arrayProveerdor.get(position).getTelefono();
+                            if (ActivityCompat.checkSelfPermission(Proveedor.this,Manifest.permission.CALL_PHONE)!=PackageManager.PERMISSION_GRANTED){
+                                ActivityCompat.requestPermissions(Proveedor.this,new String[]{Manifest.permission.CALL_PHONE},1);
+                                startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+TELEFONO)));
+                            }else {
+                                startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+TELEFONO)));
+                            }
 
+                        }catch (Exception e){
+                            Log.e("LLAMADA",e.getMessage());
+                        }
                         break;
                 }
                 return false;

@@ -1,12 +1,14 @@
 package p8.example.puntoventa;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ListView;
@@ -26,7 +28,7 @@ import p8.example.puntoventa.db_store.Reportes;
 
 public class ReporteMensual extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
-    TextView txtMesFechaI,txtMesFechaF,txtTotal,txtGanancias;
+    TextView txtMesFechaI,txtMesFechaF,txtTotal,txtGanacias;
     ListView lstMesReporte;
     Button btnSelFechaM;
     AdaptadorReporte adaptadorReporte;
@@ -42,7 +44,7 @@ public class ReporteMensual extends AppCompatActivity implements DatePickerDialo
         txtMesFechaI=(TextView)findViewById(R.id.txtMesFechaI);
         txtMesFechaF=(TextView)findViewById(R.id.txtMesFechaF);
         txtTotal=(TextView)findViewById(R.id.txtTotalVendidoMensual);
-        txtGanancias=(TextView)findViewById(R.id.txtGananciasMensuales);
+        txtGanacias=(TextView)findViewById(R.id.txtGananciasMensual);
         btnSelFechaM=(Button)findViewById(R.id.btnSelFechaM);
         lstMesReporte=(ListView)findViewById(R.id.lstReporteMensual);
 
@@ -54,6 +56,13 @@ public class ReporteMensual extends AppCompatActivity implements DatePickerDialo
             public void onClick(View v) {
                 DialogFragment datePicker=new DatePickerFragment();
                 datePicker.show(getSupportFragmentManager(),"Date Picker");
+            }
+        });
+        lstMesReporte.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String ID_Reporte=ListaReportesMes.get(position).getID_Reporte().toString();
+                startActivity(new Intent(ReporteMensual.this,ElementosReporte.class).putExtra("ID",ID_Reporte));
             }
         });
     }
@@ -89,23 +98,23 @@ public class ReporteMensual extends AppCompatActivity implements DatePickerDialo
             reportes.setID_Reporte(cursor.getInt(0));
             reportes.setTotal(cursor.getDouble(3));
             reportes.setGanancia(cursor.getDouble(4));
-            Total+=reportes.getTotal();
-            Ganancias+=reportes.getGanancia();
             String fecha=cursor.getString(5);
             reportes.setFecha(fecha);
+            Total+=reportes.getTotal();
+            Ganancias+= reportes.getGanancia();
             ListaReportesMes.add(reportes);
         }
         adaptadorReporte.setData(ListaReportesMes);
         if(cursor.getCount()==0){
             lstMesReporte.setAdapter(null);
             Toast.makeText(this,"No se han encontrado registros",Toast.LENGTH_LONG).show();
-            txtGanancias.setText("");
             txtTotal.setText("");
+            txtGanacias.setText("");
         }
         else {
-            txtTotal.setText("Total Vendido: $"+Total.toString());
-            txtGanancias.setText("Ganancias: $"+Ganancias.toString());
             lstMesReporte.setAdapter(adaptadorReporte);
+            txtTotal.setText("Total Vendido: $"+ Total.toString());
+            txtGanacias.setText("Ganancias: $"+ Ganancias.toString());
         }
         db.close();
         cursor.close();

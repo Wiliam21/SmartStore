@@ -128,10 +128,15 @@ public class AltaProductos extends AppCompatActivity {
             Producto.put(Utilidades.CAMPO_EXISTENCIA_PRODUCTO,Cantidad);
             Producto.put(Utilidades.CAMPO_VECES_VENDIDO,0);
             Producto.put(Utilidades.CAMPO_ID_PROVEEDOR_PRODUCTO,ID_Proveedor);
-            db.insert(Utilidades.TABLA_PRODUCTO,null,Producto);
-            Toast.makeText(this,"Producto agregado",Toast.LENGTH_LONG).show();
-            startActivity(new Intent(getBaseContext(),Inventario.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-            finish();
+            long id=db.insert(Utilidades.TABLA_PRODUCTO,null,Producto);
+            Log.e("ID",""+id);
+            if (id==-1){
+                Toast.makeText(this,"El producto ya existe",Toast.LENGTH_LONG).show();
+            }else {
+                Toast.makeText(this,"Producto agregado",Toast.LENGTH_LONG).show();
+                startActivity(new Intent(getBaseContext(),Inventario.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                finish();
+            }
         }
         else {
             Toast.makeText(this,"No selecciono un proveedor",Toast.LENGTH_LONG).show();

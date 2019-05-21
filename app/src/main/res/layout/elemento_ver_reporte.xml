@@ -1,78 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:gravity="center|start"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/imgP"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/productos"
+        android:layout_marginRight="10dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        tools:layout_editor_absoluteX="-39dp"
-        tools:layout_editor_absoluteY="16dp">
+        android:layout_gravity="center|start"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center|start"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Producto" />
+                android:layout_weight="1"
+                android:text="Producto"
+                android:textSize="16dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtProductoVerReporte"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="67dp"
+                android:layout_height="wrap_content"
+                android:text="Nombre"
+                android:textSize="12dp"/>
 
         </LinearLayout>
-
-        <Space
-            android:layout_width="15dp"
-            android:layout_height="10dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_gravity="center|start"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cantidad" />
+                android:layout_weight="1"
+                android:text="Cantidad"
+                android:textSize="16dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtCantidadVerReporte"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Cantidad"
+                android:textSize="12dp" />
 
-        <Space
-            android:layout_width="15dp"
-            android:layout_height="10dp" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_gravity="center|start"
+            android:layout_weight="1"
             android:orientation="vertical">
 
+
             <TextView
-                android:id="@+id/textView11"
-                android:layout_width="match_parent"
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Precio" />
+                android:layout_weight="1"
+                android:text="Precio"
+                android:textSize="16dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtPrecioVerProducto"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="$" />
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="$ "
+                android:textSize="12dp" />
+
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_gravity="center|start"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Total"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtTotalVerProducto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="$ "
+                android:textSize="12dp" />
+
+        </LinearLayout>
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

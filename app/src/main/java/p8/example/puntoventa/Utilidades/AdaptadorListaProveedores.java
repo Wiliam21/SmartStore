@@ -2,6 +2,7 @@ package p8.example.puntoventa.Utilidades;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,23 +46,29 @@ public class AdaptadorListaProveedores extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final View vista=inflater.inflate(R.layout.elemento_proveedor,null);
-        final TextView txtNombre_Proveedor=(TextView)vista.findViewById(R.id.txtNombre_Proveedor);
-        TextView txtNumeroProveedor=(TextView)vista.findViewById(R.id.txtNumeroProveedor);
-        ImageButton imgbEditarProveedor=(ImageButton)vista.findViewById(R.id.imgbEditarProveedor);
-
-        txtNombre_Proveedor.setText(ListaProveedores.get(position).getNombre_Proveedor());
-        txtNumeroProveedor.setText(ListaProveedores.get(position).getTelefono());
-        imgbEditarProveedor.setTag(ListaProveedores.get(position).getID_Proveedor());
-
-        imgbEditarProveedor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String ID_PROVEEDOR=String.valueOf((Integer) v.getTag());
-                Log.e("ID", "onClick: "+ID_PROVEEDOR );
-                context.startActivity(new Intent(context, EditarProveedor.class).putExtra("ID_PROVEEDOR",ID_PROVEEDOR));
+        View vista=convertView;
+        ViewHolder holder=new ViewHolder();
+        if (vista==null){
+            try{
+                vista=inflater.inflate(R.layout.elemento_proveedor,null);
+                holder=new ViewHolder();
+                holder.txtNombre=(TextView)vista.findViewById(R.id.txtNombre_Proveedor);
+                holder.txtTelefono=(TextView)vista.findViewById(R.id.txtNumeroProveedor);
+                vista.setTag(holder);
+            }catch (Exception e){
+                e.printStackTrace();
             }
-        });
+        } else holder=(ViewHolder)vista.getTag();
+
+        holder.txtNombre.setText(ListaProveedores.get(position).getNombre_Proveedor());
+        holder.txtTelefono.setText(ListaProveedores.get(position).getTelefono());
         return vista;
+    }
+    class  ViewHolder{
+        TextView txtNombre,txtTelefono;
+    }
+    public void setData(ArrayList<ProveedorObjeto> listaProveedores){
+        this.ListaProveedores=ListaProveedores;
+
     }
 }

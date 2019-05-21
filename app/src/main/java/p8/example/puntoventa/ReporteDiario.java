@@ -45,7 +45,7 @@ public class ReporteDiario extends AppCompatActivity implements DatePickerDialog
         btnSelectdate=(Button)findViewById(R.id.btnSelectdate);
         txtfecha=(TextView)findViewById(R.id.txtfecha);
         txtTotal=(TextView)findViewById(R.id.txtTotalVendidoDiario);
-        txtGanancias=(TextView)findViewById(R.id.txtTotalGananciasDiario);
+        txtGanancias=(TextView)findViewById(R.id.txtGananciasDiario);
         lstReportes=(ListView)findViewById(R.id.lstReporte);
 
         adaptadorReporte=new AdaptadorReporte(this,ListaReportes);
@@ -93,19 +93,19 @@ public class ReporteDiario extends AppCompatActivity implements DatePickerDialog
             reporte.setTotal(cursor.getDouble(3));
             reporte.setGanancia(cursor.getDouble(4));
             String fecha=cursor.getString(5);
+            reporte.setFecha(fecha);
             Total+=reporte.getTotal();
             Ganancias+=reporte.getGanancia();
-            reporte.setFecha(fecha);
             ListaReportes.add(reporte);
         }
         adaptadorReporte.setData(ListaReportes);
         if(cursor.getCount()==0){
             lstReportes.setAdapter(null);
             Toast.makeText(this,"No se han encontrado registros",Toast.LENGTH_LONG).show();
-            txtGanancias.setText("");
             txtTotal.setText("");
+            txtGanancias.setText("");
         }
-        else {
+        else{
             txtTotal.setText("Total Vendido: $"+Total.toString());
             txtGanancias.setText("Ganancias: $"+Ganancias.toString());
             lstReportes.setAdapter(adaptadorReporte);

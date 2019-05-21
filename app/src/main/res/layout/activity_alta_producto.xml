@@ -63,7 +63,6 @@
                         android:id="@+id/txtnId_Producto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="#fff"
                         android:drawableLeft="@drawable/codigo"
                         android:hint="Codigo del producto"
                         android:inputType="number"
@@ -85,7 +84,6 @@
                     android:layout_width="359dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:background="#fff"
                     android:drawableLeft="@drawable/name"
                     android:hint="Ingrese Nombre Producto"
                     android:inputType="textCapCharacters"
@@ -96,8 +94,8 @@
                     android:layout_width="360dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:background="#fff"
                     android:hint="Cantidad"
+                    android:drawableLeft="@drawable/ic_local_grocery_store_black_24dp"
                     android:inputType="number"
                     android:padding="10dp" />
 
@@ -106,8 +104,8 @@
                     android:layout_width="359dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:background="#fff"
                     android:hint="Costo Compra"
+                    android:drawableLeft="@drawable/ic_money"
                     android:inputType="numberDecimal"
                     android:padding="10dp" />
 
@@ -116,7 +114,7 @@
                     android:layout_width="359dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:background="#fff"
+                    android:drawableLeft="@drawable/ic_money"
                     android:ems="10"
                     android:hint="Costo Venta"
                     android:inputType="numberDecimal"
