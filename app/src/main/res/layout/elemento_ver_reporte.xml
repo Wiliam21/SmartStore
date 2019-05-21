@@ -17,15 +17,16 @@
         android:layout_marginRight="10dp" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center|start"
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|start"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
@@ -39,7 +40,7 @@
 
             <TextView
                 android:id="@+id/txtProductoVerReporte"
-                android:layout_width="75dp"
+                android:layout_width="67dp"
                 android:layout_height="wrap_content"
                 android:text="Nombre"
                 android:textSize="12dp"/>
@@ -47,9 +48,10 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center|start"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
@@ -59,24 +61,24 @@
                 android:layout_weight="1"
                 android:text="Cantidad"
                 android:textSize="16dp"
-                android:layout_marginLeft="20dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtCantidadVerReporte"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="Cantidad"
                 android:textSize="12dp" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center|start"
+            android:layout_weight="1"
             android:orientation="vertical">
 
 
@@ -84,7 +86,6 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
                 android:layout_weight="1"
                 android:text="Precio"
                 android:textSize="16dp"
@@ -94,7 +95,7 @@
                 android:id="@+id/txtPrecioVerProducto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:gravity="center"
                 android:layout_weight="1"
                 android:text="$ "
                 android:textSize="12dp" />
@@ -103,6 +104,7 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
+            android:layout_weight="1"
             android:layout_height="match_parent"
             android:layout_gravity="center|start"
             android:orientation="vertical">
@@ -112,7 +114,6 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
                 android:layout_weight="1"
                 android:text="Total"
                 android:textSize="16dp"
@@ -122,7 +123,7 @@
                 android:id="@+id/txtTotalVerProducto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:gravity="center"
                 android:layout_weight="1"
                 android:text="$ "
                 android:textSize="12dp" />
