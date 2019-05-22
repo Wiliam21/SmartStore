@@ -49,7 +49,7 @@ public class Proveedor extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Proveedor.this, AltaProveedores.class);
+                Intent i = new Intent(Proveedor.this, AltaProveedores.class).putExtra("RETORNO","1");
                 startActivity(i);
             }
         });

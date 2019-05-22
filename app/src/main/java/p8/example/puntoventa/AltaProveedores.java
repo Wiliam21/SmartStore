@@ -19,6 +19,7 @@ import p8.example.puntoventa.db_store.Conexion;
 public class AltaProveedores extends AppCompatActivity {
     EditText txteNombreProveedor,txtnNumeroProveedor;
     Button btnAltaProveedor;
+    String RETORNO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,8 @@ public class AltaProveedores extends AppCompatActivity {
         txteNombreProveedor=(EditText)findViewById(R.id.txteNombreProveedor);
         txtnNumeroProveedor=(EditText)findViewById(R.id.txtnNumeroProveedor);
         btnAltaProveedor=(Button)findViewById(R.id.btnAltaProveedor);
+        Intent intent=getIntent();
+        RETORNO=intent.getStringExtra("RETORNO");
 
         View.OnClickListener Alta=new View.OnClickListener() {
             @Override
@@ -57,8 +60,12 @@ public class AltaProveedores extends AppCompatActivity {
             Long idProveedor=db.insert(Utilidades.TABLA_PROVEEDOR,Utilidades.CAMPO_ID_PROVEEDOR,values);
             db.close();
             Toast.makeText(this,"Id proveedor: "+idProveedor,Toast.LENGTH_LONG).show();
-            startActivity(new Intent(this,Proveedor.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-            finish();
+            if (RETORNO == "1") {
+
+            }else {
+                startActivity(new Intent(this,AltaProductos.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                finish();
+            }
         }
 
     }

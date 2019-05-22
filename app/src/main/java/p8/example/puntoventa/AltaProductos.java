@@ -154,6 +154,10 @@ public class AltaProductos extends AppCompatActivity {
         intent.setBarcodeImageEnabled(false);
     }
 
+    public void AddProveedor(View view){
+        startActivity(new Intent(AltaProductos.this, AltaProveedores.class).putExtra("RETORNO","2"));
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         IntentResult result =IntentIntegrator.parseActivityResult(requestCode,resultCode,data);

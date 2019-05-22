@@ -83,7 +83,11 @@ public class VentaProductos extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 try {
-                    Efectivo=Double.parseDouble(txtnEfectivo.getText().toString());
+                    if (txtnEfectivo.getText().toString().isEmpty()){
+                        Efectivo=0.0;
+                    }else{
+                        Efectivo=Double.parseDouble(txtnEfectivo.getText().toString());
+                    }
                     ActualizarVenta();
                 }catch (Exception e){
 

@@ -55,7 +55,7 @@
 
                 <EditText
                     android:id="@+id/txteNombreEdit"
-                    android:layout_width="359dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:drawableLeft="@drawable/name"
@@ -65,7 +65,7 @@
 
                 <EditText
                     android:id="@+id/txtnCantidadEdit"
-                    android:layout_width="360dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:drawableLeft="@drawable/ic_local_grocery_store_black_24dp"
@@ -75,7 +75,7 @@
 
                 <EditText
                     android:id="@+id/txtnCompraEdit"
-                    android:layout_width="359dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:hint="Costo Compra"
@@ -85,7 +85,7 @@
 
                 <EditText
                     android:id="@+id/txtnVentaEdit"
-                    android:layout_width="359dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:ems="10"

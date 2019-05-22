@@ -81,7 +81,7 @@
 
                 <EditText
                     android:id="@+id/txteNombre"
-                    android:layout_width="359dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:drawableLeft="@drawable/name"
@@ -91,7 +91,7 @@
 
                 <EditText
                     android:id="@+id/txtnCantidad"
-                    android:layout_width="360dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:hint="Cantidad"
@@ -101,7 +101,7 @@
 
                 <EditText
                     android:id="@+id/txtnCompra"
-                    android:layout_width="359dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:hint="Costo Compra"
@@ -111,7 +111,7 @@
 
                 <EditText
                     android:id="@+id/txtnVenta"
-                    android:layout_width="359dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:drawableLeft="@drawable/ic_money"
@@ -120,13 +120,26 @@
                     android:inputType="numberDecimal"
                     android:padding="10dp" />
 
-                <Spinner
-                    android:id="@+id/spinner_proveedores"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="15dp"
-                    android:padding="5dp"
-                    />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <Spinner
+                        android:id="@+id/spinner_proveedores"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        />
+                    <ImageButton
+                        android:id="@+id/imgbAddProveedor"
+                        android:onClick="AddProveedor"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/ic_person_add"
+                        android:padding="5dp"/>
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/btnAlta"
