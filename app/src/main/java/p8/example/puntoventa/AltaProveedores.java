@@ -46,7 +46,6 @@ public class AltaProveedores extends AppCompatActivity {
     public void AltaProveedor(){
         Conexion conexion=new Conexion(this,"db_SmartStore",null,2);
         SQLiteDatabase db=conexion.getWritableDatabase();
-
         String NombreProveedor=txteNombreProveedor.getText().toString();
         String TelefonoProveedor=txtnNumeroProveedor.getText().toString();
 
