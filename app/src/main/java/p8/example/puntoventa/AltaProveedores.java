@@ -60,7 +60,7 @@ public class AltaProveedores extends AppCompatActivity {
             Long idProveedor=db.insert(Utilidades.TABLA_PROVEEDOR,Utilidades.CAMPO_ID_PROVEEDOR,values);
             db.close();
             Toast.makeText(this,"Id proveedor: "+idProveedor,Toast.LENGTH_LONG).show();
-            if (RETORNO.equals("Proveedor")) {
+            if (RETORNO.equals("Proveedor")){
                 startActivity(new Intent(this,Proveedor.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                 finish();
             }else {
